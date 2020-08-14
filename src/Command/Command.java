@@ -1,6 +1,14 @@
 package Command;
 
-public interface Command {
+import Control.GameControl;
 
-    void execute();
+public abstract class Command {
+    
+    protected GameControl gameControl;
+
+    public Command(GameControl gameControl) {
+        this.gameControl = gameControl;
+    }
+    
+    abstract void execute();
 }
