@@ -28,6 +28,8 @@ public class GameImplementation implements GameControl {
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
+        
+        notificaPlayersCriados();
     }
 
     @Override
@@ -98,6 +100,12 @@ public class GameImplementation implements GameControl {
     private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
         for(Observer o : observers){
 //            o.notificaMovimentacaoConcluida(wagonName, wagonLocation);
+        }
+    }
+
+    private void notificaPlayersCriados() {
+        for(Observer o : observers){
+//            o.notificaPlayersCriados();
         }
     }
 
