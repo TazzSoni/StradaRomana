@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 
+import Command.Invoker;
+import Command.RandomizeWagonsCommand;
+import Control.GameControl;
+import Control.GameImplementation;
+import Control.Observer;
 import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -13,9 +18,11 @@ import javax.swing.JButton;
  *
  * @author Rodrigo
  */
-public class NewMain extends javax.swing.JFrame {
+public class NewMain extends javax.swing.JFrame implements Observer {
 
     public NewMain() {
+        this.gameCtrl = new GameImplementation();
+        this.gameCtrl.addObserver(this);
         initComponents();
     }
 
@@ -28,7 +35,6 @@ public class NewMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        
         jPanel1 = new javax.swing.JPanel();
         jB1 = new javax.swing.JButton();
         jB2 = new javax.swing.JButton();
@@ -98,19 +104,19 @@ public class NewMain extends javax.swing.JFrame {
         jButton59 = new javax.swing.JButton();
         jButton60 = new javax.swing.JButton();
         jButton61 = new javax.swing.JButton();
-        botoes = new ArrayList<>();
-        
-        botoes.add(jB1);
-        botoes.add(jB2);
-        botoes.add(jB3);
-        botoes.add(jB4);
-        botoes.add(jB5);
-        botoes.add(jB6);
-        botoes.add(jB7);
-        botoes.add(jB8);
-        botoes.add(jB9);
-        botoes.add(jB10);
-        
+        wagonsE = new ArrayList<>();
+        wagonsD = new ArrayList<>();
+
+        wagonsE.add(jB1);
+        wagonsE.add(jB2);
+        wagonsE.add(jB3);
+        wagonsE.add(jB4);
+        wagonsE.add(jB5);
+        wagonsD.add(jB6);
+        wagonsD.add(jB7);
+        wagonsD.add(jB8);
+        wagonsD.add(jB9);
+        wagonsD.add(jB10);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,6 +149,32 @@ public class NewMain extends javax.swing.JFrame {
         jB5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB5ActionPerformed(evt);
+            }
+        });
+
+        jB6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB6ActionPerformed(evt);
+            }
+        });
+        jB7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB6ActionPerformed(evt);
+            }
+        });
+        jB8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB6ActionPerformed(evt);
+            }
+        });
+        jB9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB6ActionPerformed(evt);
+            }
+        });
+        jB10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB6ActionPerformed(evt);
             }
         });
 
@@ -223,12 +255,10 @@ public class NewMain extends javax.swing.JFrame {
 
         jButton37.setBackground(new java.awt.Color(0, 0, 0));
 
-        jB6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
-            }
-        });
-
+        ci.add(new RandomizeWagonsCommand(gameCtrl, "D"));
+        ci.execute();
+        ci.add(new RandomizeWagonsCommand(gameCtrl, "E"));
+        ci.execute();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setText("Strada Romana");
@@ -604,20 +634,13 @@ public class NewMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>    
 
-    private void setIcon(ArrayList<Integer> numeros, ArrayList<JButton> jButton) {
-        for (Integer num : numeros) {
-            if (num <= 5) {
-                for (JButton jb : jButton) {
-                    if (!(jb.getIcon() == null)) {
-                        jb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + num + ".png")));
-                    }
-                }
+    private void setIconD(ArrayList<Integer> numeros, ArrayList<JButton> jButtonE, ArrayList<JButton> jButtonD) {
+
+        for (int i = 0; i < 5; i++) {
+            if (numeros.get(i) > 5) {
+                jButtonD.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
             } else {
-                for (JButton jb : jButton) {
-                    if (!(jb.getIcon() == null)) {
-                        jb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + num + ".png")));
-                    }
-                }
+                jButtonE.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
             }
         }
     }
@@ -665,8 +688,6 @@ public class NewMain extends javax.swing.JFrame {
         jButtonVez = jB5;
     }
     private JButton jButtonVez;
-
-    private ImageIcon wagon1 = new ImageIcon(getClass().getResource("/Imagens/hamilcar-.png"));
 
     public void limparIcon(JButton jb) {
         String teste = "" + jb.getIcon();
@@ -800,6 +821,14 @@ public class NewMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private ArrayList<JButton> botoes;
+    private ArrayList<JButton> wagonsE;
+    private ArrayList<JButton> wagonsD;
+    private Invoker ci = new Invoker();
+    private GameControl gameCtrl;
     // End of variables declaration                   
+
+    @Override
+    public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
+        setIconD(numeros, wagonsE, wagonsD);
+    }
 }
