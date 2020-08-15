@@ -5,13 +5,15 @@
  */
 package Control;
 
+import Model.Player;
+
 /**
  *
  * @author guilh
  */
 public interface GameControl {
 
-    public void setPlayers(String player1Name, String player2Name);
+    Player getPlayer1();
 
     public void createWagons(String boardSide);
 

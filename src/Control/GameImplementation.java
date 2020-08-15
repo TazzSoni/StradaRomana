@@ -25,6 +25,16 @@ public class GameImplementation implements GameControl {
     List<Wagon> wagons = new ArrayList<>();
 
     @Override
+    public Player getPlayer1() {
+        return player1;
+    }
+    
+    @Override
+    public Player getPlayer2() {
+        return player2;
+    }
+    
+    @Override
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
