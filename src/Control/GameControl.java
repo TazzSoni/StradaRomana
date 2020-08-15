@@ -15,10 +15,14 @@ public interface GameControl {
 
     Player getPlayer1();
 
-    public void createWagons(String boardSide);
+    Player getPlayer2();
 
-    public void addObserver(Observer o);
+    void setPlayers(String player1Name, String player2Name);
 
-    public void moveWagon(String wagonName, String wishedPosition);
-    
+    void createWagons(String boardSide);
+
+    void addObserver(Observer o);
+
+    void moveWagon(String wagonName, String wishedPosition);
+
 }

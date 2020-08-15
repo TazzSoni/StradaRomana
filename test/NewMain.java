@@ -6,6 +6,7 @@
 
 import Command.Invoker;
 import Command.CreateWagonsCommand;
+import Command.NewPlayersCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
