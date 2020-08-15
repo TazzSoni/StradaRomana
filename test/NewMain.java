@@ -848,6 +848,14 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
         setIconD(numeros, wagonsE, wagonsD);
     }
-    //jLabel2.setText(gameCtrl.getPlayer1().getName());
-    //jLabel3.setText(gameCtrl.getPlayer2().getName());
+
+    @Override
+    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+    }
+
+    @Override
+    public void notificaPlayersCriados() {
+    jLabel2.setText(gameCtrl.getPlayer1().getName());
+    jLabel3.setText(gameCtrl.getPlayer2().getName());
+    }
 }

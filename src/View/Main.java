@@ -792,4 +792,14 @@ public class Main extends javax.swing.JFrame implements Observer {
     public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificaPlayersCriados() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
