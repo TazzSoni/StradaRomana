@@ -13,7 +13,7 @@ public interface GameControl {
 
     public void setPlayers(String player1Name, String player2Name);
 
-    public void randomizeWagons(String boardSide);
+    public void createWagons(String boardSide);
 
     public void addObserver(Observer o);
     

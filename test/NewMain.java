@@ -5,7 +5,7 @@
  */
 
 import Command.Invoker;
-import Command.RandomizeWagonsCommand;
+import Command.CreateWagonsCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
@@ -255,9 +255,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jButton37.setBackground(new java.awt.Color(0, 0, 0));
 
-        ci.add(new RandomizeWagonsCommand(gameCtrl, "D"));
+        ci.add(new CreateWagonsCommand(gameCtrl, "D"));
         ci.execute();
-        ci.add(new RandomizeWagonsCommand(gameCtrl, "E"));
+        ci.add(new CreateWagonsCommand(gameCtrl, "E"));
         ci.execute();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
