@@ -33,7 +33,7 @@ public class GameImplementation implements GameControl {
     @Override
     public void createWagons(String boardSide) {
         ArrayList<Integer> numeros = new ArrayList<>();
-        
+
         if (boardSide.equals("E")) {
             for (int i = 1; i <= 5; i++) {
                 numeros.add(i);
@@ -43,25 +43,26 @@ public class GameImplementation implements GameControl {
                 numeros.add(i);
             }
         }
-        
+
         Collections.shuffle(numeros);
-        
+
         String location = boardSide.equals("E") ? "10" : "36";
-        for(Integer i=1; i<=5; i++){
+        String movesTo = boardSide.equals("E") ? "D" : "Ex";
+        for (Integer i = 1; i <= 5; i++) {
             Integer num = numeros.get(i);
             Wagon wagon = new Wagon();
-            wagon.setName(num+"");
-            wagon.setLocation(location+i);
+            wagon.setName(num + "");
+            wagon.setLocation(location + i);
             wagons.add(wagon);
         }
 
-        for(Observer o : observers){
+        for (Observer o : observers) {
             o.notifyRandomizedWagons(numeros);
         }
     }
 
     private void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-        for(Observer o : observers){
+        for (Observer o : observers) {
             o.notifyRandomizedWagons(numeros);
         }
     }
@@ -69,6 +70,35 @@ public class GameImplementation implements GameControl {
     @Override
     public void addObserver(Observer o) {
         observers.add(o);
+    }
+
+    @Override
+    public void moveWagon(String wagonName, String wishedLocation) {
+        Wagon wagon = null;
+        for (Wagon w : wagons) {
+            if (w.getName().equals(wagonName)) {
+                wagon = w;
+                break;
+            }
+        }
+        
+        if(wagon == null){
+            System.out.println("Vagão não encontrado com o nome informado (" + wagonName + ").");
+            Thread.currentThread().interrupt();
+        }
+        
+//        try{
+//            jogada.AddPlayerMove();
+//        }
+        wagon.setLocation(wishedLocation);
+        
+        notificaMovimentacaoConcluida(wagon.getName(), wagon.getLocation());
+    }
+
+    private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+        for(Observer o : observers){
+//            o.notificaMovimentacaoConcluida(wagonName, wagonLocation);
+        }
     }
 
 }

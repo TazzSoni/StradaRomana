@@ -16,5 +16,7 @@ public interface GameControl {
     public void createWagons(String boardSide);
 
     public void addObserver(Observer o);
+
+    public void moveWagon(String wagonName, String wishedPosition);
     
 }

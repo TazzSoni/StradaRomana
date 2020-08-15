@@ -10,6 +10,8 @@ public class Wagon {
     * O terceiro caractere é referente à linha do vagão.
     */ 
     private String location;
+    
+    private String movesTo;
 
     public String getName() {
         return name;
@@ -25,6 +27,14 @@ public class Wagon {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getMovesTo() {
+        return movesTo;
+    }
+
+    public void setMovesTo(String movesTo) {
+        this.movesTo = movesTo;
     }
     
 }
