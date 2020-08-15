@@ -57,10 +57,10 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButton5" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                                          <Component id="jButton4" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                                          <Component id="jButton2" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                                          <Component id="jButton3" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="jB4" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="jB3" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="jB1" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="jB2" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -86,7 +86,7 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton6" min="-2" pref="61" max="-2" attributes="0"/>
+                                      <Component id="jB5" min="-2" pref="61" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Component id="jButton1" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
@@ -96,7 +96,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jButton57" min="-2" pref="57" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
-                                      <Component id="jButton59" pref="61" max="32767" attributes="0"/>
+                                      <Component id="jButton59" pref="67" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -128,7 +128,6 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -194,7 +193,6 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -226,7 +224,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jButton35" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                                       <Component id="jButton34" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Component id="jButton60" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jButton60" alignment="0" pref="67" max="32767" attributes="0"/>
                                       <Component id="jButton61" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -260,13 +258,13 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton42" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jButton41" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jButton40" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jButton38" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jButton39" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="jB10" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="jB9" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="jB8" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="jB6" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="jB7" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -308,7 +306,7 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="jButton52" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
                                                           <Component id="jButton53" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
                                                       </Group>
@@ -350,15 +348,15 @@
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jButton38" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="jB6" min="-2" pref="46" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton39" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="jB7" min="-2" pref="46" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton40" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="jB8" min="-2" pref="46" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton41" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="jB9" min="-2" pref="46" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton42" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="jB10" min="-2" pref="46" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -375,18 +373,18 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jButton56" min="-2" pref="35" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jButton2" alignment="1" min="-2" pref="46" max="-2" attributes="0"/>
+                                                  <Component id="jB1" alignment="1" min="-2" pref="46" max="-2" attributes="0"/>
                                                   <Component id="jButton58" min="-2" pref="35" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jButton3" min="-2" pref="46" max="-2" attributes="0"/>
+                                                  <Component id="jB2" min="-2" pref="46" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jButton4" min="-2" pref="46" max="-2" attributes="0"/>
+                                                  <Component id="jB3" min="-2" pref="46" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jButton5" min="-2" pref="46" max="-2" attributes="0"/>
+                                                  <Component id="jB4" min="-2" pref="46" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="jButton8" min="-2" pref="46" max="-2" attributes="0"/>
@@ -473,7 +471,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jButton6" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                                              <Component id="jB5" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                                               <Component id="jButton1" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -499,27 +497,55 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jB1">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/hamilcar-.png"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB1ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="jB2">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/Herennius-.png"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB2ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="jB3">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/Demetius-.png"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB3ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="jB4">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/Ballio-.png"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB4ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="jB5">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/Maccus-.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB5ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton7">
           <Properties>
@@ -527,6 +553,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton8">
           <Properties>
@@ -534,6 +563,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton9">
           <Properties>
@@ -541,6 +573,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton10">
           <Properties>
@@ -738,15 +773,43 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton38">
+        <Component class="javax.swing.JButton" name="jB6">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/-Pseudolus.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB6ActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton39">
+        <Component class="javax.swing.JButton" name="jB7">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/-Curculio.png"/>
+            </Property>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton40">
+        <Component class="javax.swing.JButton" name="jB8">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/-Plotus.png"/>
+            </Property>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton41">
+        <Component class="javax.swing.JButton" name="jB9">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/-Canopites.png"/>
+            </Property>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton42">
+        <Component class="javax.swing.JButton" name="jB10">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/-Persa.png"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
         </Component>
