@@ -30,7 +30,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void randomizeWagons(String boardSide) {
-        List<Integer> numeros = new ArrayList<>();
+        ArrayList<Integer> numeros = new ArrayList<>();
         if (boardSide.equals("E")) {
             for (int i = 1; i <= 5; i++) {
                 numeros.add(i);
@@ -42,10 +42,12 @@ public class GameImplementation implements GameControl {
         }
         Collections.shuffle(numeros);
 
-        notifyRandomizedWagons(numeros);
+        for(Observer o : observers){
+            o.notifyRandomizedWagons(numeros);
+        }
     }
 
-    private void notifyRandomizedWagons(List<Integer> numeros) {
+    private void notifyRandomizedWagons(ArrayList<Integer> numeros) {
         for(Observer o : observers){
             o.notifyRandomizedWagons(numeros);
         }
