@@ -96,7 +96,11 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jButton57" min="-2" pref="57" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
+<<<<<<< HEAD
                                       <Component id="jButton59" pref="67" max="32767" attributes="0"/>
+=======
+                                      <Component id="jButton59" pref="69" max="32767" attributes="0"/>
+>>>>>>> sorting-wagons-random
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -264,7 +268,11 @@
                       <Component id="jB6" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="jB7" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
                   <EmptySpace pref="64" max="32767" attributes="0"/>
+=======
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
+>>>>>>> sorting-wagons-random
               </Group>
           </Group>
         </DimensionLayout>
@@ -491,12 +499,13 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="203" max="32767" attributes="0"/>
+                  <EmptySpace pref="196" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
+<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="jB1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -536,6 +545,15 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB4ActionPerformed"/>
           </Events>
+=======
+        <Component class="javax.swing.JButton" name="jButton2">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton3">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton4">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton5">
+>>>>>>> sorting-wagons-random
         </Component>
         <Component class="javax.swing.JButton" name="jB5">
           <Properties>
