@@ -10,13 +10,11 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import Control.Observer;
-
 /**
  *
  * @author Rodrigo
  */
-public class Main extends javax.swing.JFrame implements Observer {
+public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
