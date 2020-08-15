@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public interface Observer {
 
-    public void notifyRandomizedWagons(ArrayList<Integer> numeros);
+    void notifyRandomizedWagons(ArrayList<Integer> numeros);
+
+    void notificaMovimentacaoConcluida(String wagonName, String wagonLocation);
+
+    void notificaPlayersCriados();
     
 }

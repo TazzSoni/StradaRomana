@@ -109,13 +109,13 @@ public class GameImplementation implements GameControl {
 
     private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
         for(Observer o : observers){
-//            o.notificaMovimentacaoConcluida(wagonName, wagonLocation);
+            o.notificaMovimentacaoConcluida(wagonName, wagonLocation);
         }
     }
 
     private void notificaPlayersCriados() {
         for(Observer o : observers){
-//            o.notificaPlayersCriados();
+           o.notificaPlayersCriados();
         }
     }
 

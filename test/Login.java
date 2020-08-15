@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author Rodrigo
  */
-public class Login extends javax.swing.JFrame implements Observer {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
@@ -185,9 +185,4 @@ public class Login extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField jTfJogador2;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-
-    }
-
-}
+ }
