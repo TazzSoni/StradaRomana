@@ -132,6 +132,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jBpassaVez = new javax.swing.JButton();
         jLJdV = new javax.swing.JLabel();
         jLJogadorVez = new javax.swing.JLabel();
+        jLSsA = new javax.swing.JLabel();
+        jComboAcao = new javax.swing.JComboBox<>();
+        jBConfirmaAcao = new javax.swing.JButton();
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
         componentsByName = new HashMap<>();
@@ -508,6 +511,16 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jB352ActionPerformed(evt);
             }
         });
+        jBConfirmaAcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConfirmaAcaoActionPerformed(evt);
+            }
+        });
+        jBpassaVez.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBpassaVezAcaoActionPerformed(evt);
+            }
+        });
 
         jB121.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -582,6 +595,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jLJdV.setText("Jogador da vez:");
 
         jLJogadorVez.setText("Jogador");
+
+        jLSsA.setText("Selecione sua ação");
+
+        jComboAcao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Movimentar wagon", "Pegar tile", "Passar a vez"}));
+
+        jBConfirmaAcao.setText("Confirmar Ação");
+
         jBpassaVez.setBackground(Color.GREEN);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -592,6 +612,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(440, 440, 440)
+                                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(84, 84, 84)
+                                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -628,7 +653,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                         .addComponent(jButton59, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                                                                         .addGap(28, 28, 28))
                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -673,13 +698,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                         .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                                                 .addComponent(jButton58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addComponent(jLJdV)
-                                                                                        .addGap(18, 18, 18)
-                                                                                        .addComponent(jLJogadorVez)
-                                                                                        .addGap(21, 21, 21))
-                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addComponent(jBpassaVez)
-                                                                                        .addGap(39, 39, 39)))
+                                                                                        .addGap(63, 63, 63)
+                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                                                .addComponent(jBpassaVez, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                .addComponent(jBConfirmaAcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                        .addGap(25, 25, 25)))
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                         .addComponent(jB241, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -688,12 +711,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                 .addComponent(jB251, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                         .addGap(19, 19, 19)
-                                                                                        .addComponent(jButton49, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addGap(440, 440, 440)
-                                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(84, 84, 84)
-                                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                        .addComponent(jButton49, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                        .addGap(0, 0, Short.MAX_VALUE)))))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -759,6 +778,18 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                         .addComponent(jB6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jB7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(36, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(169, 169, 169)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLJdV)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLJogadorVez))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLSsA)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jComboAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -930,13 +961,22 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addComponent(jButton59, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                 .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                                                 .addGap(7, 7, 7)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLJdV)
-                                        .addComponent(jLJogadorVez))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBpassaVez)
-                                .addGap(75, 75, 75))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLJdV)
+                                                        .addComponent(jLJogadorVez))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLSsA)
+                                                        .addComponent(jComboAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(102, 102, 102))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jBConfirmaAcao)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jBpassaVez)
+                                                .addGap(75, 75, 75))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1146,6 +1186,14 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         wagonCheck(jB352);
     }
 
+    private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void jBpassaVezAcaoActionPerformed(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private JButton jButton1st;
     private JButton jButton2nd;
 
@@ -1258,6 +1306,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLJdV;
     private javax.swing.JLabel jLJogadorVez;
     private javax.swing.JButton jBpassaVez;
+    private javax.swing.JLabel jLSsA;
+    private javax.swing.JComboBox<String> jComboAcao;
+    private javax.swing.JButton jBConfirmaAcao;
     private ArrayList<JButton> wagonsE;
     private ArrayList<JButton> wagonsD;
     private Map<String, JButton> componentsByName;
