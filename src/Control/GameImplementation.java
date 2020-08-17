@@ -6,6 +6,8 @@
 package Control;
 
 import Model.Player;
+import Model.RoundsControl;
+import Model.Wagon;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,16 +23,31 @@ public class GameImplementation implements GameControl {
     Player player2;
     Random random = new Random();
     List<Observer> observers = new ArrayList<>();
+    List<Wagon> wagons = new ArrayList<>();
+    RoundsControl round = RoundsControl.getInstance();
+
+    @Override
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    @Override
+    public Player getPlayer2() {
+        return player2;
+    }
 
     @Override
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
+
+        notificaPlayersCriados();
     }
 
     @Override
-    public void randomizeWagons(String boardSide) {
-        List<Integer> numeros = new ArrayList<>();
+    public void createWagons(String boardSide) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+
         if (boardSide.equals("E")) {
             for (int i = 1; i <= 5; i++) {
                 numeros.add(i);
@@ -40,13 +57,27 @@ public class GameImplementation implements GameControl {
                 numeros.add(i);
             }
         }
+
         Collections.shuffle(numeros);
 
-        notifyRandomizedWagons(numeros);
+        String location = boardSide.equals("E") ? "10" : "36";
+        String movesTo = boardSide.equals("E") ? "D" : "E";
+        for (Integer i = 0; i <= 4; i++) {
+            Integer num = numeros.get(i);
+            Wagon wagon = new Wagon();
+            wagon.setName(num + "");
+            wagon.setLocation(location + (i + 1));
+            wagon.setMovesTo(movesTo);
+            wagons.add(wagon);
+        }
+
+        for (Observer o : observers) {
+            o.notifyRandomizedWagons(numeros);
+        }
     }
 
-    private void notifyRandomizedWagons(List<Integer> numeros) {
-        for(Observer o : observers){
+    private void notifyRandomizedWagons(ArrayList<Integer> numeros) {
+        for (Observer o : observers) {
             o.notifyRandomizedWagons(numeros);
         }
     }
@@ -54,6 +85,53 @@ public class GameImplementation implements GameControl {
     @Override
     public void addObserver(Observer o) {
         observers.add(o);
+    }
+
+    @Override
+    public void moveWagon(String wagonName, String wishedLocation) {
+        Wagon wagon = null;
+        for (Wagon w : wagons) {
+            if (w.getName().equals(wagonName)) {
+                wagon = w;
+                break;
+            }
+        }
+
+        if (wagon == null) {
+            System.out.println("Vagão não encontrado com o nome informado (" + wagonName + ").");
+            Thread.currentThread().interrupt();
+        }
+
+        if (!isValidMoviment(wagon, wishedLocation)) {
+            System.out.println("Movimentação impossível, tente novamente.");
+            Thread.currentThread().interrupt();
+        }
+
+        try {
+            round.addMove(wagon, wishedLocation);
+        } catch (Exception ex){
+            System.out.println("Você já fez a quantidade máxima de movimentos para esta jogada!");
+        }
+        
+        wagon.setLocation(wishedLocation);
+
+        notificaMovimentacaoConcluida(wagon.getName(), wagon.getLocation());
+    }
+
+    private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+        for (Observer o : observers) {
+            o.notificaMovimentacaoConcluida(wagonName, wagonLocation);
+        }
+    }
+
+    private void notificaPlayersCriados() {
+        for (Observer o : observers) {
+            o.notificaPlayersCriados();
+        }
+    }
+
+    private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
+        throw new UnsupportedOperationException("Movimento foda"); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

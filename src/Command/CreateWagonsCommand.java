@@ -11,17 +11,17 @@ import Control.GameControl;
  *
  * @author guilh
  */
-public class RandomizeWagonsCommand extends Command {
+public class CreateWagonsCommand extends Command {
 
     String boardSide;
 
-    public RandomizeWagonsCommand(GameControl gameControl, String boardSide) {
+    public CreateWagonsCommand(GameControl gameControl, String boardSide) {
         super(gameControl);
         this.boardSide = boardSide;
     }
 
     @Override
     void execute() {
-        gameControl.randomizeWagons(boardSide);
+        gameControl.createWagons(boardSide);
     }
 }
