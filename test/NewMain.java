@@ -11,7 +11,9 @@ import Command.NewPlayersCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
+import java.awt.Color;
 import java.awt.List;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -127,6 +129,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jButton59 = new javax.swing.JButton();
         jButton60 = new javax.swing.JButton();
         jButton61 = new javax.swing.JButton();
+        jBpassaVez = new javax.swing.JButton();
+        jLJdV = new javax.swing.JLabel();
+        jLJogadorVez = new javax.swing.JLabel();
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
         componentsByName = new HashMap<>();
@@ -151,6 +156,26 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("142", jB142);
         componentsByName.put("151", jB151);
         componentsByName.put("152", jB152);
+        componentsByName.put("152", jB152);
+        componentsByName.put("211", jB211);
+        componentsByName.put("212", jB212);
+        componentsByName.put("221", jB221);
+        componentsByName.put("222", jB222);
+        componentsByName.put("231", jB231);
+        componentsByName.put("232", jB232);
+        componentsByName.put("241", jB241);
+        componentsByName.put("251", jB251);
+        componentsByName.put("311", jB311);
+        componentsByName.put("312", jB312);
+        componentsByName.put("313", jB313);
+        componentsByName.put("321", jB321);
+        componentsByName.put("322", jB322);
+        componentsByName.put("331", jB331);
+        componentsByName.put("332", jB332);
+        componentsByName.put("341", jB341);
+        componentsByName.put("342", jB342);
+        componentsByName.put("351", jB351);
+        componentsByName.put("352", jB352);
 
         wagonsE.add(jB1);
         wagonsE.add(jB2);
@@ -314,12 +339,173 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jB151ActionPerformed(evt);
             }
         });
-        jB152.setName("152");
-        jB152.setText("152");
-        jB152.setBackground(new java.awt.Color(0, 0, 0));
-        jB152.addActionListener(new java.awt.event.ActionListener() {
+        jB211.setName("211");
+        jB211.setText("211");
+        jB211.setBackground(new java.awt.Color(0, 0, 0));
+        jB211.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB152ActionPerformed(evt);
+                jB211ActionPerformed(evt);
+            }
+
+        });
+        jB212.setName("212");
+        jB212.setText("212");
+        jB212.setBackground(new java.awt.Color(0, 0, 0));
+        jB212.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB212ActionPerformed(evt);
+            }
+
+        });
+        jB221.setName("221");
+        jB221.setText("221");
+        jB221.setBackground(new java.awt.Color(0, 0, 0));
+        jB221.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB221ActionPerformed(evt);
+            }
+
+        });
+        jB222.setName("222");
+        jB222.setText("222");
+        jB222.setBackground(new java.awt.Color(0, 0, 0));
+        jB222.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB222ActionPerformed(evt);
+            }
+
+        });
+        jB231.setName("231");
+        jB231.setText("231");
+        jB231.setBackground(new java.awt.Color(0, 0, 0));
+        jB231.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB231ActionPerformed(evt);
+            }
+
+        });
+        jB232.setName("232");
+        jB232.setText("232");
+        jB232.setBackground(new java.awt.Color(0, 0, 0));
+        jB232.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB232ActionPerformed(evt);
+            }
+
+        });
+
+        jB241.setName("241");
+        jB241.setText("241");
+        jB241.setBackground(new java.awt.Color(0, 0, 0));
+        jB241.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB241ActionPerformed(evt);
+            }
+
+        });
+        jB251.setName("251");
+        jB251.setText("251");
+        jB251.setBackground(new java.awt.Color(0, 0, 0));
+        jB251.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB251ActionPerformed(evt);
+            }
+
+        });
+        jB252.setName("252");
+        jB252.setText("252");
+        jB252.setBackground(new java.awt.Color(0, 0, 0));
+        jB252.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB252ActionPerformed(evt);
+            }
+        });
+        jB311.setName("311");
+        jB311.setText("311");
+        jB311.setBackground(new java.awt.Color(0, 0, 0));
+        jB311.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB311ActionPerformed(evt);
+            }
+        });
+        jB312.setName("312");
+        jB312.setText("312");
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
+        jB312.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB312ActionPerformed(evt);
+            }
+        });
+        jB313.setName("313");
+        jB313.setText("313");
+        jB313.setBackground(new java.awt.Color(0, 0, 0));
+        jB313.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB313ActionPerformed(evt);
+            }
+        });
+        jB321.setName("321");
+        jB321.setText("321");
+        jB321.setBackground(new java.awt.Color(0, 0, 0));
+        jB321.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB321ActionPerformed(evt);
+            }
+        });
+        jB322.setName("322");
+        jB322.setText("322");
+        jB322.setBackground(new java.awt.Color(0, 0, 0));
+        jB322.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB322ActionPerformed(evt);
+            }
+        });
+        jB331.setName("331");
+        jB331.setText("331");
+        jB331.setBackground(new java.awt.Color(0, 0, 0));
+        jB331.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB331ActionPerformed(evt);
+            }
+        });
+        jB332.setName("332");
+        jB332.setText("332");
+        jB332.setBackground(new java.awt.Color(0, 0, 0));
+        jB332.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB332ActionPerformed(evt);
+            }
+        });
+        jB341.setName("341");
+        jB341.setText("341");
+        jB341.setBackground(new java.awt.Color(0, 0, 0));
+        jB341.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB341ActionPerformed(evt);
+            }
+        });
+        jB342.setName("342");
+        jB342.setText("342");
+        jB342.setBackground(new java.awt.Color(0, 0, 0));
+        jB342.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB342ActionPerformed(evt);
+            }
+        });
+        jB351.setName("351");
+        jB351.setText("351");
+        jB351.setBackground(new java.awt.Color(0, 0, 0));
+        jB351.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB351ActionPerformed(evt);
+            }
+        });
+        jB352.setName("352");
+        jB352.setText("352");
+        jB352.setBackground(new java.awt.Color(0, 0, 0));
+        jB352.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB352ActionPerformed(evt);
             }
         });
 
@@ -391,6 +577,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLabel5.setText("X");
 
+        jBpassaVez.setText("Passar a vez");
+
+        jLJdV.setText("Jogador da vez:");
+
+        jLJogadorVez.setText("Jogador");
+        jBpassaVez.setBackground(Color.GREEN);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -432,51 +625,61 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                                         .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGap(388, 388, 388)
-                                                                        .addComponent(jButton59, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                                                                        .addComponent(jButton59, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                                                                         .addGap(28, 28, 28))
                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addComponent(jB131, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addGap(91, 91, 91)
-                                                                                        .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addGap(19, 19, 19)
-                                                                                        .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                        .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addGap(22, 22, 22))
-                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addComponent(jB132, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                                        .addComponent(jB131, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addGap(91, 91, 91)
+                                                                                                        .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                                        .addGap(19, 19, 19)
+                                                                                                        .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                        .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addGap(22, 22, 22))
+                                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                                        .addComponent(jB132, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                                                .addComponent(jB142, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                                                                                                .addComponent(jB141, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                                                                                                .addComponent(jButton56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                                .addComponent(jB152, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(jB151, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                                .addComponent(jB212, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(jB211, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                                .addComponent(jB222, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(jB221, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                                        .addGap(88, 88, 88)
+                                                                                                        .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                                                .addComponent(jB142, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                                                                                .addComponent(jB141, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                                                                                .addComponent(jButton56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(jB152, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(jB151, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                .addComponent(jB232, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                                                                                .addComponent(jB231, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                                                        .addGap(20, 20, 20)
+                                                                                                        .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                .addComponent(jButton58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(jB212, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(jB211, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(jB222, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(jB221, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                        .addComponent(jLJdV)
+                                                                                        .addGap(18, 18, 18)
+                                                                                        .addComponent(jLJogadorVez)
+                                                                                        .addGap(21, 21, 21))
                                                                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addGap(88, 88, 88)
-                                                                                        .addComponent(jButton47, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                                .addComponent(jB232, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                                                                .addComponent(jB231, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                        .addGap(20, 20, 20)
-                                                                                        .addComponent(jButton48, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addComponent(jButton58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                        .addComponent(jBpassaVez)
+                                                                                        .addGap(39, 39, 39)))
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                         .addComponent(jB241, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,7 +731,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jB342, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(jB341, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jButton60, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                                                                        .addComponent(jButton60, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                                                                         .addComponent(jButton61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGap(22, 22, 22)
@@ -555,7 +758,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                         .addComponent(jB8, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jB6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jB7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(64, Short.MAX_VALUE))
+                                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -727,7 +930,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addComponent(jButton59, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                 .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                                                 .addGap(7, 7, 7)))))
-                                .addContainerGap(203, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLJdV)
+                                        .addComponent(jLJogadorVez))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBpassaVez)
+                                .addGap(75, 75, 75))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -824,29 +1033,117 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private void jB113ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB113);
     }
+
     private void jB121ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB121);
     }
+
     private void jB122ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB122);
     }
+
     private void jB131ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB131);
     }
+
     private void jB132ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB132);
     }
+
     private void jB141ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB141);
     }
+
     private void jB142ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB142);
     }
+
     private void jB151ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB151);
     }
+
     private void jB152ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB152);
+    }
+
+    private void jB211ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB211);
+    }
+
+    private void jB212ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB212);
+    }
+
+    private void jB221ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB221);
+    }
+
+    private void jB222ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB222);
+    }
+
+    private void jB231ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB231);
+    }
+
+    private void jB232ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB232);
+    }
+
+    private void jB241ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB241);
+    }
+
+    private void jB251ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB251);
+    }
+
+    private void jB252ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB252);
+    }
+
+    private void jB311ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB311);
+    }
+
+    private void jB312ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB312);
+    }
+
+    private void jB313ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB313);
+    }
+
+    private void jB321ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB321);
+    }
+
+    private void jB322ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB322);
+    }
+
+    private void jB331ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB331);
+    }
+
+    private void jB332ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB332);
+    }
+
+    private void jB341ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB341);
+    }
+
+    private void jB342ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB342);
+    }
+
+    private void jB351ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB351);
+    }
+
+    private void jB352ActionPerformed(ActionEvent evt) {
+        wagonCheck(jB352);
     }
 
     private JButton jButton1st;
@@ -958,6 +1255,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLJdV;
+    private javax.swing.JLabel jLJogadorVez;
+    private javax.swing.JButton jBpassaVez;
     private ArrayList<JButton> wagonsE;
     private ArrayList<JButton> wagonsD;
     private Map<String, JButton> componentsByName;

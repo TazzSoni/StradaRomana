@@ -131,7 +131,7 @@ public class GameImplementation implements GameControl {
     }
 
     private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Movimento foda"); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
