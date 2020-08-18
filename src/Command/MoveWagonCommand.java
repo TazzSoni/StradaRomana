@@ -13,17 +13,15 @@ import Control.GameControl;
  */
 public class MoveWagonCommand extends Command {
 
-    String wagonLocation;
-    String wishedLocation;
+    String location;
 
-    public MoveWagonCommand(GameControl gameControl, String wagonLocation, String wishedLocation) {
+    public MoveWagonCommand(GameControl gameControl, String location) {
         super(gameControl);
-        this.wagonLocation = wagonLocation;
-        this.wishedLocation = wishedLocation;
+        this.location = location;
     }
 
     @Override
     void execute() {
-        gameControl.moveWagon(wagonLocation, wishedLocation);
+        gameControl.moveWagon(location);
     }
 }

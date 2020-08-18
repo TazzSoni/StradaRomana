@@ -19,12 +19,16 @@ import java.util.Random;
  */
 public class GameImplementation implements GameControl {
 
-    Player player1;
-    Player player2;
-    Random random = new Random();
-    List<Observer> observers = new ArrayList<>();
-    List<Wagon> wagons = new ArrayList<>();
-    RoundsControl round = RoundsControl.getInstance();
+    private Player player1;
+    private Player player2;
+    private Random random = new Random();
+    private List<Observer> observers = new ArrayList<>();
+    private List<Wagon> wagons = new ArrayList<>();
+    private RoundsControl round = RoundsControl.getInstance();
+
+    String previousLocation;
+    String wishedLocation;
+    private boolean isPreviousLocation = true;
 
     @Override
     public Player getPlayer1() {
@@ -40,7 +44,7 @@ public class GameImplementation implements GameControl {
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
-        
+
         round.setPlayer(player1);
 
         notificaPlayersCriados();
@@ -70,14 +74,14 @@ public class GameImplementation implements GameControl {
             wagons.add(wagon);
         }
 
-        if(boardSide.equals("E")){
-        observers.forEach((o) -> {
-            o.notifyRandomizedWagonsE(numeros);
-        });
-        }else{
+        if (boardSide.equals("E")) {
             observers.forEach((o) -> {
-            o.notifyRandomizedWagonsD(numeros);
-        });
+                o.notifyRandomizedWagonsE(numeros);
+            });
+        } else {
+            observers.forEach((o) -> {
+                o.notifyRandomizedWagonsD(numeros);
+            });
         }
     }
 
@@ -87,41 +91,52 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void moveWagon(String wagonLocation, String wishedLocation) {
-        Wagon wagon = null;
-        for (Wagon w : wagons) {
-            if (w.getLocation().equals(wagonLocation)) {
-                wagon = w;
-                break;
+    public void moveWagon(String location) {
+        if (isPreviousLocation) {
+            previousLocation = location;
+            isPreviousLocation = false;
+        } else {
+            wishedLocation = location;
+            
+            Wagon wagon = null;
+            for (Wagon w : wagons) {
+                if (w.getLocation().equals(previousLocation)) {
+                    wagon = w;
+                    break;
+                }
             }
-        }
 
-        if (wagon == null) {
-            notificaAcaoFalhou("Vagão não encontrado no botão informado (" + wagonLocation + ").");
-            return;
-        }
+            if (wagon == null) {
+                notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                return;
+            }
 
-        if (!isValidMoviment(wagon, wishedLocation)) {
-            notificaAcaoFalhou("Movimentação impossível, tente novamente.");
-            return;
-        }
+            if (!isValidMoviment(wagon, wishedLocation)) {
+                notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                return;
+            }
 
-        try {
-            round.addMove(wagon, wishedLocation);
-        } catch (Exception ex){
-            notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
-            return;
-        }
-        
-        wagon.setLocation(wishedLocation);
+            try {
+                round.addMove(wagon, wishedLocation);
+            } catch (Exception ex) {
+                notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
+                return;
+            }
 
-        notificaMovimentacaoConcluida(wagonLocation, wagon.getLocation());
+            wagon.setLocation(wishedLocation);
+
+            notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
+            
+            previousLocation = null;
+            wishedLocation = null;
+            isPreviousLocation = true;
+        }
     }
 
     @Override
     public void setActionTypeCommand(String actionType) {
         round.setActionType(actionType);
-        
+
         notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
     }
 
