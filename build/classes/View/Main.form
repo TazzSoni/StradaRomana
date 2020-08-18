@@ -102,7 +102,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jButton57" min="-2" pref="57" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
-                                      <Component id="jButton59" pref="76" max="32767" attributes="0"/>
+                                      <Component id="jButton59" pref="74" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -237,7 +237,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jB342" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                                       <Component id="jB341" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Component id="jButton60" alignment="0" pref="86" max="32767" attributes="0"/>
+                                      <Component id="jButton60" alignment="0" pref="83" max="32767" attributes="0"/>
                                       <Component id="jButton61" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -277,7 +277,7 @@
                       <Component id="jB6" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="jB7" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
@@ -520,7 +520,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">

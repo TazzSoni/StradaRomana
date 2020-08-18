@@ -98,19 +98,20 @@ public class GameImplementation implements GameControl {
         }
 
         if (wagon == null) {
-            System.out.println("Vagão não encontrado com o nome informado (" + wagonName + ").");
+            notificaAcaoFalhou("Vagão não encontrado com o nome informado (" + wagonName + ").");
             Thread.currentThread().interrupt();
         }
 
         if (!isValidMoviment(wagon, wishedLocation)) {
-            System.out.println("Movimentação impossível, tente novamente.");
+            notificaAcaoFalhou("Movimentação impossível, tente novamente.");
             Thread.currentThread().interrupt();
         }
 
         try {
             round.addMove(wagon, wishedLocation);
         } catch (Exception ex){
-            System.out.println("Você já fez a quantidade máxima de movimentos para esta jogada!");
+            notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
+            Thread.currentThread().interrupt();
         }
         
         wagon.setLocation(wishedLocation);
@@ -119,8 +120,15 @@ public class GameImplementation implements GameControl {
     }
 
     private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+        String stateText = "Movimentação de vagão concluída com sucesso!";
         for (Observer o : observers) {
-            o.notificaMovimentacaoConcluida(wagonName, wagonLocation);
+            o.notificaMovimentacaoConcluida(wagonName, wagonLocation, stateText);
+        }
+    }
+
+    private void notificaAcaoFalhou(String stateText) {
+        for (Observer o : observers) {
+            o.notificaAcaoFalhou(stateText);
         }
     }
 
@@ -131,7 +139,7 @@ public class GameImplementation implements GameControl {
     }
 
     private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
-        throw new UnsupportedOperationException("Movimento foda"); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
 }
