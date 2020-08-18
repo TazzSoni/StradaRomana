@@ -159,6 +159,4 @@ public class GameImplementation implements GameControl {
             o.notificaRoundFinalizado(endRoundMesssage);
         });
     }
-    }
-
 }
