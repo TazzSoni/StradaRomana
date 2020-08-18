@@ -60,13 +60,12 @@ public class GameImplementation implements GameControl {
 
         Collections.shuffle(numeros);
 
-        String location = boardSide.equals("E") ? "10" : "36";
         String movesTo = boardSide.equals("E") ? "D" : "E";
         for (Integer i = 0; i <= 4; i++) {
             Integer num = numeros.get(i);
             Wagon wagon = new Wagon();
             wagon.setName(num + "");
-            wagon.setLocation(location + (i + 1));
+            wagon.setLocation(num + "");
             wagon.setMovesTo(movesTo);
             wagons.add(wagon);
         }
