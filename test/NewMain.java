@@ -245,25 +245,25 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jB7.setName("7");
         jB7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB7ActionPerformed(evt);
             }
         });
         jB8.setName("8");
         jB8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB8ActionPerformed(evt);
             }
         });
         jB9.setName("9");
         jB9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB9ActionPerformed(evt);
             }
         });
         jB10.setName("10");
         jB10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB10ActionPerformed(evt);
             }
         });
 
@@ -1063,10 +1063,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
             JOptionPane.showMessageDialog(null, "Wagon Inválida");
         } else if (!(jb.getIcon() == null)) {
             jButton1st = jb;
+            System.out.println(jButton1st.getName());
         } else {
             jButton2nd = jb;
-            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
             System.out.println(jButton2nd.getName());
+            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
             ci.execute();
 
         }
@@ -1074,7 +1075,6 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB1);
-
     }
 
     private void jB2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1094,23 +1094,23 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB6ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB6);
     }
 
     private void jB7ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB7);
     }
 
     private void jB8ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB8);
     }
 
     private void jB9ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB9);
     }
 
     private void jB10ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB10);
     }
 
     private void jB111ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1390,6 +1390,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         (componentsByName.get(wagonLocation)).setIcon((componentsByName.get(wagonName)).getIcon());
         (componentsByName.get(wagonName)).setIcon(null);
+        JOptionPane.showMessageDialog(null,stateText );
         jButton1st = null;
     }
 
