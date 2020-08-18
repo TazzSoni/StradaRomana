@@ -6,8 +6,10 @@
 
 import Command.Invoker;
 import Command.CreateWagonsCommand;
+import Command.EndRoundCommand;
 import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
+import Command.SetActionTypeCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
@@ -129,7 +131,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jButton59 = new javax.swing.JButton();
         jButton60 = new javax.swing.JButton();
         jButton61 = new javax.swing.JButton();
-        jBpassaVez = new javax.swing.JButton();
+        jBFinalizaTurno = new javax.swing.JButton();
         jLJdV = new javax.swing.JLabel();
         jLJogadorVez = new javax.swing.JLabel();
         jLSsA = new javax.swing.JLabel();
@@ -175,6 +177,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("232", jB232);
         componentsByName.put("241", jB241);
         componentsByName.put("251", jB251);
+        componentsByName.put("252", jB252);
         componentsByName.put("311", jB311);
         componentsByName.put("312", jB312);
         componentsByName.put("313", jB313);
@@ -245,25 +248,25 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jB7.setName("7");
         jB7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB7ActionPerformed(evt);
             }
         });
         jB8.setName("8");
         jB8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB8ActionPerformed(evt);
             }
         });
         jB9.setName("9");
         jB9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB9ActionPerformed(evt);
             }
         });
         jB10.setName("10");
         jB10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB6ActionPerformed(evt);
+                jB10ActionPerformed(evt);
             }
         });
 
@@ -531,9 +534,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jBConfirmaAcaoActionPerformed(evt);
             }
         });
-        jBpassaVez.addActionListener(new java.awt.event.ActionListener() {
+        jBFinalizaTurno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBpassaVezAcaoActionPerformed(evt);
+                jBFinalizaTurnoActionPerformed(evt);
             }
         });
 
@@ -605,7 +608,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLabel5.setText("X");
 
-        jBpassaVez.setText("Finalizar Turno");
+        jBFinalizaTurno.setText("Finalizar Turno");
 
         jLJdV.setText("Jogador da vez:");
 
@@ -628,7 +631,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLabel10.setText("0");
 
-        jBpassaVez.setBackground(Color.GREEN);
+        jBFinalizaTurno.setBackground(Color.GREEN);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -744,7 +747,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGap(63, 63, 63)
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                                                        .addComponent(jBpassaVez, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                        .addComponent(jBFinalizaTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                                         .addComponent(jBConfirmaAcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                                                 .addGap(25, 25, 25)))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1025,7 +1028,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel6)
                                                 .addComponent(jComboMovimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jBpassaVez))
+                                        .addComponent(jBFinalizaTurno))
                                 .addGap(75, 75, 75))
         );
 
@@ -1063,10 +1066,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
             JOptionPane.showMessageDialog(null, "Wagon Inválida");
         } else if (!(jb.getIcon() == null)) {
             jButton1st = jb;
+            System.out.println(jButton1st.getName());
         } else {
             jButton2nd = jb;
-            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
             System.out.println(jButton2nd.getName());
+            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
             ci.execute();
 
         }
@@ -1074,7 +1078,6 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB1);
-
     }
 
     private void jB2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1094,23 +1097,23 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB6ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB6);
     }
 
     private void jB7ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB7);
     }
 
     private void jB8ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB8);
     }
 
     private void jB9ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB9);
     }
 
     private void jB10ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        wagonCheck(jB10);
     }
 
     private void jB111ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1238,13 +1241,15 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ci.add(new SetActionTypeCommand(gameCtrl, jComboAcao.getSelectedItem().toString()));
+        ci.execute();
     }
 
-    private void jBpassaVezAcaoActionPerformed(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void jBFinalizaTurnoActionPerformed(ActionEvent evt) {
+        ci.add(new EndRoundCommand(gameCtrl));
+        ci.execute();
     }
-
+   
     private JButton jButton1st;
     private JButton jButton2nd;
 
@@ -1356,7 +1361,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel jLJdV;
     private javax.swing.JLabel jLJogadorVez;
-    private javax.swing.JButton jBpassaVez;
+    private javax.swing.JButton jBFinalizaTurno;
     private javax.swing.JLabel jLSsA;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1390,11 +1395,24 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         (componentsByName.get(wagonLocation)).setIcon((componentsByName.get(wagonName)).getIcon());
         (componentsByName.get(wagonName)).setIcon(null);
+        JOptionPane.showMessageDialog(null,stateText );
         jButton1st = null;
     }
 
     @Override
     public void notificaAcaoFalhou(String stateText) {
         JOptionPane.showMessageDialog(null,stateText );
+    }
+
+    @Override
+    public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
+       JOptionPane.showMessageDialog(null, actionDefinedMessage);
+        
+        
+    }
+
+    @Override
+    public void notificaRoundFinalizado(String endRoundMesssage) {
+        JOptionPane.showMessageDialog(null, endRoundMesssage);
     }
 }
