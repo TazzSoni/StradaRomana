@@ -1326,7 +1326,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation, String stateText) {
         System.out.println("Botão 1 = " + wagonName);
         System.out.println("Botão 2 = " + wagonLocation);
 
@@ -1339,5 +1339,10 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     public void notificaPlayersCriados() {
         jLabel2.setText(gameCtrl.getPlayer1().getName());
         jLabel3.setText(gameCtrl.getPlayer2().getName());
+    }
+
+    @Override
+    public void notificaAcaoFalhou(String stateText) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

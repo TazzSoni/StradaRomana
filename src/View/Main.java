@@ -927,12 +927,17 @@ public class Main extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation, String stateText) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void notificaPlayersCriados() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificaAcaoFalhou(String stateText) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
