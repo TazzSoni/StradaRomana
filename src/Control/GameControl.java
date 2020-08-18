@@ -27,4 +27,6 @@ public interface GameControl {
 
     public void setActionTypeCommand(String actionType);
 
+    public void endRoundCommand();
+
 }

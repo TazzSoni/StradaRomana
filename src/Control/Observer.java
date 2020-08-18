@@ -11,5 +11,9 @@ public interface Observer {
     void notificaPlayersCriados();
 
     void notificaAcaoFalhou(String stateText);
+
+    void notificaTipoDeAcaoDefinido(String actionDefinedMessage);
+
+    public void notificaRoundFinalizado(String endRoundMesssage);
     
 }

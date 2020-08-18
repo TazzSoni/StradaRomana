@@ -40,6 +40,8 @@ public class GameImplementation implements GameControl {
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
+        
+        round.setPlayer(player1);
 
         notificaPlayersCriados();
     }
@@ -68,15 +70,9 @@ public class GameImplementation implements GameControl {
             wagons.add(wagon);
         }
 
-        for (Observer o : observers) {
+        observers.forEach((o) -> {
             o.notifyRandomizedWagons(numeros);
-        }
-    }
-
-    private void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-        for (Observer o : observers) {
-            o.notifyRandomizedWagons(numeros);
-        }
+        });
     }
 
     @Override
@@ -123,33 +119,46 @@ public class GameImplementation implements GameControl {
         notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
     }
 
-    private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
-        String stateMessage = "Movimentação de vagão concluída com sucesso!";
-        for (Observer o : observers) {
-            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateMessage);
-        }
-    }
-
-    private void notificaAcaoFalhou(String stateText) {
-        for (Observer o : observers) {
-            o.notificaAcaoFalhou(stateText);
-        }
-    }
-
-    private void notificaPlayersCriados() {
-        for (Observer o : observers) {
-            o.notificaPlayersCriados();
-        }
+    @Override
+    public void endRoundCommand() {
+        Player nextPlayer = round.endRound(player1, player2);
+        notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
     }
 
     private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
         return true;
     }
 
+    private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
+        String stateMessage = "Movimentação de vagão concluída com sucesso!";
+        observers.forEach((o) -> {
+            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateMessage);
+        });
+    }
+
+    private void notificaAcaoFalhou(String stateText) {
+        observers.forEach((o) -> {
+            o.notificaAcaoFalhou(stateText);
+        });
+    }
+
+    private void notificaPlayersCriados() {
+        observers.forEach((o) -> {
+            o.notificaPlayersCriados();
+        });
+    }
+
     private void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
-        for (Observer o : observers) {
+        observers.forEach((o) -> {
             o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
-        }
+        });
+    }
+
+    private void notificaRoundFinalizado(String endRoundMesssage) {
+        observers.forEach((o) -> {
+            o.notificaRoundFinalizado(endRoundMesssage);
+        });
+    }
     }
 
 }
