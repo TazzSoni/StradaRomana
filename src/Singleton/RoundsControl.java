@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Singleton;
+
+import Model.Wagon;
 
 /**
  *
@@ -12,7 +14,17 @@ package Model;
 public class RoundsControl {
 
     private static RoundsControl instance;
-    private int qtdMoves = 0;
+    private int qtMoves = 0;
+    private int maxQtMoves;
+    private String actionType;
+
+    public String getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
 
     private RoundsControl() {
     }
@@ -26,7 +38,7 @@ public class RoundsControl {
     }
 
     public void addMove(Wagon wagon, String wishedLocation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        qtMoves++;
     }
 
 }

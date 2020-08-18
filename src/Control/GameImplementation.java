@@ -6,7 +6,7 @@
 package Control;
 
 import Model.Player;
-import Model.RoundsControl;
+import Singleton.RoundsControl;
 import Model.Wagon;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,6 +117,11 @@ public class GameImplementation implements GameControl {
         wagon.setLocation(wishedLocation);
 
         notificaMovimentacaoConcluida(wagon.getName(), wagon.getLocation());
+    }
+
+    @Override
+    public void setActionTypeCommand(String actionType) {
+        
     }
 
     private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
