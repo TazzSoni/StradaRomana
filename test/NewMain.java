@@ -1066,6 +1066,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         } else {
             jButton2nd = jb;
             ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
+            System.out.println(jButton2nd.getName());
             ci.execute();
 
         }
@@ -1378,9 +1379,14 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
-        System.out.println("Botão 1 = " + wagonName);
-        System.out.println("Botão 2 = " + wagonLocation);
+    public void notificaPlayersCriados() {
+        jLabel2.setText(gameCtrl.getPlayer1().getName());
+        jLabel3.setText(gameCtrl.getPlayer2().getName());
+    }
+
+    @Override
+    public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation, String stateText) {
+        System.out.println(stateText);
 
         (componentsByName.get(wagonLocation)).setIcon((componentsByName.get(wagonName)).getIcon());
         (componentsByName.get(wagonName)).setIcon(null);
@@ -1388,8 +1394,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaPlayersCriados() {
-        jLabel2.setText(gameCtrl.getPlayer1().getName());
-        jLabel3.setText(gameCtrl.getPlayer2().getName());
+    public void notificaAcaoFalhou(String stateText) {
+        JOptionPane.showMessageDialog(null,stateText );
     }
 }
