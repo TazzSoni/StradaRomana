@@ -63,10 +63,8 @@ public class GameImplementation implements GameControl {
         String movesTo = boardSide.equals("E") ? "D" : "E";
         for (Integer i = 0; i <= 4; i++) {
             Integer num = numeros.get(i);
-            Wagon wagon = new Wagon();
-            wagon.setName(num + "");
+            Wagon wagon = new Wagon(movesTo);
             wagon.setLocation(num + "");
-            wagon.setMovesTo(movesTo);
             wagons.add(wagon);
         }
 
