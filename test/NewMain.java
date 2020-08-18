@@ -6,8 +6,10 @@
 
 import Command.Invoker;
 import Command.CreateWagonsCommand;
+import Command.EndRoundCommand;
 import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
+import Command.SetActionTypeCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
@@ -129,7 +131,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jButton59 = new javax.swing.JButton();
         jButton60 = new javax.swing.JButton();
         jButton61 = new javax.swing.JButton();
-        jBpassaVez = new javax.swing.JButton();
+        jBFinalizaTurno = new javax.swing.JButton();
         jLJdV = new javax.swing.JLabel();
         jLJogadorVez = new javax.swing.JLabel();
         jLSsA = new javax.swing.JLabel();
@@ -532,9 +534,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jBConfirmaAcaoActionPerformed(evt);
             }
         });
-        jBpassaVez.addActionListener(new java.awt.event.ActionListener() {
+        jBFinalizaTurno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBpassaVezAcaoActionPerformed(evt);
+                jBFinalizaTurnoActionPerformed(evt);
             }
         });
 
@@ -606,7 +608,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLabel5.setText("X");
 
-        jBpassaVez.setText("Finalizar Turno");
+        jBFinalizaTurno.setText("Finalizar Turno");
 
         jLJdV.setText("Jogador da vez:");
 
@@ -629,7 +631,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLabel10.setText("0");
 
-        jBpassaVez.setBackground(Color.GREEN);
+        jBFinalizaTurno.setBackground(Color.GREEN);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -745,7 +747,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGap(63, 63, 63)
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                                                        .addComponent(jBpassaVez, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                        .addComponent(jBFinalizaTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                                         .addComponent(jBConfirmaAcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                                                 .addGap(25, 25, 25)))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1026,7 +1028,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel6)
                                                 .addComponent(jComboMovimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jBpassaVez))
+                                        .addComponent(jBFinalizaTurno))
                                 .addGap(75, 75, 75))
         );
 
@@ -1239,13 +1241,15 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ci.add(new SetActionTypeCommand(gameCtrl, jComboAcao.getSelectedItem().toString()));
+        ci.execute();
     }
 
-    private void jBpassaVezAcaoActionPerformed(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void jBFinalizaTurnoActionPerformed(ActionEvent evt) {
+        ci.add(new EndRoundCommand(gameCtrl));
+        ci.execute();
     }
-
+   
     private JButton jButton1st;
     private JButton jButton2nd;
 
@@ -1357,7 +1361,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel jLJdV;
     private javax.swing.JLabel jLJogadorVez;
-    private javax.swing.JButton jBpassaVez;
+    private javax.swing.JButton jBFinalizaTurno;
     private javax.swing.JLabel jLSsA;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1402,11 +1406,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       JOptionPane.showMessageDialog(null, actionDefinedMessage);
+        
+        
     }
 
     @Override
     public void notificaRoundFinalizado(String endRoundMesssage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(null, endRoundMesssage);
     }
 }
