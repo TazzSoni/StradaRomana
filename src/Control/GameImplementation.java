@@ -63,10 +63,8 @@ public class GameImplementation implements GameControl {
         String movesTo = boardSide.equals("E") ? "D" : "E";
         for (Integer i = 0; i <= 4; i++) {
             Integer num = numeros.get(i);
-            Wagon wagon = new Wagon();
-            wagon.setName(num + "");
+            Wagon wagon = new Wagon(movesTo);
             wagon.setLocation(num + "");
-            wagon.setMovesTo(movesTo);
             wagons.add(wagon);
         }
 
@@ -120,13 +118,15 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
+        round.setActionType(actionType);
         
+        notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
-        String stateText = "Movimentação de vagão concluída com sucesso!";
+        String stateMessage = "Movimentação de vagão concluída com sucesso!";
         for (Observer o : observers) {
-            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateText);
+            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateMessage);
         }
     }
 
@@ -144,6 +144,12 @@ public class GameImplementation implements GameControl {
 
     private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
         return true;
+    }
+
+    private void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
+        for (Observer o : observers) {
+            o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
+        }
     }
 
 }
