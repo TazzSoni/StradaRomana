@@ -23,7 +23,7 @@ public interface GameControl {
 
     void addObserver(Observer o);
 
-    void moveWagon(String wagonName, String wishedPosition);
+    void moveWagon(String wagonLocation, String wishedPosition);
 
     public void setActionTypeCommand(String actionType);
 

@@ -115,7 +115,7 @@ public class GameImplementation implements GameControl {
         
         wagon.setLocation(wishedLocation);
 
-        notificaMovimentacaoConcluida(wagon.getName(), wagon.getLocation());
+        notificaMovimentacaoConcluida(wagonLocation, wagon.getLocation());
     }
 
     @Override
@@ -123,10 +123,10 @@ public class GameImplementation implements GameControl {
         
     }
 
-    private void notificaMovimentacaoConcluida(String wagonName, String wagonLocation) {
+    private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
         String stateText = "Movimentação de vagão concluída com sucesso!";
         for (Observer o : observers) {
-            o.notificaMovimentacaoConcluida(wagonName, wagonLocation, stateText);
+            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateText);
         }
     }
 
