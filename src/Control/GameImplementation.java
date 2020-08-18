@@ -70,15 +70,9 @@ public class GameImplementation implements GameControl {
             wagons.add(wagon);
         }
 
-        for (Observer o : observers) {
+        observers.forEach((o) -> {
             o.notifyRandomizedWagons(numeros);
-        }
-    }
-
-    private void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-        for (Observer o : observers) {
-            o.notifyRandomizedWagons(numeros);
-        }
+        });
     }
 
     @Override
@@ -131,39 +125,40 @@ public class GameImplementation implements GameControl {
         notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
     }
 
-    private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
-        String stateMessage = "Movimentação de vagão concluída com sucesso!";
-        for (Observer o : observers) {
-            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateMessage);
-        }
-    }
-
-    private void notificaAcaoFalhou(String stateText) {
-        for (Observer o : observers) {
-            o.notificaAcaoFalhou(stateText);
-        }
-    }
-
-    private void notificaPlayersCriados() {
-        for (Observer o : observers) {
-            o.notificaPlayersCriados();
-        }
-    }
-
     private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
         return true;
     }
 
+    private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
+        String stateMessage = "Movimentação de vagão concluída com sucesso!";
+        observers.forEach((o) -> {
+            o.notificaMovimentacaoConcluida(previousWagonLocation, wagonLocation, stateMessage);
+        });
+    }
+
+    private void notificaAcaoFalhou(String stateText) {
+        observers.forEach((o) -> {
+            o.notificaAcaoFalhou(stateText);
+        });
+    }
+
+    private void notificaPlayersCriados() {
+        observers.forEach((o) -> {
+            o.notificaPlayersCriados();
+        });
+    }
+
     private void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
-        for (Observer o : observers) {
+        observers.forEach((o) -> {
             o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
-        }
+        });
     }
 
     private void notificaRoundFinalizado(String endRoundMesssage) {
-        for (Observer o : observers){
+        observers.forEach((o) -> {
             o.notificaRoundFinalizado(endRoundMesssage);
-        }
+        });
+    }
     }
 
 }
