@@ -1341,4 +1341,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notificaAcaoFalhou(String stateText) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
