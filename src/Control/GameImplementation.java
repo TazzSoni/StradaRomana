@@ -40,6 +40,8 @@ public class GameImplementation implements GameControl {
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
+        
+        round.setPlayer(player1);
 
         notificaPlayersCriados();
     }
@@ -123,6 +125,12 @@ public class GameImplementation implements GameControl {
         notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
     }
 
+    @Override
+    public void endRoundCommand() {
+        Player nextPlayer = round.endRound(player1, player2);
+        notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+    }
+
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
         String stateMessage = "Movimentação de vagão concluída com sucesso!";
         for (Observer o : observers) {
@@ -149,6 +157,12 @@ public class GameImplementation implements GameControl {
     private void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
         for (Observer o : observers) {
             o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
+        }
+    }
+
+    private void notificaRoundFinalizado(String endRoundMesssage) {
+        for (Observer o : observers){
+            o.notificaRoundFinalizado(endRoundMesssage);
         }
     }
 

@@ -5,6 +5,7 @@
  */
 package Singleton;
 
+import Model.Player;
 import Model.Wagon;
 
 /**
@@ -17,14 +18,7 @@ public class RoundsControl {
     private int qtMoves = 0;
     private int maxQtMoves;
     private String actionType;
-
-    public String getActionType() {
-        return actionType;
-    }
-
-    public void setActionType(String actionType) {
-        this.actionType = actionType;
-    }
+    private Player player;
 
     private RoundsControl() {
     }
@@ -37,8 +31,33 @@ public class RoundsControl {
         return instance;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public String getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
+
     public void addMove(Wagon wagon, String wishedLocation) {
         qtMoves++;
+    }
+
+    public Player endRound(Player player1, Player player2) {
+        qtMoves = 0;
+        maxQtMoves = 0;
+        actionType = "";
+        player = player == player1 ? player2 : player1;
+        
+        return player;
     }
 
 }
