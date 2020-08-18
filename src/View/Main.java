@@ -921,10 +921,6 @@ public class Main extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation, String stateText) {
@@ -948,6 +944,16 @@ public class Main extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaRoundFinalizado(String endRoundMesssage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notifyRandomizedWagonsE(ArrayList<Integer> numeros) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notifyRandomizedWagonsD(ArrayList<Integer> numeros) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

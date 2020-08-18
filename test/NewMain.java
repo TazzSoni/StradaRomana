@@ -1050,14 +1050,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>    
 
-    private void setIconD(ArrayList<Integer> numeros, ArrayList<JButton> jButtonE, ArrayList<JButton> jButtonD) {
+    private void setIcon(ArrayList<Integer> numeros, ArrayList<JButton> jButton) {
 
         for (int i = 0; i < 5; i++) {
-            if (numeros.get(i) > 5) {
-                jButtonD.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
-            } else {
-                jButtonE.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
-            }
+                jButton.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
         }
     }
 
@@ -1379,8 +1375,12 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     // End of variables declaration                   
 
     @Override
-    public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-        setIconD(numeros, wagonsE, wagonsD);
+    public void notifyRandomizedWagonsE(ArrayList<Integer> numeros) {
+        setIcon(numeros, wagonsE);
+    }
+    @Override
+    public void notifyRandomizedWagonsD(ArrayList<Integer> numeros) {
+        setIcon(numeros, wagonsD);
     }
 
     @Override

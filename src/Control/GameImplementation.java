@@ -70,9 +70,15 @@ public class GameImplementation implements GameControl {
             wagons.add(wagon);
         }
 
+        if(boardSide.equals("E")){
         observers.forEach((o) -> {
-            o.notifyRandomizedWagons(numeros);
+            o.notifyRandomizedWagonsE(numeros);
         });
+        }else{
+            observers.forEach((o) -> {
+            o.notifyRandomizedWagonsD(numeros);
+        });
+        }
     }
 
     @Override
