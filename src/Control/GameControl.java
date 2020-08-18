@@ -5,16 +5,24 @@
  */
 package Control;
 
+import Model.Player;
+
 /**
  *
  * @author guilh
  */
 public interface GameControl {
 
-    public void setPlayers(String player1Name, String player2Name);
+    Player getPlayer1();
 
-    public void randomizeWagons(String boardSide);
+    Player getPlayer2();
 
-    public void addObserver(Observer o);
-    
+    void setPlayers(String player1Name, String player2Name);
+
+    void createWagons(String boardSide);
+
+    void addObserver(Observer o);
+
+    void moveWagon(String wagonName, String wishedPosition);
+
 }
