@@ -598,7 +598,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLSsA.setText("Selecione sua ação");
 
-        jComboAcao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Movimentar wagon", "Pegar tile", "Passar a vez"}));
+        jComboAcao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Movimentar wagon", "Pegar ware tile", "Passar a vez"}));
 
         jBConfirmaAcao.setText("Confirmar Ação");
 
