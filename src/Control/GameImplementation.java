@@ -60,13 +60,12 @@ public class GameImplementation implements GameControl {
 
         Collections.shuffle(numeros);
 
-        String location = boardSide.equals("E") ? "10" : "36";
         String movesTo = boardSide.equals("E") ? "D" : "E";
         for (Integer i = 0; i <= 4; i++) {
             Integer num = numeros.get(i);
             Wagon wagon = new Wagon();
             wagon.setName(num + "");
-            wagon.setLocation(location + (i + 1));
+            wagon.setLocation(num + "");
             wagon.setMovesTo(movesTo);
             wagons.add(wagon);
         }
@@ -88,30 +87,30 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void moveWagon(String wagonName, String wishedLocation) {
+    public void moveWagon(String wagonLocation, String wishedLocation) {
         Wagon wagon = null;
         for (Wagon w : wagons) {
-            if (w.getName().equals(wagonName)) {
+            if (w.getLocation().equals(wagonLocation)) {
                 wagon = w;
                 break;
             }
         }
 
         if (wagon == null) {
-            notificaAcaoFalhou("Vagão não encontrado com o nome informado (" + wagonName + ").");
-            Thread.currentThread().interrupt();
+            notificaAcaoFalhou("Vagão não encontrado no botão informado (" + wagonLocation + ").");
+            return;
         }
 
         if (!isValidMoviment(wagon, wishedLocation)) {
             notificaAcaoFalhou("Movimentação impossível, tente novamente.");
-            Thread.currentThread().interrupt();
+            return;
         }
 
         try {
             round.addMove(wagon, wishedLocation);
         } catch (Exception ex){
             notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
-            Thread.currentThread().interrupt();
+            return;
         }
         
         wagon.setLocation(wishedLocation);
