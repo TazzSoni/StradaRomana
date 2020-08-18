@@ -175,6 +175,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("232", jB232);
         componentsByName.put("241", jB241);
         componentsByName.put("251", jB251);
+        componentsByName.put("252", jB252);
         componentsByName.put("311", jB311);
         componentsByName.put("312", jB312);
         componentsByName.put("313", jB313);
