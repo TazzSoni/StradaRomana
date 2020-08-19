@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package View;
 
 import Command.Invoker;
 import Command.CreateWagonsCommand;
@@ -1058,18 +1054,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     public void wagonCheck(JButton jb) {
-        if (jb.getIcon() == null && jButton1st == null) {
-            JOptionPane.showMessageDialog(null, "Wagon Inválida");
-        } else if (!(jb.getIcon() == null)) {
-            jButton1st = jb;
-            System.out.println(jButton1st.getName());
-        } else {
-            jButton2nd = jb;
-            System.out.println(jButton2nd.getName());
-            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
+            ci.add(new MoveWagonCommand(gameCtrl, jb.getName()));
             ci.execute();
-
-        }
     }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {

@@ -1058,18 +1058,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     public void wagonCheck(JButton jb) {
-        if (jb.getIcon() == null && jButton1st == null) {
-            JOptionPane.showMessageDialog(null, "Wagon Inválida");
-        } else if (!(jb.getIcon() == null)) {
-            jButton1st = jb;
-            System.out.println(jButton1st.getName());
-        } else {
-            jButton2nd = jb;
-            System.out.println(jButton2nd.getName());
-            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
+            ci.add(new MoveWagonCommand(gameCtrl, jb.getName()));
             ci.execute();
-
-        }
     }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
