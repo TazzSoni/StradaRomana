@@ -92,44 +92,49 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
-        if (isPreviousLocation) {
-            previousLocation = location;
-            isPreviousLocation = false;
-        } else {
-            wishedLocation = location;
-            
-            Wagon wagon = null;
-            for (Wagon w : wagons) {
-                if (w.getLocation().equals(previousLocation)) {
-                    wagon = w;
-                    break;
+        if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
+
+            if (isPreviousLocation) {
+                previousLocation = location;
+                isPreviousLocation = false;
+            } else {
+                wishedLocation = location;
+
+                Wagon wagon = null;
+                for (Wagon w : wagons) {
+                    if (w.getLocation().equals(previousLocation)) {
+                        wagon = w;
+                        break;
+                    }
                 }
+
+                if (wagon == null) {
+                    notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                    return;
+                }
+
+                if (!isValidMoviment(wagon, wishedLocation)) {
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    return;
+                }
+
+                try {
+                    round.addMove(wagon, wishedLocation);
+                } catch (Exception ex) {
+                    notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
+                    return;
+                }
+
+                wagon.setLocation(wishedLocation);
+
+                notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
+
+                previousLocation = null;
+                wishedLocation = null;
+                isPreviousLocation = true;
             }
-
-            if (wagon == null) {
-                notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
-                return;
-            }
-
-            if (!isValidMoviment(wagon, wishedLocation)) {
-                notificaAcaoFalhou("Movimentação impossível, tente novamente.");
-                return;
-            }
-
-            try {
-                round.addMove(wagon, wishedLocation);
-            } catch (Exception ex) {
-                notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
-                return;
-            }
-
-            wagon.setLocation(wishedLocation);
-
-            notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
-            
-            previousLocation = null;
-            wishedLocation = null;
-            isPreviousLocation = true;
+        } else {
+            notificaAcaoFalhou("Ação diferente de Movimentar wagon");
         }
     }
 
