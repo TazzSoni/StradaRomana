@@ -1050,30 +1050,16 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>    
 
-    private void setIconD(ArrayList<Integer> numeros, ArrayList<JButton> jButtonE, ArrayList<JButton> jButtonD) {
+    private void setIcon(ArrayList<Integer> numeros, ArrayList<JButton> jButton) {
 
         for (int i = 0; i < 5; i++) {
-            if (numeros.get(i) > 5) {
-                jButtonD.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
-            } else {
-                jButtonE.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
-            }
+                jButton.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
         }
     }
 
     public void wagonCheck(JButton jb) {
-        if (jb.getIcon() == null && jButton1st == null) {
-            JOptionPane.showMessageDialog(null, "Wagon Inválida");
-        } else if (!(jb.getIcon() == null)) {
-            jButton1st = jb;
-            System.out.println(jButton1st.getName());
-        } else {
-            jButton2nd = jb;
-            System.out.println(jButton2nd.getName());
-            ci.add(new MoveWagonCommand(gameCtrl, jButton1st.getName(), jButton2nd.getName()));
+            ci.add(new MoveWagonCommand(gameCtrl, jb.getName()));
             ci.execute();
-
-        }
     }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1379,8 +1365,12 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     // End of variables declaration                   
 
     @Override
-    public void notifyRandomizedWagons(ArrayList<Integer> numeros) {
-        setIconD(numeros, wagonsE, wagonsD);
+    public void notifyRandomizedWagonsE(ArrayList<Integer> numeros) {
+        setIcon(numeros, wagonsE);
+    }
+    @Override
+    public void notifyRandomizedWagonsD(ArrayList<Integer> numeros) {
+        setIcon(numeros, wagonsD);
     }
 
     @Override
