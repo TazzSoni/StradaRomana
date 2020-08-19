@@ -25,6 +25,10 @@ public interface GameControl {
 
     void moveWagon(String location);
 
+    void takeCube(String cubeLocation);
+    
+    String getPlayerVez();
+
     public void setActionTypeCommand(String actionType);
 
     public void endRoundCommand();

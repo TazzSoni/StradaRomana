@@ -10,6 +10,7 @@ import Command.EndRoundCommand;
 import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
 import Command.SetActionTypeCommand;
+import Command.TakeCubeCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
@@ -34,6 +35,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         this.gameCtrl = new GameImplementation();
         this.gameCtrl.addObserver(this);
         initComponents();
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -530,112 +532,84 @@ public class NewMain extends javax.swing.JFrame implements Observer {
             }
         });
         jBCube113.setName("113");
-        jBCube113.setText("113");
-        jBCube113.setBackground(new java.awt.Color(0, 0, 0));
         jBCube113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube113ActionPerformed(evt);
             }
         });
         jBCube121.setName("121");
-        jBCube121.setText("121");
-        jBCube121.setBackground(new java.awt.Color(0, 0, 0));
         jBCube121.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube121ActionPerformed(evt);
             }
         });
         jBCube132.setName("132");
-        jBCube132.setText("132");
-        jBCube132.setBackground(new java.awt.Color(0, 0, 0));
         jBCube132.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube132ActionPerformed(evt);
             }
         });
         jBCube151.setName("151");
-        jBCube151.setText("151");
-        jBCube151.setBackground(new java.awt.Color(0, 0, 0));
         jBCube151.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube151ActionPerformed(evt);
             }
         });
         jBCube152.setName("152");
-        jBCube152.setText("152");
-        jBCube152.setBackground(new java.awt.Color(0, 0, 0));
         jBCube152.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube152ActionPerformed(evt);
             }
         });
         jBCube221.setName("221");
-        jBCube221.setText("221");
-        jBCube221.setBackground(new java.awt.Color(0, 0, 0));
         jBCube221.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube221ActionPerformed(evt);
             }
         });
         jBCube232.setName("232");
-        jBCube232.setText("232");
-        jBCube232.setBackground(new java.awt.Color(0, 0, 0));
         jBCube232.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube232ActionPerformed(evt);
             }
         });
         jBCube251.setName("251");
-        jBCube251.setText("251");
-        jBCube251.setBackground(new java.awt.Color(0, 0, 0));
         jBCube251.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube251ActionPerformed(evt);
             }
         });
         jBCube313.setName("313");
-        jBCube313.setText("313");
-        jBCube313.setBackground(new java.awt.Color(0, 0, 0));
         jBCube313.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube313ActionPerformed(evt);
             }
         });
         jBCube321.setName("321");
-        jBCube321.setText("321");
-        jBCube321.setBackground(new java.awt.Color(0, 0, 0));
         jBCube321.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube321ActionPerformed(evt);
             }
         });
         jBCube322.setName("322");
-        jBCube322.setText("322");
-        jBCube322.setBackground(new java.awt.Color(0, 0, 0));
         jBCube322.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube322ActionPerformed(evt);
             }
         });
         jBCube331.setName("331");
-        jBCube331.setText("331");
-        jBCube331.setBackground(new java.awt.Color(0, 0, 0));
         jBCube331.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube331ActionPerformed(evt);
             }
         });
         jBCube351.setName("351");
-        jBCube351.setText("351");
-        jBCube351.setBackground(new java.awt.Color(0, 0, 0));
         jBCube351.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube351ActionPerformed(evt);
             }
         });
         jBCube352.setName("352");
-        jBCube352.setText("352");
-        jBCube352.setBackground(new java.awt.Color(0, 0, 0));
         jBCube352.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube352ActionPerformed(evt);
@@ -724,7 +698,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jLJdV.setText("Jogador da vez:");
 
-        jLJogadorVez.setText("Jogador");
+        jLJogadorVez.setText("");
 
         jLSsA.setText("Selecione sua ação");
 
@@ -1174,6 +1148,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         ci.execute();
     }
 
+    public void takeCube(JButton jb) {
+        ci.add(new TakeCubeCommand(gameCtrl, jb.getName()));
+        ci.execute();
+    }
+
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB1);
     }
@@ -1339,59 +1318,70 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jBCube113ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube113);
     }
 
     private void jBCube121ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube121);
     }
 
     private void jBCube132ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube132);
     }
 
     private void jBCube151ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube151);
+
     }
 
     private void jBCube152ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube152);
+
     }
 
     private void jBCube221ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube221);
+
     }
 
     private void jBCube232ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube232);
+
     }
 
     private void jBCube251ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube251);
+
     }
 
     private void jBCube313ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube313);
+
     }
 
     private void jBCube321ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube321);
+
     }
 
     private void jBCube331ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube331);
+
     }
 
     private void jBCube322ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube322);
+
     }
 
     private void jBCube351ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube351);
+
     }
 
     private void jBCube352ActionPerformed(ActionEvent evt) {
-        
+        takeCube(jBCube352);
+
     }
 
     private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
@@ -1546,6 +1536,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notificaPlayersCriados() {
         jLabel2.setText(gameCtrl.getPlayer1().getName());
         jLabel3.setText(gameCtrl.getPlayer2().getName());
+        jLJogadorVez.setText(gameCtrl.getPlayerVez());
     }
 
     @Override
@@ -1566,11 +1557,21 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
         JOptionPane.showMessageDialog(null, actionDefinedMessage);
-
     }
 
     @Override
     public void notificaRoundFinalizado(String endRoundMesssage) {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
+        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+    }
+
+    @Override
+    public void notificaCubePego(String cubeMessage) {
+        JOptionPane.showMessageDialog(null, cubeMessage);
+    }
+
+    @Override
+    public void notificaFalhaPegarCubo(String cubeMessage) {
+        JOptionPane.showMessageDialog(null, cubeMessage);
     }
 }

@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Model.Cube;
 import Model.Player;
 import Singleton.RoundsControl;
 import Model.Wagon;
@@ -92,6 +93,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
+        wishedLocation = null;
         if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
 
             if (isPreviousLocation) {
@@ -130,7 +132,7 @@ public class GameImplementation implements GameControl {
                 notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
 
                 previousLocation = null;
-                wishedLocation = null;
+                //wishedLocation = null;
                 isPreviousLocation = true;
             }
         } else {
@@ -184,5 +186,34 @@ public class GameImplementation implements GameControl {
         observers.forEach((o) -> {
             o.notificaRoundFinalizado(endRoundMesssage);
         });
+    }
+    @Override
+    public String getPlayerVez(){
+        return round.getPlayer().getName();
+    }
+
+    @Override
+    public void takeCube(String cubeLocation) {
+        Cube cube = new Cube(cubeLocation);
+        if (wishedLocation != null) {
+            if (wishedLocation.equals(cubeLocation)) {
+                if (round.getPlayer() == player1) {
+                    player1.addCubes(cube);
+                } else {
+                    player2.addCubes(cube);
+                }
+                observers.forEach((o) -> {
+                    o.notificaCubePego("Cubo resgatado com sucesso!!");
+                });
+            } else {
+                observers.forEach((o) -> {
+                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
+                });
+            }
+        } else {
+            observers.forEach((o) -> {
+                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
+            });
+        }
     }
 }

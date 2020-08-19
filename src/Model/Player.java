@@ -1,25 +1,27 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
-    private String score;
     private String coins;
+    private ArrayList<Cube> cubes = new ArrayList<>();
 
     public Player(String name) {
         this.name = name;
     }
 
+    public ArrayList<Cube> getCubes() {
+        return cubes;
+    }
+
+    public void addCubes(Cube cubes) {
+        this.cubes.add(cubes);
+    }
+    
     public String getName() {
         return name;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
     }
 
     public String getCoins() {

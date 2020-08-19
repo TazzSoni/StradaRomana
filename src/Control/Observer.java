@@ -18,4 +18,8 @@ public interface Observer {
 
     public void notificaRoundFinalizado(String endRoundMesssage);
 
+    public void notificaCubePego(String cubeMessage);
+
+    public void notificaFalhaPegarCubo(String cubeMessage);
+
 }
