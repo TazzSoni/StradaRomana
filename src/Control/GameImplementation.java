@@ -260,7 +260,7 @@ public class GameImplementation implements GameControl {
 
     private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
         boolean resposta = false;
-        if (Integer.parseInt(previusLocation)<Integer.parseInt(wishedLocation)) {
+        if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
             criaMapaDeMovimentacaoEpD();
             for (String m : movimentacoes) {
                 String partida = m.substring(0, 3);
@@ -272,25 +272,33 @@ public class GameImplementation implements GameControl {
                     } else {
                         resposta = false;
                     }
-                } else if(Integer.parseInt(previusLocation) < 10){
-                    resposta = true;
+                } else if (Integer.parseInt(previusLocation) < 10) {
+                    if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
+                        resposta = true;
+                    }else{
+                        resposta = false;
+                    }
                 }
             };
             movimentacoes.clear();
         } else {
             criaMapaDeMovimentacaoDpE();
             for (String m : movimentacoes) {
-                String partida = m.substring(0, 2);
-                String destino1 = m.substring(4, 6);
-                String destino2 = m.substring(8, 10);
+                String partida = m.substring(0, 3);
+                String destino1 = m.substring(4, 7);
+                String destino2 = m.substring(8, 11);
                 if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
                     if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
                         resposta = true;
                     } else {
                         resposta = false;
                     }
-                } else if(Integer.parseInt(previusLocation) < 10){
-                    resposta = true;
+                } else if (Integer.parseInt(previusLocation) < 10) {
+                    if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
+                        resposta = true;
+                    }else{
+                        resposta = false;
+                    }
                 }
             };
             movimentacoes.clear();
