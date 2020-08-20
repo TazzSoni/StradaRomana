@@ -119,6 +119,10 @@ public class GameImplementation implements GameControl {
                     return;
                 }
 
+                if (previousLocation == wishedLocation) {
+                    notificaAcaoFalhou("Posição final deve ser diferente da inicial, clique novamente na posição final desejada");
+                    return;
+                }
                 if ((location.contains("cube"))) {
                     notificaAcaoFalhou("Isto é um cubo");
                     return;
@@ -177,8 +181,8 @@ public class GameImplementation implements GameControl {
     @Override
     public void endRoundCommand() {
         if (round.getActionType() != "") {
-        Player nextPlayer = round.endRound(player1, player2);
-        notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+            Player nextPlayer = round.endRound(player1, player2);
+            notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
         }
@@ -214,9 +218,9 @@ public class GameImplementation implements GameControl {
     }
 
     private void notificaRoundFinalizado(String endRoundMesssage) {
-            observers.forEach((o) -> {
-                o.notificaRoundFinalizado(endRoundMesssage);
-            });
+        observers.forEach((o) -> {
+            o.notificaRoundFinalizado(endRoundMesssage);
+        });
     }
 
     @Override
