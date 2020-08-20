@@ -27,6 +27,8 @@ public interface GameControl {
 
     void takeCube(String cubeLocation);
     
+    void takeWare(String wareLocation);
+    
     String getPlayerVez();
 
     public void setActionTypeCommand(String actionType);

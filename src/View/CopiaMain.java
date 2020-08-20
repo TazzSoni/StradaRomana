@@ -11,12 +11,10 @@ import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
 import java.awt.Color;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 

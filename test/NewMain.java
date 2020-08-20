@@ -11,16 +11,15 @@ import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
 import Command.SetActionTypeCommand;
 import Command.TakeCubeCommand;
+import Command.TakeWareCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
 import java.awt.Color;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -71,8 +70,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jB4 = new javax.swing.JButton();
         jB5 = new javax.swing.JButton();
         jB111 = new javax.swing.JButton();
-        jB112 = new javax.swing.JButton();
         jB113 = new javax.swing.JButton();
+        jB112 = new javax.swing.JButton();
         jB121 = new javax.swing.JButton();
         jB122 = new javax.swing.JButton();
         jB131 = new javax.swing.JButton();
@@ -91,8 +90,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jB251 = new javax.swing.JButton();
         jB252 = new javax.swing.JButton();
         jB311 = new javax.swing.JButton();
-        jB312 = new javax.swing.JButton();
         jB313 = new javax.swing.JButton();
+        jB312 = new javax.swing.JButton();
         jB321 = new javax.swing.JButton();
         jB322 = new javax.swing.JButton();
         jB331 = new javax.swing.JButton();
@@ -127,12 +126,12 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton56 = new javax.swing.JButton();
-        jButton57 = new javax.swing.JButton();
-        jButton58 = new javax.swing.JButton();
-        jButton59 = new javax.swing.JButton();
-        jButton60 = new javax.swing.JButton();
-        jButton61 = new javax.swing.JButton();
+        jBWare1 = new javax.swing.JButton();
+        jBWare2 = new javax.swing.JButton();
+        jBWare3 = new javax.swing.JButton();
+        jBWare4 = new javax.swing.JButton();
+        jBWare5 = new javax.swing.JButton();
+        jBWare6 = new javax.swing.JButton();
         jBFinalizaTurno = new javax.swing.JButton();
         jLJdV = new javax.swing.JLabel();
         jLJogadorVez = new javax.swing.JLabel();
@@ -160,8 +159,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("9", jB9);
         componentsByName.put("10", jB10);
         componentsByName.put("111", jB111);
-        componentsByName.put("112", jB112);
-        componentsByName.put("113", jB113);
+        componentsByName.put("112", jB113);
+        componentsByName.put("113", jB112);
         componentsByName.put("121", jB121);
         componentsByName.put("122", jB122);
         componentsByName.put("131", jB131);
@@ -181,8 +180,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("251", jB251);
         componentsByName.put("252", jB252);
         componentsByName.put("311", jB311);
-        componentsByName.put("312", jB312);
-        componentsByName.put("313", jB313);
+        componentsByName.put("312", jB313);
+        componentsByName.put("313", jB312);
         componentsByName.put("321", jB321);
         componentsByName.put("322", jB322);
         componentsByName.put("331", jB331);
@@ -281,21 +280,23 @@ public class NewMain extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jB112.setName("112");
-        jB112.setText("112");
-        jB112.setBackground(new java.awt.Color(0, 0, 0));
-        jB112.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB112ActionPerformed(evt);
-            }
-        });
-
+        //113
         jB113.setName("113");
         jB113.setText("113");
         jB113.setBackground(new java.awt.Color(0, 0, 0));
         jB113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB113ActionPerformed(evt);
+            }
+        });
+
+        //112
+        jB112.setName("112");
+        jB112.setText("112");
+        jB112.setBackground(new java.awt.Color(0, 0, 0));
+        jB112.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB112ActionPerformed(evt);
             }
         });
         jB121.setName("121");
@@ -451,18 +452,20 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jB311ActionPerformed(evt);
             }
         });
-        jB312.setName("312");
-        jB312.setText("312");
-        jB312.setBackground(new java.awt.Color(0, 0, 0));
-        jB312.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB312ActionPerformed(evt);
-            }
-        });
+        //313
         jB313.setName("313");
         jB313.setText("313");
         jB313.setBackground(new java.awt.Color(0, 0, 0));
         jB313.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB312ActionPerformed(evt);
+            }
+        });
+        //312
+        jB312.setName("312");
+        jB312.setText("312");
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
+        jB312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB313ActionPerformed(evt);
             }
@@ -531,88 +534,124 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jB352ActionPerformed(evt);
             }
         });
-        jBCube113.setName("113");
+        jBCube113.setName("cube113");
         jBCube113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube113ActionPerformed(evt);
             }
         });
-        jBCube121.setName("121");
+        jBCube121.setName("cube121");
         jBCube121.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube121ActionPerformed(evt);
             }
         });
-        jBCube132.setName("132");
+        jBCube132.setName("cube132");
         jBCube132.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube132ActionPerformed(evt);
             }
         });
-        jBCube151.setName("151");
+        jBCube151.setName("cube151");
         jBCube151.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube151ActionPerformed(evt);
             }
         });
-        jBCube152.setName("152");
+        jBCube152.setName("cube152");
         jBCube152.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube152ActionPerformed(evt);
             }
         });
-        jBCube221.setName("221");
+        jBCube221.setName("cube221");
         jBCube221.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube221ActionPerformed(evt);
             }
         });
-        jBCube232.setName("232");
+        jBCube232.setName("cube232");
         jBCube232.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube232ActionPerformed(evt);
             }
         });
-        jBCube251.setName("251");
+        jBCube251.setName("cube251");
         jBCube251.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube251ActionPerformed(evt);
             }
         });
-        jBCube313.setName("313");
+        jBCube313.setName("cube313");
         jBCube313.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube313ActionPerformed(evt);
             }
         });
-        jBCube321.setName("321");
+        jBCube321.setName("cube321");
         jBCube321.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube321ActionPerformed(evt);
             }
         });
-        jBCube322.setName("322");
+        jBCube322.setName("cube322");
         jBCube322.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube322ActionPerformed(evt);
             }
         });
-        jBCube331.setName("331");
+        jBCube331.setName("cube331");
         jBCube331.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube331ActionPerformed(evt);
             }
         });
-        jBCube351.setName("351");
+        jBCube351.setName("cube351");
         jBCube351.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube351ActionPerformed(evt);
             }
         });
-        jBCube352.setName("352");
+        jBCube352.setName("cube352");
         jBCube352.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube352ActionPerformed(evt);
+            }
+        });
+        jBWare1.setName("Ware1");
+        jBWare1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare1ActionPerformed(evt);
+            }
+        });
+        jBWare2.setName("Ware2");
+        jBWare2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare2ActionPerformed(evt);
+            }
+        });
+        jBWare3.setName("Ware3");
+        jBWare3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare3ActionPerformed(evt);
+            }
+        });
+        jBWare4.setName("Ware4");
+        jBWare4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare4ActionPerformed(evt);
+            }
+        });
+        jBWare5.setName("Ware5");
+        jBWare5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare5ActionPerformed(evt);
+            }
+        });
+        jBWare6.setName("Ware6");
+        jBWare6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare6ActionPerformed(evt);
             }
         });
         jBConfirmaAcao.addActionListener(new java.awt.event.ActionListener() {
@@ -662,9 +701,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jB311.setBackground(new java.awt.Color(0, 0, 0));
 
-        jB312.setBackground(new java.awt.Color(0, 0, 0));
-
         jB313.setBackground(new java.awt.Color(0, 0, 0));
+
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
 
         jB321.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -735,12 +774,12 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jB122, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(jB111, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -794,7 +833,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                                                                                                         .addComponent(jB142, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                                                                                                                                         .addComponent(jB141, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                                                                                                                                        .addComponent(jButton56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                                                                                        .addComponent(jBWare1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                                                         .addComponent(jB152, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -826,7 +865,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                                 .addGap(20, 20, 20)
                                                                                                                                 .addComponent(jBCube232, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                        .addComponent(jButton58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                                                                                        .addComponent(jBWare3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                 .addGap(123, 123, 123)
                                                                                                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -838,10 +877,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addGap(25, 25, 25)))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                 .addComponent(jB241, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(jBWare2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(jButton59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(jBWare4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addComponent(jB252, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                                                         .addComponent(jB251, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -856,8 +895,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGap(20, 20, 20)
@@ -879,8 +918,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                         .addComponent(jB342, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                         .addComponent(jB341, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addComponent(jButton60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                        .addComponent(jButton61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                                                                        .addComponent(jBWare5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                        .addComponent(jBWare6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGap(22, 22, 22)
                                                                                                 .addComponent(jBCube322, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -956,10 +995,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                 .addComponent(jBCube132, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jButton56, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jBWare1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addComponent(jB1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jButton58, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                .addComponent(jBWare3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -971,9 +1010,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addComponent(jB111, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1036,16 +1075,16 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGap(25, 25, 25)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jButton59, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                                        .addComponent(jBWare4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jBWare2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addGap(55, 55, 55)
                                                         .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jBCube313, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1074,7 +1113,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                                 .addComponent(jB352, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addComponent(jButton60, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jBWare5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addGap(28, 28, 28)
                                                                                 .addComponent(jB341, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1085,7 +1124,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                         .addComponent(jBCube352, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGap(219, 219, 219)
-                                                                .addComponent(jButton61, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(jBWare6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                                 .addComponent(jB6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1152,6 +1191,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         ci.add(new TakeCubeCommand(gameCtrl, jb.getName()));
         ci.execute();
     }
+    public void takeWare(JButton jb) {
+        ci.add(new TakeWareCommand(gameCtrl, jb.getName()));
+        ci.execute();
+    }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
         wagonCheck(jB1);
@@ -1198,11 +1241,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB112ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB112);
+        wagonCheck(jB113);
     }
 
     private void jB113ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB113);
+        wagonCheck(jB112);
     }
 
     private void jB121ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1278,11 +1321,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB312ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB312);
+        wagonCheck(jB313);
     }
 
     private void jB313ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB313);
+        wagonCheck(jB312);
     }
 
     private void jB321ActionPerformed(ActionEvent evt) {
@@ -1384,6 +1427,30 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     }
 
+    private void jBWare1ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare1);
+    }
+
+    private void jBWare2ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare2);
+    }
+
+    private void jBWare3ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare3);
+    }
+
+    private void jBWare4ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare4);
+    }
+
+    private void jBWare5ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare5);
+    }
+
+    private void jBWare6ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare6);
+    }
+
     private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
         ci.add(new SetActionTypeCommand(gameCtrl, jComboAcao.getSelectedItem().toString()));
         ci.execute();
@@ -1437,8 +1504,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jB1;
     private javax.swing.JButton jB10;
     private javax.swing.JButton jB111;
-    private javax.swing.JButton jB112;
     private javax.swing.JButton jB113;
+    private javax.swing.JButton jB112;
     private javax.swing.JButton jB121;
     private javax.swing.JButton jB122;
     private javax.swing.JButton jB131;
@@ -1459,8 +1526,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jB252;
     private javax.swing.JButton jB3;
     private javax.swing.JButton jB311;
-    private javax.swing.JButton jB312;
     private javax.swing.JButton jB313;
+    private javax.swing.JButton jB312;
     private javax.swing.JButton jB321;
     private javax.swing.JButton jB322;
     private javax.swing.JButton jB331;
@@ -1489,12 +1556,12 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jBCube331;
     private javax.swing.JButton jBCube351;
     private javax.swing.JButton jBCube352;
-    private javax.swing.JButton jButton56;
-    private javax.swing.JButton jButton57;
-    private javax.swing.JButton jButton58;
-    private javax.swing.JButton jButton59;
-    private javax.swing.JButton jButton60;
-    private javax.swing.JButton jButton61;
+    private javax.swing.JButton jBWare1;
+    private javax.swing.JButton jBWare2;
+    private javax.swing.JButton jBWare3;
+    private javax.swing.JButton jBWare4;
+    private javax.swing.JButton jBWare5;
+    private javax.swing.JButton jBWare6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

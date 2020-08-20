@@ -9,6 +9,7 @@ import Model.Cube;
 import Model.Player;
 import Singleton.RoundsControl;
 import Model.Wagon;
+import Model.Ware;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -93,6 +94,8 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
+        /*wishedLocation movido para o topo do método para ficar armazenado a localização 
+        *atual do vagão para pegar o cubo*/
         wishedLocation = null;
         if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
 
@@ -112,6 +115,11 @@ public class GameImplementation implements GameControl {
 
                 if (wagon == null) {
                     notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                    return;
+                }
+
+                if ((location.contains("cube"))) {
+                    notificaAcaoFalhou("Isto é um cubo");
                     return;
                 }
 
@@ -187,16 +195,17 @@ public class GameImplementation implements GameControl {
             o.notificaRoundFinalizado(endRoundMesssage);
         });
     }
+
     @Override
-    public String getPlayerVez(){
+    public String getPlayerVez() {
         return round.getPlayer().getName();
     }
 
     @Override
     public void takeCube(String cubeLocation) {
         Cube cube = new Cube(cubeLocation);
-        if (wishedLocation != null) {
-            if (wishedLocation.equals(cubeLocation)) {
+        if (wishedLocation != null && cubeLocation.contains("cube")) {
+            if (wishedLocation.equals(cubeLocation.substring(4, 7))) {
                 if (round.getPlayer() == player1) {
                     player1.addCubes(cube);
                 } else {
@@ -216,4 +225,32 @@ public class GameImplementation implements GameControl {
             });
         }
     }
+
+    @Override
+    public void takeWare(String wareLocation) {
+        Ware ware = new Ware(wareLocation);
+        String verifica = wishedLocation.substring(0)+wishedLocation.substring(2);
+        System.out.println(verifica);
+        /*if (wishedLocation != null && wareLocation.contains("ware")) {
+            if (wishedLocation.contains(wareLocation)) {
+                if (round.getPlayer() == player1) {
+                    player1.addWares(ware);
+                } else {
+                    player2.addWares(ware);
+                }
+                observers.forEach((o) -> {
+                    o.notificaCubePego("Ware resgatado com sucesso!!");
+                });
+            } else {
+                observers.forEach((o) -> {
+                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
+                });
+            }
+        } else {
+            observers.forEach((o) -> {
+                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
+            });
+        }*/
+    }
+
 }
