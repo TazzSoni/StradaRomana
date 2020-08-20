@@ -93,9 +93,6 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
-        /*wishedLocation movido para o topo do método para ficar armazenado a localização 
-        *atual do vagão para pegar o cubo*/
-        wishedLocation = null;
         if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
 
             if (isPreviousLocation) {
@@ -104,13 +101,7 @@ public class GameImplementation implements GameControl {
             } else {
                 wishedLocation = location;
 
-                Wagon wagon = null;
-                for (Wagon w : wagons) {
-                    if (w.getLocation().equals(previousLocation)) {
-                        wagon = w;
-                        break;
-                    }
-                }
+                Wagon wagon = getWagonByLocation(previousLocation);
 
                 if (wagon == null) {
                     notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
@@ -139,12 +130,21 @@ public class GameImplementation implements GameControl {
                 notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
 
                 previousLocation = null;
-                //wishedLocation = null;
+                wishedLocation = null;
                 isPreviousLocation = true;
             }
         } else {
-            notificaAcaoFalhou("Ação diferente de Movimentar wagon");
+            notificaAcaoFalhou("Tentativa de jogada inválida");
         }
+    }
+
+    private Wagon getWagonByLocation(String location) {
+        for (Wagon w : wagons) {
+            if (w.getLocation().equals(location)) {
+                return w;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -203,13 +203,12 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeCube(String cubeLocation) {
         Cube cube = new Cube(cubeLocation);
-        if (wishedLocation != null && cubeLocation.contains("cube")) {
-            if (wishedLocation.equals(cubeLocation.substring(4, 7))) {
-                if (round.getPlayer() == player1) {
-                    player1.addCubes(cube);
-                } else {
-                    player2.addCubes(cube);
-                }
+        
+        if (isPreviousLocation && cubeLocation.contains("cube")) {
+            cubeLocation = cubeLocation.substring(4, 7);
+            Wagon wagon = getWagonByLocation(cubeLocation);
+            if (wagon.getLocation().equals(cubeLocation)) {
+                round.getPlayer().addCubes(cube);
                 observers.forEach((o) -> {
                     o.notificaCubePego("Cubo resgatado com sucesso!!");
                 });
@@ -228,7 +227,7 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeWare(String wareLocation) {
         Ware ware = new Ware(wareLocation);
-        String verifica = wishedLocation.substring(0)+wishedLocation.substring(2);
+        String verifica = wishedLocation.substring(0) + wishedLocation.substring(2);
         System.out.println(verifica);
         /*if (wishedLocation != null && wareLocation.contains("ware")) {
             if (wishedLocation.contains(wareLocation)) {
