@@ -203,7 +203,7 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeCube(String cubeLocation) {
         Cube cube = new Cube(cubeLocation);
-        
+
         if (isPreviousLocation && cubeLocation.contains("cube")) {
             cubeLocation = cubeLocation.substring(4, 7);
             Wagon wagon = getWagonByLocation(cubeLocation);
@@ -225,17 +225,14 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void takeWare(String wareLocation) {
+    public void takeWare(String wareLocation) { 
         Ware ware = new Ware(wareLocation);
-        String verifica = wishedLocation.substring(0) + wishedLocation.substring(2);
-        System.out.println(verifica);
-        /*if (wishedLocation != null && wareLocation.contains("ware")) {
+        wareLocation = wishedLocation.charAt(0) + wishedLocation.charAt(2) + "";
+        System.out.println(wareLocation);
+
+        if (isPreviousLocation && wareLocation.contains("ware")) {
             if (wishedLocation.contains(wareLocation)) {
-                if (round.getPlayer() == player1) {
-                    player1.addWares(ware);
-                } else {
-                    player2.addWares(ware);
-                }
+                round.getPlayer().addWares(ware);
                 observers.forEach((o) -> {
                     o.notificaCubePego("Ware resgatado com sucesso!!");
                 });
@@ -248,7 +245,7 @@ public class GameImplementation implements GameControl {
             observers.forEach((o) -> {
                 o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
             });
-        }*/
+        }
     }
 
 }

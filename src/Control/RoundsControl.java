@@ -19,6 +19,7 @@ public class RoundsControl {
     private int maxQtMoves;
     private String actionType;
     private Player player;
+    private Wagon lastWagonMoved;
 
     private RoundsControl() {
     }
@@ -49,6 +50,7 @@ public class RoundsControl {
 
     public void addMove(Wagon wagon, String wishedLocation) {
         qtMoves++;
+        lastWagonMoved = wagon;
     }
 
     public Player endRound(Player player1, Player player2) {
