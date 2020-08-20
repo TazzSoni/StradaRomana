@@ -207,7 +207,7 @@ public class GameImplementation implements GameControl {
         if (isPreviousLocation && cubeLocation.contains("cube")) {
             cubeLocation = cubeLocation.substring(4, 7);
             Wagon wagon = getWagonByLocation(cubeLocation);
-            if (wagon.getLocation().equals(cubeLocation)) {
+            if (wagon != null && wagon.getLocation().equals(cubeLocation)) {
                 round.getPlayer().addCubes(cube);
                 observers.forEach((o) -> {
                     o.notificaCubePego("Cubo resgatado com sucesso!!");
