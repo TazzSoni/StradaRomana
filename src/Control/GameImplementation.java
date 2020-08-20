@@ -47,6 +47,12 @@ public class GameImplementation implements GameControl {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
 
+        /*
+        segundo regra do jogo para 2 jogadores o player 2
+        inicia o jogo com uma coin
+         */
+        player2.addCoins(1);
+
         round.setPlayer(player1);
 
         notificaPlayersCriados();
@@ -155,15 +161,27 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
-        round.setActionType(actionType);
-
-        notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+        switch (actionType) {
+            case "Passar a vez":
+                round.getPlayer().addCoins(1);
+                break;
+        }
+        if (round.getActionType() == "") {
+            round.setActionType(actionType);
+            notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+        } else {
+            notificaTipoDeAcaoDefinido("Ação já definida para este turno, " + round.getActionType() + " é sua ação para este turno");
+        }
     }
 
     @Override
     public void endRoundCommand() {
+        if (round.getActionType() != "") {
         Player nextPlayer = round.endRound(player1, player2);
         notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+        } else {
+            notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
+        }
     }
 
     private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
@@ -196,9 +214,9 @@ public class GameImplementation implements GameControl {
     }
 
     private void notificaRoundFinalizado(String endRoundMesssage) {
-        observers.forEach((o) -> {
-            o.notificaRoundFinalizado(endRoundMesssage);
-        });
+            observers.forEach((o) -> {
+                o.notificaRoundFinalizado(endRoundMesssage);
+            });
     }
 
     @Override
