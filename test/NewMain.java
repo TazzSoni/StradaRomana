@@ -618,37 +618,43 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jBCube352ActionPerformed(evt);
             }
         });
-        jBWare1.setName("Ware1");
+        jBWare1.setName("Ware11");
+        jBWare1.setText("Ware11");
         jBWare1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare1ActionPerformed(evt);
             }
         });
-        jBWare2.setName("Ware2");
+        jBWare2.setName("Ware12");
+        jBWare2.setText("Ware12");
         jBWare2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare2ActionPerformed(evt);
             }
         });
-        jBWare3.setName("Ware3");
+        jBWare3.setName("Ware21");
+        jBWare3.setText("Ware21");
         jBWare3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare3ActionPerformed(evt);
             }
         });
-        jBWare4.setName("Ware4");
+        jBWare4.setName("Ware22");
+        jBWare4.setText("Ware22");
         jBWare4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare4ActionPerformed(evt);
             }
         });
-        jBWare5.setName("Ware5");
+        jBWare5.setName("Ware31");
+        jBWare5.setText("Ware31");
         jBWare5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare5ActionPerformed(evt);
             }
         });
-        jBWare6.setName("Ware6");
+        jBWare6.setName("Ware32");
+        jBWare6.setText("Ware32");
         jBWare6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare6ActionPerformed(evt);
