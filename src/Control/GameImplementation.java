@@ -29,7 +29,75 @@ public class GameImplementation implements GameControl {
 
     String previousLocation;
     String wishedLocation;
+    String wareWishedLocation;
     private boolean isPreviousLocation = true;
+
+    private ArrayList<String> movimentacoes = new ArrayList<>();
+
+    private void criaMapaDeMovimentacaoEpD() {
+        movimentacoes.add("111-121,***");
+        movimentacoes.add("113-121,122");
+        movimentacoes.add("112-122,***");
+        movimentacoes.add("121-131,132");
+        movimentacoes.add("122-132,***");
+        movimentacoes.add("131-141,***");
+        movimentacoes.add("132-141,142");
+        movimentacoes.add("141-151,***");
+        movimentacoes.add("142-152,***");
+        movimentacoes.add("151-211,***");
+        movimentacoes.add("152-211,212");
+        movimentacoes.add("211-221,222");
+        movimentacoes.add("212-222,***");
+        movimentacoes.add("221-231,***");
+        movimentacoes.add("222-232,***");
+        movimentacoes.add("231-241,***");
+        movimentacoes.add("232-241,***");
+        movimentacoes.add("241-251,252");
+        movimentacoes.add("251-311,313");
+        movimentacoes.add("252-313,312");
+        movimentacoes.add("311-321,***");
+        movimentacoes.add("313-321,322");
+        movimentacoes.add("312-322,***");
+        movimentacoes.add("321-331,***");
+        movimentacoes.add("322-332,***");
+        movimentacoes.add("331-341,342");
+        movimentacoes.add("332-342,***");
+        movimentacoes.add("341-351,***");
+        movimentacoes.add("342-351,352");
+
+    }
+
+    private void criaMapaDeMovimentacaoDpE() {
+        movimentacoes.add("351-341,342");
+        movimentacoes.add("352-342,***");
+        movimentacoes.add("341-331,***");
+        movimentacoes.add("342-331,332");
+        movimentacoes.add("331-321,***");
+        movimentacoes.add("332-322,***");
+        movimentacoes.add("321-311,313");
+        movimentacoes.add("322-313,312");
+        movimentacoes.add("311-251,***");
+        movimentacoes.add("313-251,252");
+        movimentacoes.add("312-252,***");
+        movimentacoes.add("251-241,***");
+        movimentacoes.add("252-241,***");
+        movimentacoes.add("241-231,232");
+        movimentacoes.add("231-221,***");
+        movimentacoes.add("232-222,***");
+        movimentacoes.add("221-211,***");
+        movimentacoes.add("222-211,212");
+        movimentacoes.add("211-151,152");
+        movimentacoes.add("212-152,***");
+        movimentacoes.add("151-141,***");
+        movimentacoes.add("152-142,***");
+        movimentacoes.add("141-131,132");
+        movimentacoes.add("142-132,***");
+        movimentacoes.add("131-121,***");
+        movimentacoes.add("132-121,122");
+        movimentacoes.add("121-111,113");
+        movimentacoes.add("122-113,112");
+
+    }
 
     @Override
     public Player getPlayer1() {
@@ -45,6 +113,12 @@ public class GameImplementation implements GameControl {
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
+
+        /*
+        segundo regra do jogo para 2 jogadores o player 2
+        inicia o jogo com uma coin
+         */
+        player2.addCoins(1);
 
         round.setPlayer(player1);
 
@@ -93,8 +167,9 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
+        wareWishedLocation = null;
+        //if ((round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) && (getWagonByLocation(location) != null)) {
         if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
-
             if (isPreviousLocation) {
                 previousLocation = location;
                 isPreviousLocation = false;
@@ -105,16 +180,26 @@ public class GameImplementation implements GameControl {
 
                 if (wagon == null) {
                     notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                    previousLocation = null;
+                    wishedLocation = null;
+                    isPreviousLocation = true;
                     return;
                 }
 
+                if (previousLocation == wishedLocation) {
+                    notificaAcaoFalhou("Posição final deve ser diferente da inicial, clique novamente na posição final desejada");
+                    return;
+                }
                 if ((location.contains("cube"))) {
                     notificaAcaoFalhou("Isto é um cubo");
                     return;
                 }
 
-                if (!isValidMoviment(wagon, wishedLocation)) {
+                if (!isValidMoviment(wagon, previousLocation, wishedLocation)) {
                     notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    previousLocation = null;
+                    wishedLocation = null;
+                    isPreviousLocation = true;
                     return;
                 }
 
@@ -129,6 +214,7 @@ public class GameImplementation implements GameControl {
 
                 notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
 
+                wareWishedLocation = wishedLocation;
                 previousLocation = null;
                 wishedLocation = null;
                 isPreviousLocation = true;
@@ -149,19 +235,75 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
-        round.setActionType(actionType);
-
-        notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+        switch (actionType) {
+            case "Passar a vez":
+                round.getPlayer().addCoins(1);
+                break;
+        }
+        if (round.getActionType() == "") {
+            round.setActionType(actionType);
+            notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+        } else {
+            notificaTipoDeAcaoDefinido("Ação já definida para este turno, " + round.getActionType() + " é sua ação para este turno");
+        }
     }
 
     @Override
     public void endRoundCommand() {
-        Player nextPlayer = round.endRound(player1, player2);
-        notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+        if (round.getActionType() != "") {
+            Player nextPlayer = round.endRound(player1, player2);
+            notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+        } else {
+            notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
+        }
     }
 
-    private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
-        return true;
+    private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
+        boolean resposta = false;
+        if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
+            criaMapaDeMovimentacaoEpD();
+            for (String m : movimentacoes) {
+                String partida = m.substring(0, 3);
+                String destino1 = m.substring(4, 7);
+                String destino2 = m.substring(8, 11);
+                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                } else if (Integer.parseInt(previusLocation) < 10) {
+                    if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
+                        resposta = true;
+                    }else{
+                        resposta = false;
+                    }
+                }
+            };
+            movimentacoes.clear();
+        } else {
+            criaMapaDeMovimentacaoDpE();
+            for (String m : movimentacoes) {
+                String partida = m.substring(0, 3);
+                String destino1 = m.substring(4, 7);
+                String destino2 = m.substring(8, 11);
+                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                } else if (Integer.parseInt(previusLocation) < 10) {
+                    if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
+                        resposta = true;
+                    }else{
+                        resposta = false;
+                    }
+                }
+            };
+            movimentacoes.clear();
+        }
+        return resposta;
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
@@ -227,11 +369,9 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeWare(String wareLocation) { 
         Ware ware = new Ware(wareLocation);
-        wareLocation = wishedLocation.charAt(0) + wishedLocation.charAt(2) + "";
-        System.out.println(wareLocation);
-
-        if (isPreviousLocation && wareLocation.contains("ware")) {
-            if (wishedLocation.contains(wareLocation)) {
+        if (wareWishedLocation != null && wareLocation.contains("ware")) {
+            if ((wareWishedLocation.substring(0, 1).equals(wareLocation.substring(4, 5))) && (wareWishedLocation.substring(2).equals(wareLocation.substring(5)))) {
+                System.out.println("Entrou");
                 round.getPlayer().addWares(ware);
                 observers.forEach((o) -> {
                     o.notificaCubePego("Ware resgatado com sucesso!!");

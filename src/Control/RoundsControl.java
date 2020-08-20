@@ -17,7 +17,7 @@ public class RoundsControl {
     private static RoundsControl instance;
     private int qtMoves = 0;
     private int maxQtMoves;
-    private String actionType;
+    private String actionType = "";
     private Player player;
     private Wagon lastWagonMoved;
 

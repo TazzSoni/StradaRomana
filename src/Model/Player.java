@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player {
 
     private String name;
-    private String coins;
+    private int coins = 0;
     private ArrayList<Cube> cubes = new ArrayList<>();
     private ArrayList<Ware> wares = new ArrayList<>();
 
@@ -31,11 +31,11 @@ public class Player {
         return name;
     }
 
-    public String getCoins() {
+    public int getCoins() {
         return coins;
     }
 
-    public void setCoins(String coins) {
-        this.coins = coins;
+      public void addCoins(int value) {
+          this.coins += value;
     }
 }
