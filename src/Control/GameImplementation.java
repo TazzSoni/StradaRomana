@@ -29,6 +29,7 @@ public class GameImplementation implements GameControl {
 
     String previousLocation;
     String wishedLocation;
+    String wareWishedLocation;
     private boolean isPreviousLocation = true;
 
     @Override
@@ -93,8 +94,9 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
+        wareWishedLocation = null;
+        //if ((round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) && (getWagonByLocation(location) != null)) {
         if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
-
             if (isPreviousLocation) {
                 previousLocation = location;
                 isPreviousLocation = false;
@@ -105,6 +107,9 @@ public class GameImplementation implements GameControl {
 
                 if (wagon == null) {
                     notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                    previousLocation = null;
+                    wishedLocation = null;
+                    isPreviousLocation = true;
                     return;
                 }
 
@@ -129,6 +134,7 @@ public class GameImplementation implements GameControl {
 
                 notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
 
+                wareWishedLocation = wishedLocation;
                 previousLocation = null;
                 wishedLocation = null;
                 isPreviousLocation = true;
@@ -203,7 +209,7 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeCube(String cubeLocation) {
         Cube cube = new Cube(cubeLocation);
-        
+
         if (isPreviousLocation && cubeLocation.contains("cube")) {
             cubeLocation = cubeLocation.substring(4, 7);
             Wagon wagon = getWagonByLocation(cubeLocation);
@@ -227,15 +233,10 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeWare(String wareLocation) {
         Ware ware = new Ware(wareLocation);
-        String verifica = wishedLocation.substring(0) + wishedLocation.substring(2);
-        System.out.println(verifica);
-        /*if (wishedLocation != null && wareLocation.contains("ware")) {
-            if (wishedLocation.contains(wareLocation)) {
-                if (round.getPlayer() == player1) {
-                    player1.addWares(ware);
-                } else {
-                    player2.addWares(ware);
-                }
+        if (wareWishedLocation != null && wareLocation.contains("ware")) {
+            if ((wareWishedLocation.substring(0, 1).equals(wareLocation.substring(4, 5))) && (wareWishedLocation.substring(2).equals(wareLocation.substring(5)))) {
+                System.out.println("Entrou");
+                round.getPlayer().addWares(ware);
                 observers.forEach((o) -> {
                     o.notificaCubePego("Ware resgatado com sucesso!!");
                 });
@@ -248,7 +249,7 @@ public class GameImplementation implements GameControl {
             observers.forEach((o) -> {
                 o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
             });
-        }*/
+        }
     }
 
 }

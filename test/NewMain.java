@@ -618,43 +618,43 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jBCube352ActionPerformed(evt);
             }
         });
-        jBWare11.setName("Ware11");
-        jBWare11.setText("Ware11");
+        jBWare11.setName("ware11");
+        jBWare11.setText("ware11");
         jBWare11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare1ActionPerformed(evt);
             }
         });
-        jBWare12.setName("Ware12");
-        jBWare12.setText("Ware12");
+        jBWare12.setName("ware12");
+        jBWare12.setText("ware12");
         jBWare12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare2ActionPerformed(evt);
             }
         });
-        jBWare21.setName("Ware21");
-        jBWare21.setText("Ware21");
+        jBWare21.setName("ware21");
+        jBWare21.setText("ware21");
         jBWare21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare3ActionPerformed(evt);
             }
         });
-        jBWare22.setName("Ware22");
-        jBWare22.setText("Ware22");
+        jBWare22.setName("ware22");
+        jBWare22.setText("ware22");
         jBWare22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare4ActionPerformed(evt);
             }
         });
-        jBWare31.setName("Ware31");
-        jBWare31.setText("Ware31");
+        jBWare31.setName("ware31");
+        jBWare31.setText("ware31");
         jBWare31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare5ActionPerformed(evt);
             }
         });
-        jBWare32.setName("Ware32");
-        jBWare32.setText("Ware32");
+        jBWare32.setName("ware32");
+        jBWare32.setText("ware32");
         jBWare32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare6ActionPerformed(evt);
