@@ -129,10 +129,9 @@ public class Login extends javax.swing.JFrame {
             if (main == null) {
                 main = new NewMain();
             }
-            main.setLocationRelativeTo(null);
+            main.newPlayer(jTfJogador1.getText(), jTfJogador2.getText());
             main.setVisible(true);
             main.setResizable(false);
-            main.newPlayer(jTfJogador1.getText(), jTfJogador2.getText());
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Informe todos os jogadores");

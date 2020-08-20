@@ -5,8 +5,10 @@
  */
 package Control;
 
+import Model.Cube;
 import Model.Player;
 import Model.Wagon;
+import Model.Ware;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,12 +20,16 @@ import java.util.Random;
  */
 public class GameImplementation implements GameControl {
 
-    Player player1;
-    Player player2;
-    Random random = new Random();
-    List<Observer> observers = new ArrayList<>();
-    List<Wagon> wagons = new ArrayList<>();
-    RoundsControl round = RoundsControl.getInstance();
+    private Player player1;
+    private Player player2;
+    private Random random = new Random();
+    private List<Observer> observers = new ArrayList<>();
+    private List<Wagon> wagons = new ArrayList<>();
+    private RoundsControl round = RoundsControl.getInstance();
+
+    String previousLocation;
+    String wishedLocation;
+    private boolean isPreviousLocation = true;
 
     @Override
     public Player getPlayer1() {
@@ -39,7 +45,7 @@ public class GameImplementation implements GameControl {
     public void setPlayers(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
-        
+
         round.setPlayer(player1);
 
         notificaPlayersCriados();
@@ -69,9 +75,15 @@ public class GameImplementation implements GameControl {
             wagons.add(wagon);
         }
 
-        observers.forEach((o) -> {
-            o.notifyRandomizedWagons(numeros);
-        });
+        if (boardSide.equals("E")) {
+            observers.forEach((o) -> {
+                o.notifyRandomizedWagonsE(numeros);
+            });
+        } else {
+            observers.forEach((o) -> {
+                o.notifyRandomizedWagonsD(numeros);
+            });
+        }
     }
 
     @Override
@@ -80,41 +92,65 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void moveWagon(String wagonLocation, String wishedLocation) {
-        Wagon wagon = null;
-        for (Wagon w : wagons) {
-            if (w.getLocation().equals(wagonLocation)) {
-                wagon = w;
-                break;
+    public void moveWagon(String location) {
+        /*wishedLocation movido para o topo do método para ficar armazenado a localização 
+        *atual do vagão para pegar o cubo*/
+        wishedLocation = null;
+        if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
+
+            if (isPreviousLocation) {
+                previousLocation = location;
+                isPreviousLocation = false;
+            } else {
+                wishedLocation = location;
+
+                Wagon wagon = null;
+                for (Wagon w : wagons) {
+                    if (w.getLocation().equals(previousLocation)) {
+                        wagon = w;
+                        break;
+                    }
+                }
+
+                if (wagon == null) {
+                    notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                    return;
+                }
+
+                if ((location.contains("cube"))) {
+                    notificaAcaoFalhou("Isto é um cubo");
+                    return;
+                }
+
+                if (!isValidMoviment(wagon, wishedLocation)) {
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    return;
+                }
+
+                try {
+                    round.addMove(wagon, wishedLocation);
+                } catch (Exception ex) {
+                    notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
+                    return;
+                }
+
+                wagon.setLocation(wishedLocation);
+
+                notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
+
+                previousLocation = null;
+                //wishedLocation = null;
+                isPreviousLocation = true;
             }
+        } else {
+            notificaAcaoFalhou("Ação diferente de Movimentar wagon");
         }
-
-        if (wagon == null) {
-            notificaAcaoFalhou("Vagão não encontrado no botão informado (" + wagonLocation + ").");
-            return;
-        }
-
-        if (!isValidMoviment(wagon, wishedLocation)) {
-            notificaAcaoFalhou("Movimentação impossível, tente novamente.");
-            return;
-        }
-
-        try {
-            round.addMove(wagon, wishedLocation);
-        } catch (Exception ex){
-            notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
-            return;
-        }
-        
-        wagon.setLocation(wishedLocation);
-
-        notificaMovimentacaoConcluida(wagonLocation, wagon.getLocation());
     }
 
     @Override
     public void setActionTypeCommand(String actionType) {
         round.setActionType(actionType);
-        
+
         notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
     }
 
@@ -158,4 +194,62 @@ public class GameImplementation implements GameControl {
             o.notificaRoundFinalizado(endRoundMesssage);
         });
     }
+
+    @Override
+    public String getPlayerVez() {
+        return round.getPlayer().getName();
+    }
+
+    @Override
+    public void takeCube(String cubeLocation) {
+        Cube cube = new Cube(cubeLocation);
+        if (wishedLocation != null && cubeLocation.contains("cube")) {
+            if (wishedLocation.equals(cubeLocation.substring(4, 7))) {
+                if (round.getPlayer() == player1) {
+                    player1.addCubes(cube);
+                } else {
+                    player2.addCubes(cube);
+                }
+                observers.forEach((o) -> {
+                    o.notificaCubePego("Cubo resgatado com sucesso!!");
+                });
+            } else {
+                observers.forEach((o) -> {
+                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
+                });
+            }
+        } else {
+            observers.forEach((o) -> {
+                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
+            });
+        }
+    }
+
+    @Override
+    public void takeWare(String wareLocation) {
+        Ware ware = new Ware(wareLocation);
+        String verifica = wishedLocation.substring(0)+wishedLocation.substring(2);
+        System.out.println(verifica);
+        /*if (wishedLocation != null && wareLocation.contains("ware")) {
+            if (wishedLocation.contains(wareLocation)) {
+                if (round.getPlayer() == player1) {
+                    player1.addWares(ware);
+                } else {
+                    player2.addWares(ware);
+                }
+                observers.forEach((o) -> {
+                    o.notificaCubePego("Ware resgatado com sucesso!!");
+                });
+            } else {
+                observers.forEach((o) -> {
+                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
+                });
+            }
+        } else {
+            observers.forEach((o) -> {
+                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
+            });
+        }*/
+    }
+
 }

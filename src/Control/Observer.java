@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public interface Observer {
 
-    void notifyRandomizedWagons(ArrayList<Integer> numeros);
+    void notifyRandomizedWagonsE(ArrayList<Integer> numeros);
+
+    void notifyRandomizedWagonsD(ArrayList<Integer> numeros);
 
     void notificaMovimentacaoConcluida(String wagonName, String wagonLocation, String stateText);
 
@@ -15,5 +17,9 @@ public interface Observer {
     void notificaTipoDeAcaoDefinido(String actionDefinedMessage);
 
     public void notificaRoundFinalizado(String endRoundMesssage);
-    
+
+    public void notificaCubePego(String cubeMessage);
+
+    public void notificaFalhaPegarCubo(String cubeMessage);
+
 }

@@ -10,5 +10,10 @@ package Model;
  * @author Rodrigo
  */
 public class Ware {
-    
+
+    private String color;
+
+    public Ware(String color) {
+        this.color = color;
+    }
 }
