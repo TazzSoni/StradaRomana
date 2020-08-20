@@ -32,6 +32,73 @@ public class GameImplementation implements GameControl {
     String wareWishedLocation;
     private boolean isPreviousLocation = true;
 
+    private ArrayList<String> movimentacoes = new ArrayList<>();
+
+    private void criaMapaDeMovimentacaoEpD() {
+        movimentacoes.add("111-121,***");
+        movimentacoes.add("113-121,122");
+        movimentacoes.add("112-122,***");
+        movimentacoes.add("121-131,132");
+        movimentacoes.add("122-132,***");
+        movimentacoes.add("131-141,***");
+        movimentacoes.add("132-141,142");
+        movimentacoes.add("141-151,***");
+        movimentacoes.add("142-152,***");
+        movimentacoes.add("151-211,***");
+        movimentacoes.add("152-211,212");
+        movimentacoes.add("211-221,222");
+        movimentacoes.add("212-222,***");
+        movimentacoes.add("221-231,***");
+        movimentacoes.add("222-232,***");
+        movimentacoes.add("231-241,***");
+        movimentacoes.add("232-241,***");
+        movimentacoes.add("241-251,252");
+        movimentacoes.add("251-311,313");
+        movimentacoes.add("252-313,312");
+        movimentacoes.add("311-321,***");
+        movimentacoes.add("313-321,322");
+        movimentacoes.add("312-322,***");
+        movimentacoes.add("321-331,***");
+        movimentacoes.add("322-332,***");
+        movimentacoes.add("331-341,342");
+        movimentacoes.add("332-342,***");
+        movimentacoes.add("341-351,***");
+        movimentacoes.add("342-351,352");
+
+    }
+
+    private void criaMapaDeMovimentacaoDpE() {
+        movimentacoes.add("351-341,342");
+        movimentacoes.add("352-342,***");
+        movimentacoes.add("341-331,***");
+        movimentacoes.add("342-331,332");
+        movimentacoes.add("331-321,***");
+        movimentacoes.add("332-322,***");
+        movimentacoes.add("321-311,313");
+        movimentacoes.add("322-313,312");
+        movimentacoes.add("311-251,***");
+        movimentacoes.add("313-251,252");
+        movimentacoes.add("312-252,***");
+        movimentacoes.add("251-241,***");
+        movimentacoes.add("252-241,***");
+        movimentacoes.add("241-231,232");
+        movimentacoes.add("231-221,***");
+        movimentacoes.add("232-222,***");
+        movimentacoes.add("221-211,***");
+        movimentacoes.add("222-211,212");
+        movimentacoes.add("211-151,152");
+        movimentacoes.add("212-152,***");
+        movimentacoes.add("151-141,***");
+        movimentacoes.add("152-142,***");
+        movimentacoes.add("141-131,132");
+        movimentacoes.add("142-132,***");
+        movimentacoes.add("131-121,***");
+        movimentacoes.add("132-121,122");
+        movimentacoes.add("121-111,113");
+        movimentacoes.add("122-113,112");
+
+    }
+
     @Override
     public Player getPlayer1() {
         return player1;
@@ -128,8 +195,11 @@ public class GameImplementation implements GameControl {
                     return;
                 }
 
-                if (!isValidMoviment(wagon, wishedLocation)) {
+                if (!isValidMoviment(wagon, previousLocation, wishedLocation)) {
                     notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    previousLocation = null;
+                    wishedLocation = null;
+                    isPreviousLocation = true;
                     return;
                 }
 
@@ -188,8 +258,44 @@ public class GameImplementation implements GameControl {
         }
     }
 
-    private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
-        return true;
+    private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
+        boolean resposta = false;
+        if (Integer.parseInt(previusLocation)<Integer.parseInt(wishedLocation)) {
+            criaMapaDeMovimentacaoEpD();
+            for (String m : movimentacoes) {
+                String partida = m.substring(0, 3);
+                String destino1 = m.substring(4, 7);
+                String destino2 = m.substring(8, 11);
+                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                } else if(Integer.parseInt(previusLocation) < 10){
+                    resposta = true;
+                }
+            };
+            movimentacoes.clear();
+        } else {
+            criaMapaDeMovimentacaoDpE();
+            for (String m : movimentacoes) {
+                String partida = m.substring(0, 2);
+                String destino1 = m.substring(4, 6);
+                String destino2 = m.substring(8, 10);
+                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                } else if(Integer.parseInt(previusLocation) < 10){
+                    resposta = true;
+                }
+            };
+            movimentacoes.clear();
+        }
+        return resposta;
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
