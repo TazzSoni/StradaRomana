@@ -11,8 +11,11 @@ public class Wagon {
     private String location;
 
     private String movesTo;
+    
+    private String name;
 
-    public Wagon(String movesTo) {
+    public Wagon(String name, String movesTo) {
+        this.name = name;
         this.movesTo = movesTo;
     }
 
@@ -26,6 +29,14 @@ public class Wagon {
 
     public String getMovesTo() {
         return movesTo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
