@@ -16,4 +16,8 @@ public class Ware {
     public Ware(String color) {
         this.color = color;
     }
+
+    public String getColor() {
+        return color;
+    }
 }

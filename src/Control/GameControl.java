@@ -17,9 +17,9 @@ public interface GameControl {
 
     Player getPlayer2();
 
-    void setPlayers(String player1Name, String player2Name);
+    void prepareGameSetup(String player1Name, String player2Name);
 
-    void createWagons(String boardSide);
+    void getRandomizedWagons(String boardSide);
 
     void addObserver(Observer o);
 
@@ -29,7 +29,7 @@ public interface GameControl {
     
     void takeWare(String wareLocation);
     
-    String getPlayerVez();
+    String getRoundPlayer();
 
     public void setActionTypeCommand(String actionType);
 

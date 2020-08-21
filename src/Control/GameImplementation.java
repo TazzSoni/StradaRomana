@@ -5,9 +5,9 @@
  */
 package Control;
 
+import Model.Bag;
 import Model.Cube;
 import Model.Player;
-import Singleton.RoundsControl;
 import Model.Wagon;
 import Model.Ware;
 import java.util.ArrayList;
@@ -27,10 +27,78 @@ public class GameImplementation implements GameControl {
     private List<Observer> observers = new ArrayList<>();
     private List<Wagon> wagons = new ArrayList<>();
     private RoundsControl round = RoundsControl.getInstance();
+    private Bag bag = Bag.getInstance();
 
     String previousLocation;
     String wishedLocation;
+    String wareWishedLocation;
     private boolean isPreviousLocation = true;
+
+    private ArrayList<String> movimentacoes = new ArrayList<>();
+
+    private void criaMapaDeMovimentacaoEpD() {
+        movimentacoes.add("111-121,***");
+        movimentacoes.add("113-121,122");
+        movimentacoes.add("112-122,***");
+        movimentacoes.add("121-131,132");
+        movimentacoes.add("122-132,***");
+        movimentacoes.add("131-141,***");
+        movimentacoes.add("132-141,142");
+        movimentacoes.add("141-151,***");
+        movimentacoes.add("142-152,***");
+        movimentacoes.add("151-211,***");
+        movimentacoes.add("152-211,212");
+        movimentacoes.add("211-221,222");
+        movimentacoes.add("212-222,***");
+        movimentacoes.add("221-231,***");
+        movimentacoes.add("222-232,***");
+        movimentacoes.add("231-241,***");
+        movimentacoes.add("232-241,***");
+        movimentacoes.add("241-251,252");
+        movimentacoes.add("251-311,313");
+        movimentacoes.add("252-313,312");
+        movimentacoes.add("311-321,***");
+        movimentacoes.add("313-321,322");
+        movimentacoes.add("312-322,***");
+        movimentacoes.add("321-331,***");
+        movimentacoes.add("322-332,***");
+        movimentacoes.add("331-341,342");
+        movimentacoes.add("332-342,***");
+        movimentacoes.add("341-351,***");
+        movimentacoes.add("342-351,352");
+    }
+
+    private void criaMapaDeMovimentacaoDpE() {
+        movimentacoes.add("351-341,342");
+        movimentacoes.add("352-342,***");
+        movimentacoes.add("341-331,***");
+        movimentacoes.add("342-331,332");
+        movimentacoes.add("331-321,***");
+        movimentacoes.add("332-322,***");
+        movimentacoes.add("321-311,313");
+        movimentacoes.add("322-313,312");
+        movimentacoes.add("311-251,***");
+        movimentacoes.add("313-251,252");
+        movimentacoes.add("312-252,***");
+        movimentacoes.add("251-241,***");
+        movimentacoes.add("252-241,***");
+        movimentacoes.add("241-231,232");
+        movimentacoes.add("231-221,***");
+        movimentacoes.add("232-222,***");
+        movimentacoes.add("221-211,***");
+        movimentacoes.add("222-211,212");
+        movimentacoes.add("211-151,152");
+        movimentacoes.add("212-152,***");
+        movimentacoes.add("151-141,***");
+        movimentacoes.add("152-142,***");
+        movimentacoes.add("141-131,132");
+        movimentacoes.add("142-132,***");
+        movimentacoes.add("131-121,***");
+        movimentacoes.add("132-121,122");
+        movimentacoes.add("121-111,113");
+        movimentacoes.add("122-113,112");
+
+    }
 
     @Override
     public Player getPlayer1() {
@@ -43,17 +111,39 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void setPlayers(String player1Name, String player2Name) {
+    public void prepareGameSetup(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
 
+        player2.addCoins(1);
         round.setPlayer(player1);
+
+        String[] wagonNames = new String[]{"Ballio", "Demetrius", "Herennius", "Maccus", "Hamilcar", "Canopites", "Curculio", "Persa", "Plotus", "Pseudolus"};
+        createWagons(wagonNames);
+        createWagonTiles(wagonNames);
 
         notificaPlayersCriados();
     }
 
+    private void createWagons(String[] wagonNames) {
+        for (int i = 0; i < 10; i++) {
+            Wagon wagon;
+            if (i < 5) {
+                wagon = new Wagon(wagonNames[i], "D");
+            } else {
+                wagon = new Wagon(wagonNames[i], "E");
+            }
+            wagon.setLocation(Integer.toString(i + 1));
+            wagons.add(wagon);
+        }
+    }
+
+    private void createWagonTiles(String[] wagonNames) {
+        bag.createWagonTiles(wagonNames);
+    }
+
     @Override
-    public void createWagons(String boardSide) {
+    public void getRandomizedWagons(String boardSide) {
         ArrayList<Integer> numeros = new ArrayList<>();
 
         if (boardSide.equals("E")) {
@@ -67,14 +157,6 @@ public class GameImplementation implements GameControl {
         }
 
         Collections.shuffle(numeros);
-
-        String movesTo = boardSide.equals("E") ? "D" : "E";
-        for (Integer i = 0; i <= 4; i++) {
-            Integer num = numeros.get(i);
-            Wagon wagon = new Wagon(movesTo);
-            wagon.setLocation(num + "");
-            wagons.add(wagon);
-        }
 
         if (boardSide.equals("E")) {
             observers.forEach((o) -> {
@@ -94,37 +176,35 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
-        /*wishedLocation movido para o topo do método para ficar armazenado a localização 
-        *atual do vagão para pegar o cubo*/
-        wishedLocation = null;
-        if (round.getActionType() != null && round.getActionType().equals("Movimentar wagon")) {
-
+        if (round.getActionType() != null && round.getActionType().equals(TiposAcoes.MOVIMENTAR_WAGON.getDescricao())) {
             if (isPreviousLocation) {
                 previousLocation = location;
                 isPreviousLocation = false;
             } else {
                 wishedLocation = location;
 
-                Wagon wagon = null;
-                for (Wagon w : wagons) {
-                    if (w.getLocation().equals(previousLocation)) {
-                        wagon = w;
-                        break;
-                    }
-                }
+                Wagon wagon = getWagonByLocation(previousLocation);
 
                 if (wagon == null) {
                     notificaAcaoFalhou("Vagão não encontrado no botão informado (" + previousLocation + ").");
+                    resetMoveData();
                     return;
                 }
 
-                if ((location.contains("cube"))) {
-                    notificaAcaoFalhou("Isto é um cubo");
+                if (previousLocation.equals(wishedLocation)) {
+                    notificaAcaoFalhou("Posição final deve ser diferente da inicial, clique novamente na posição final desejada");
                     return;
                 }
 
-                if (!isValidMoviment(wagon, wishedLocation)) {
+                if ((location.contains("cube") || location.contains("ware"))) {
                     notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    resetMoveData();
+                    return;
+                }
+
+                if (!isValidMoviment(wagon, previousLocation, wishedLocation)) {
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    resetMoveData();
                     return;
                 }
 
@@ -136,33 +216,144 @@ public class GameImplementation implements GameControl {
                 }
 
                 wagon.setLocation(wishedLocation);
-
                 notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
-
-                previousLocation = null;
-                //wishedLocation = null;
-                isPreviousLocation = true;
+                resetMoveData();
             }
         } else {
-            notificaAcaoFalhou("Ação diferente de Movimentar wagon");
+            notificaAcaoFalhou("Tentativa de jogada inválida");
         }
+    }
+
+    private void resetMoveData() {
+        previousLocation = null;
+        wishedLocation = null;
+        isPreviousLocation = true;
+    }
+
+    private Wagon getWagonByLocation(String location) {
+        for (Wagon w : wagons) {
+            if (w.getLocation().equals(location)) {
+                return w;
+            }
+        }
+        return null;
     }
 
     @Override
     public void setActionTypeCommand(String actionType) {
-        round.setActionType(actionType);
-
-        notificaTipoDeAcaoDefinido("Ação definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+        if (round.getActionType().equals("")) {
+            if (actionType.equals(TiposAcoes.PASSAR_VEZ.getDescricao())) {
+                round.getPlayer().addCoins(1);
+            }
+            round.setActionType(actionType);
+            notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+        } else {
+            notificaTipoDeAcaoDefinido("Ação já definida para este turno, " + round.getActionType() + " é sua ação para este turno");
+        }
     }
 
     @Override
     public void endRoundCommand() {
-        Player nextPlayer = round.endRound(player1, player2);
-        notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+        if (round.getActionType() != "") {
+            Player nextPlayer = round.endRound(player1, player2);
+            notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+        } else {
+            notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
+        }
     }
 
-    private boolean isValidMoviment(Wagon wagon, String wishedLocation) {
-        return true;
+    private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
+        boolean resposta = false;
+        if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
+            criaMapaDeMovimentacaoEpD();
+            for (String m : movimentacoes) {
+                String partida = m.substring(0, 3);
+                String destino1 = m.substring(4, 7);
+                String destino2 = m.substring(8, 11);
+                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                } else if (Integer.parseInt(previusLocation) < 10) {
+                    if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                }
+            };
+            movimentacoes.clear();
+        } else {
+            criaMapaDeMovimentacaoDpE();
+            for (String m : movimentacoes) {
+                String partida = m.substring(0, 3);
+                String destino1 = m.substring(4, 7);
+                String destino2 = m.substring(8, 11);
+                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                } else if (Integer.parseInt(previusLocation) < 10) {
+                    if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
+                    }
+                }
+            };
+            movimentacoes.clear();
+        }
+        return resposta;
+    }
+
+    @Override
+    public void takeCube(String cubeLocation) {
+        Cube cube = new Cube(cubeLocation);
+
+        if (isPreviousLocation && cubeLocation.contains("cube")) {
+            cubeLocation = cubeLocation.substring(4, 7);
+            Wagon wagon = getWagonByLocation(cubeLocation);
+            if (wagon != null && wagon.getLocation().equals(cubeLocation)) {
+                round.getPlayer().addCubes(cube);
+                observers.forEach((o) -> {
+                    o.notificaCubePego("Cubo resgatado com sucesso!!");
+                });
+            } else {
+                observers.forEach((o) -> {
+                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
+                });
+            }
+        } else {
+            observers.forEach((o) -> {
+                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
+            });
+        }
+    }
+
+    @Override
+    public void takeWare(String wareLocation) {
+        Ware ware = new Ware(wareLocation);
+        if (wareWishedLocation != null && wareLocation.contains("ware")) {
+            if ((wareWishedLocation.substring(0, 1).equals(wareLocation.substring(4, 5))) && (wareWishedLocation.substring(2).equals(wareLocation.substring(5)))) {
+                System.out.println("Entrou");
+                round.getPlayer().addWares(ware);
+                observers.forEach((o) -> {
+                    o.notificaCubePego("Ware resgatado com sucesso!!");
+                });
+            } else {
+                observers.forEach((o) -> {
+                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
+                });
+            }
+        } else {
+            observers.forEach((o) -> {
+                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
+            });
+        }
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
@@ -197,60 +388,7 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public String getPlayerVez() {
+    public String getRoundPlayer() {
         return round.getPlayer().getName();
     }
-
-    @Override
-    public void takeCube(String cubeLocation) {
-        Cube cube = new Cube(cubeLocation);
-        if (wishedLocation != null && cubeLocation.contains("cube")) {
-            if (wishedLocation.equals(cubeLocation.substring(4, 7))) {
-                if (round.getPlayer() == player1) {
-                    player1.addCubes(cube);
-                } else {
-                    player2.addCubes(cube);
-                }
-                observers.forEach((o) -> {
-                    o.notificaCubePego("Cubo resgatado com sucesso!!");
-                });
-            } else {
-                observers.forEach((o) -> {
-                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
-                });
-            }
-        } else {
-            observers.forEach((o) -> {
-                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
-            });
-        }
-    }
-
-    @Override
-    public void takeWare(String wareLocation) {
-        Ware ware = new Ware(wareLocation);
-        String verifica = wishedLocation.substring(0)+wishedLocation.substring(2);
-        System.out.println(verifica);
-        /*if (wishedLocation != null && wareLocation.contains("ware")) {
-            if (wishedLocation.contains(wareLocation)) {
-                if (round.getPlayer() == player1) {
-                    player1.addWares(ware);
-                } else {
-                    player2.addWares(ware);
-                }
-                observers.forEach((o) -> {
-                    o.notificaCubePego("Ware resgatado com sucesso!!");
-                });
-            } else {
-                observers.forEach((o) -> {
-                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
-                });
-            }
-        } else {
-            observers.forEach((o) -> {
-                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
-            });
-        }*/
-    }
-
 }

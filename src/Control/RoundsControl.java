@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Singleton;
+package Control;
 
 import Model.Player;
 import Model.Wagon;
@@ -17,8 +17,9 @@ public class RoundsControl {
     private static RoundsControl instance;
     private int qtMoves = 0;
     private int maxQtMoves;
-    private String actionType;
+    private String actionType = "";
     private Player player;
+    private Wagon lastWagonMoved;
 
     private RoundsControl() {
     }
@@ -49,6 +50,7 @@ public class RoundsControl {
 
     public void addMove(Wagon wagon, String wishedLocation) {
         qtMoves++;
+        lastWagonMoved = wagon;
     }
 
     public Player endRound(Player player1, Player player2) {
@@ -59,5 +61,8 @@ public class RoundsControl {
         
         return player;
     }
-
+    
+    public Wagon getLastWagonMoved(){
+        return lastWagonMoved;
+    }
 }

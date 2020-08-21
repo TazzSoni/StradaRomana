@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,10 +141,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jBConfirmaAcao = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboMovimento = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelP1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabelP2 = new javax.swing.JLabel();
 
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
@@ -180,8 +181,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("251", jB251);
         componentsByName.put("252", jB252);
         componentsByName.put("311", jB311);
-        componentsByName.put("312", jB313);
-        componentsByName.put("313", jB312);
+        componentsByName.put("312", jB312);
+        componentsByName.put("313", jB313);
         componentsByName.put("321", jB321);
         componentsByName.put("322", jB322);
         componentsByName.put("331", jB331);
@@ -618,43 +619,43 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                 jBCube352ActionPerformed(evt);
             }
         });
-        jBWare11.setName("Ware11");
-        jBWare11.setText("Ware11");
+        jBWare11.setName("ware11");
+        jBWare11.setText("ware11");
         jBWare11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare1ActionPerformed(evt);
             }
         });
-        jBWare12.setName("Ware12");
-        jBWare12.setText("Ware12");
+        jBWare12.setName("ware12");
+        jBWare12.setText("ware12");
         jBWare12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare2ActionPerformed(evt);
             }
         });
-        jBWare21.setName("Ware21");
-        jBWare21.setText("Ware21");
+        jBWare21.setName("ware21");
+        jBWare21.setText("ware21");
         jBWare21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare3ActionPerformed(evt);
             }
         });
-        jBWare22.setName("Ware22");
-        jBWare22.setText("Ware22");
+        jBWare22.setName("ware22");
+        jBWare22.setText("ware22");
         jBWare22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare4ActionPerformed(evt);
             }
         });
-        jBWare31.setName("Ware31");
-        jBWare31.setText("Ware31");
+        jBWare31.setName("ware31");
+        jBWare31.setText("ware31");
         jBWare31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare5ActionPerformed(evt);
             }
         });
-        jBWare32.setName("Ware32");
-        jBWare32.setText("Ware32");
+        jBWare32.setName("ware32");
+        jBWare32.setText("ware32");
         jBWare32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBWare6ActionPerformed(evt);
@@ -754,13 +755,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jComboMovimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Selecione", "Normal", "Especial"}));
 
-        jLabel7.setText("0");
+        jLabelP1.setText("0");
 
         jLabel8.setText("Moedas:");
 
         jLabel9.setText("Moedas:");
 
-        jLabel10.setText("0");
+        jLabelP2.setText("0");
 
         jBFinalizaTurno.setBackground(Color.GREEN);
 
@@ -847,7 +848,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                                                 .addComponent(jLabel8)
                                                                                                                                                 .addGap(18, 18, 18)
-                                                                                                                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                                                .addComponent(jLabelP1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                                                                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                                                                                                 .addGap(6, 6, 6)))
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -895,7 +896,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jLabelP2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -984,10 +985,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5)
-                                        .addComponent(jLabel7)
+                                        .addComponent(jLabelP1)
                                         .addComponent(jLabel8)
                                         .addComponent(jLabel9)
-                                        .addComponent(jLabel10))
+                                        .addComponent(jLabelP2))
                                 .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1200,6 +1201,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void takeWare(JButton jb) {
         ci.add(new TakeWareCommand(gameCtrl, jb.getName()));
         ci.execute();
+    }
+    public void refreshCoinsScore(int label1, int label2) {
+        jLabelP1.setText(""+label1);
+        jLabelP2.setText(""+label2);
+        
     }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1580,10 +1586,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLJogadorVez;
     private javax.swing.JButton jBFinalizaTurno;
     private javax.swing.JLabel jLSsA;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelP1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabelP2;
     private javax.swing.JComboBox<String> jComboAcao;
     private javax.swing.JButton jBConfirmaAcao;
     private javax.swing.JLabel jLabel6;
@@ -1609,7 +1615,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notificaPlayersCriados() {
         jLabel2.setText(gameCtrl.getPlayer1().getName());
         jLabel3.setText(gameCtrl.getPlayer2().getName());
-        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+        jLJogadorVez.setText(gameCtrl.getRoundPlayer());
+        refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
     }
 
     @Override
@@ -1630,12 +1637,16 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
         JOptionPane.showMessageDialog(null, actionDefinedMessage);
+        
     }
 
     @Override
     public void notificaRoundFinalizado(String endRoundMesssage) {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
-        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+        refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
+        jLJogadorVez.setText(gameCtrl.getRoundPlayer());
+        jComboAcao.setSelectedIndex(0);
+        jComboMovimento.setSelectedIndex(0);
     }
 
     @Override

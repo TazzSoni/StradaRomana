@@ -22,6 +22,6 @@ public class CreateWagonsCommand extends Command {
 
     @Override
     void execute() {
-        gameControl.createWagons(boardSide);
+        gameControl.getRandomizedWagons(boardSide);
     }
 }

@@ -7,4 +7,9 @@ public class Cube {
     public Cube(String color) {
         this.color = color;
     }
+
+    public String getColor() {
+        return color;
+    }
+    
 }
