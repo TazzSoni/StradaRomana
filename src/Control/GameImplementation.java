@@ -115,18 +115,35 @@ public class GameImplementation implements GameControl {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
 
-        /*
-        segundo regra do jogo para 2 jogadores o player 2
-        inicia o jogo com uma coin
-         */
         player2.addCoins(1);
         round.setPlayer(player1);
+
+        String[] wagonNames = new String[]{"Ballio", "Demetrius", "Herennius", "Maccus", "Hamilcar", "Canopites", "Curculio", "Persa", "Plotus", "Pseudolus"};
+        createWagons(wagonNames);
+        createWagonTiles(wagonNames);
 
         notificaPlayersCriados();
     }
 
+    private void createWagons(String[] wagonNames) {
+        for (int i = 0; i < 10; i++) {
+            Wagon wagon;
+            if (i < 5) {
+                wagon = new Wagon(wagonNames[i], "D");
+            } else {
+                wagon = new Wagon(wagonNames[i], "E");
+            }
+            wagon.setLocation(Integer.toString(i + 1));
+            wagons.add(wagon);
+        }
+    }
+
+    private void createWagonTiles(String[] wagonNames) {
+        bag.createWagonTiles(wagonNames);
+    }
+
     @Override
-    public void createWagons(String boardSide) {
+    public void getRandomizedWagons(String boardSide) {
         ArrayList<Integer> numeros = new ArrayList<>();
 
         if (boardSide.equals("E")) {
@@ -140,14 +157,6 @@ public class GameImplementation implements GameControl {
         }
 
         Collections.shuffle(numeros);
-
-        String movesTo = boardSide.equals("E") ? "D" : "E";
-        for (Integer i = 0; i <= 4; i++) {
-            Integer num = numeros.get(i);
-            Wagon wagon = new Wagon(movesTo);
-            wagon.setLocation(num + "");
-            wagons.add(wagon);
-        }
 
         if (boardSide.equals("E")) {
             observers.forEach((o) -> {

@@ -19,7 +19,7 @@ public interface GameControl {
 
     void prepareGameSetup(String player1Name, String player2Name);
 
-    void createWagons(String boardSide);
+    void getRandomizedWagons(String boardSide);
 
     void addObserver(Observer o);
 
