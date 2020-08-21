@@ -29,7 +29,7 @@ public interface GameControl {
     
     void takeWare(String wareLocation);
     
-    String getPlayerVez();
+    String getRoundPlayer();
 
     public void setActionTypeCommand(String actionType);
 

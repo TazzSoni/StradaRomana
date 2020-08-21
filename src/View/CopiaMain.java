@@ -1530,7 +1530,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     public void notificaPlayersCriados() {
         jLabel2.setText(gameCtrl.getPlayer1().getName());
         jLabel3.setText(gameCtrl.getPlayer2().getName());
-        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+        jLJogadorVez.setText(gameCtrl.getRoundPlayer());
     }
 
     @Override
@@ -1556,7 +1556,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaRoundFinalizado(String endRoundMesssage) {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
-        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+        jLJogadorVez.setText(gameCtrl.getRoundPlayer());
     }
 
     @Override

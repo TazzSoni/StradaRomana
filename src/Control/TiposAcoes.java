@@ -11,8 +11,7 @@ package Control;
  */
 public enum TiposAcoes {
     
-    MOVIMENTAR_NORMAL("Movimentar normal"),
-    MOVIMENTAR_ESPECIAL("Movimentar especial"),
+    MOVIMENTAR_WAGON("Movimentar wagon"),
     PEGAR_WAGON_TILE("Pegar wagon tile"),
     PASSAR_VEZ("Passar a vez");
 

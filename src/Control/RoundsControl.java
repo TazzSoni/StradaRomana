@@ -61,5 +61,8 @@ public class RoundsControl {
         
         return player;
     }
-
+    
+    public Wagon getLastWagonMoved(){
+        return lastWagonMoved;
+    }
 }

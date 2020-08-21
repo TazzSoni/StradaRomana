@@ -1615,7 +1615,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notificaPlayersCriados() {
         jLabel2.setText(gameCtrl.getPlayer1().getName());
         jLabel3.setText(gameCtrl.getPlayer2().getName());
-        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+        jLJogadorVez.setText(gameCtrl.getRoundPlayer());
         refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
     }
 
@@ -1644,7 +1644,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notificaRoundFinalizado(String endRoundMesssage) {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
         refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
-        jLJogadorVez.setText(gameCtrl.getPlayerVez());
+        jLJogadorVez.setText(gameCtrl.getRoundPlayer());
         jComboAcao.setSelectedIndex(0);
         jComboMovimento.setSelectedIndex(0);
     }
