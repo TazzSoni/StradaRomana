@@ -5,15 +5,24 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author guilh
  */
 public class Bag {
-    
+
     private static Bag instance;
-    
+    private List<Ware> wares = new ArrayList<>();
+    private List<Cube> cubes = new ArrayList<>();
+    private String[] colors = new String[]{"red", "green", "blue", "yellow", "brown", "white"};
+
     private Bag() {
+        createWares();
+        createCubes();
     }
 
     public synchronized static Bag getInstance() {
@@ -23,5 +32,28 @@ public class Bag {
 
         return instance;
     }
-    
+
+    private void createWares() {
+        Ware ware;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                ware = new Ware(colors[i]);
+                wares.add(ware);
+            }
+        }
+
+        Collections.shuffle(wares);
+    }
+
+    private void createCubes() {
+        Cube cube;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                cube = new Cube(colors[i]);
+                cubes.add(cube);
+            }
+        }
+
+        Collections.shuffle(cubes);
+    }
 }

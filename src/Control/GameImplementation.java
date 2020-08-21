@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Model.Bag;
 import Model.Cube;
 import Model.Player;
 import Model.Wagon;
@@ -26,6 +27,7 @@ public class GameImplementation implements GameControl {
     private List<Observer> observers = new ArrayList<>();
     private List<Wagon> wagons = new ArrayList<>();
     private RoundsControl round = RoundsControl.getInstance();
+    private Bag bag = Bag.getInstance();
 
     String previousLocation;
     String wishedLocation;
@@ -109,7 +111,7 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void setPlayers(String player1Name, String player2Name) {
+    public void prepareGameSetup(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
 
@@ -118,7 +120,6 @@ public class GameImplementation implements GameControl {
         inicia o jogo com uma coin
          */
         player2.addCoins(1);
-
         round.setPlayer(player1);
 
         notificaPlayersCriados();

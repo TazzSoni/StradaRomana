@@ -24,7 +24,7 @@ public class NewPlayersCommand extends Command {
 
     @Override
     void execute() {
-        gameControl.setPlayers(player1Name, player2Name);
+        gameControl.prepareGameSetup(player1Name, player2Name);
     }
 
 }

@@ -17,7 +17,7 @@ public interface GameControl {
 
     Player getPlayer2();
 
-    void setPlayers(String player1Name, String player2Name);
+    void prepareGameSetup(String player1Name, String player2Name);
 
     void createWagons(String boardSide);
 
