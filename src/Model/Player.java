@@ -20,11 +20,11 @@ public class Player {
         return wares;
     }
 
-    public void addCubes(Cube cubes) {
-        this.cubes.add(cubes);
+    public void addCube(Cube cube) {
+        this.cubes.add(cube);
     }
-    public void addWares(Ware wares) {
-        this.wares.add(wares);
+    public void addWare(Ware ware) {
+        this.wares.add(ware);
     }
     
     public String getName() {

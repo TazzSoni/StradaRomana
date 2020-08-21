@@ -31,7 +31,6 @@ public class GameImplementation implements GameControl {
 
     String previousLocation;
     String wishedLocation;
-    String wareWishedLocation;
     private boolean isPreviousLocation = true;
 
     private ArrayList<String> movimentacoes = new ArrayList<>();
@@ -122,8 +121,8 @@ public class GameImplementation implements GameControl {
 
         notificaPlayersCriados();
     }
-    
-    private void randomPlayerToBegin(){
+
+    private void randomPlayerToBegin() {
         int randomNum = 0;
         while (randomNum == 0) {
             randomNum = random.nextInt(3);
@@ -136,7 +135,6 @@ public class GameImplementation implements GameControl {
             round.setPlayer(player2);
             player1.addCoins(1);
         }
-        System.out.println("nome: " + round.getPlayer().getName());
     }
 
     private void createWagons(String[] wagonNames) {
@@ -332,41 +330,29 @@ public class GameImplementation implements GameControl {
             cubeLocation = cubeLocation.substring(4, 7);
             Wagon wagon = getWagonByLocation(cubeLocation);
             if (wagon != null && wagon.getLocation().equals(cubeLocation)) {
-                round.getPlayer().addCubes(cube);
-                observers.forEach((o) -> {
-                    o.notificaCubePego("Cubo resgatado com sucesso!!");
-                });
+                round.getPlayer().addCube(cube);
+                notificaCubePego("Cubo resgatado com sucesso!!");
             } else {
-                observers.forEach((o) -> {
-                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
-                });
+                notificaAcaoFalhou("Posição de vagão inválida para pegar cubo");
             }
         } else {
-            observers.forEach((o) -> {
-                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar cubo");
-            });
+            notificaAcaoFalhou("Tentativa de pegar cubo inválida");
         }
     }
 
     @Override
     public void takeWare(String wareLocation) {
         Ware ware = new Ware(wareLocation);
-        if (wareWishedLocation != null && wareLocation.contains("ware")) {
-            if ((wareWishedLocation.substring(0, 1).equals(wareLocation.substring(4, 5))) && (wareWishedLocation.substring(2).equals(wareLocation.substring(5)))) {
-                System.out.println("Entrou");
-                round.getPlayer().addWares(ware);
-                observers.forEach((o) -> {
-                    o.notificaCubePego("Ware resgatado com sucesso!!");
-                });
+        if (round.getLastWagonMoved() != null && wareLocation.contains("ware")) {
+            if ((round.getLastWagonMoved().getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
+                    && (round.getLastWagonMoved().getLocation().substring(2).equals(wareLocation.substring(5)))) {
+                round.getPlayer().addWare(ware);
+                notificaWarePego("Azulejo resgatado com sucesso!!");
             } else {
-                observers.forEach((o) -> {
-                    o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
-                });
+                notificaAcaoFalhou("Posição de vagão inválida para pegar azulejo");
             }
         } else {
-            observers.forEach((o) -> {
-                o.notificaFalhaPegarCubo("Posição de vagão inválida para pegar Ware");
-            });
+            notificaAcaoFalhou("Tentativa de pegar azulejo inválida");
         }
     }
 
@@ -398,6 +384,18 @@ public class GameImplementation implements GameControl {
     private void notificaRoundFinalizado(String endRoundMesssage) {
         observers.forEach((o) -> {
             o.notificaRoundFinalizado(endRoundMesssage);
+        });
+    }
+
+    private void notificaCubePego(String cubeMessage) {
+        observers.forEach((o) -> {
+            o.notificaCubePego(cubeMessage);
+        });
+    }
+
+    private void notificaWarePego(String wareMessage) {
+        observers.forEach((o) -> {
+            o.notificaWarePego(wareMessage);
         });
     }
 

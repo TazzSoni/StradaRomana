@@ -963,7 +963,7 @@ public class Main extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaFalhaPegarCubo(String cubeMessage) {
+    public void notificaWarePego(String wareMessage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

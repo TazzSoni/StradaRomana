@@ -57,6 +57,7 @@ public class RoundsControl {
         qtMoves = 0;
         maxQtMoves = 0;
         actionType = "";
+        lastWagonMoved = null;
         player = player == player1 ? player2 : player1;
         
         return player;

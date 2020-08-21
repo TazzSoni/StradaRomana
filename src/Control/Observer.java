@@ -20,6 +20,6 @@ public interface Observer {
 
     public void notificaCubePego(String cubeMessage);
 
-    public void notificaFalhaPegarCubo(String cubeMessage);
+    public void notificaWarePego(String wareMessage);
 
 }

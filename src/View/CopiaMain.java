@@ -1565,7 +1565,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaFalhaPegarCubo(String cubeMessage) {
-        JOptionPane.showMessageDialog(null, cubeMessage);
+    public void notificaWarePego(String wareMessage) {
+        JOptionPane.showMessageDialog(null, wareMessage);
     }
 }
