@@ -114,15 +114,29 @@ public class GameImplementation implements GameControl {
     public void prepareGameSetup(String player1Name, String player2Name) {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
-
-        player2.addCoins(1);
-        round.setPlayer(player1);
+        randomPlayerToBegin();
 
         String[] wagonNames = new String[]{"Ballio", "Demetrius", "Herennius", "Maccus", "Hamilcar", "Canopites", "Curculio", "Persa", "Plotus", "Pseudolus"};
         createWagons(wagonNames);
         createWagonTiles(wagonNames);
 
         notificaPlayersCriados();
+    }
+    
+    private void randomPlayerToBegin(){
+        int randomNum = 0;
+        while (randomNum == 0) {
+            randomNum = random.nextInt(3);
+        }
+
+        if (randomNum == 1) {
+            round.setPlayer(player1);
+            player2.addCoins(1);
+        } else {
+            round.setPlayer(player2);
+            player1.addCoins(1);
+        }
+        System.out.println("nome: " + round.getPlayer().getName());
     }
 
     private void createWagons(String[] wagonNames) {
