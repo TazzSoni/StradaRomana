@@ -120,6 +120,8 @@ public class GameImplementation implements GameControl {
         String[] wagonNames = new String[]{"Ballio", "Demetrius", "Herennius", "Maccus", "Hamilcar", "Canopites", "Curculio", "Persa", "Plotus", "Pseudolus"};
         createWagons(wagonNames);
         createWagonTiles(wagonNames);
+        getFirstCubesFromBag();
+        getFirstWaresFromBag();
 
         notificaPlayersCriados();
     }
@@ -181,6 +183,24 @@ public class GameImplementation implements GameControl {
                 o.notifyRandomizedWagonsD(numeros);
             });
         }
+    }
+
+    private void getFirstCubesFromBag() {
+        for (int i = 0; i < 14; i++) {
+            Cube cube = bag.takeCube();
+            cubes.add(cube);
+        }
+
+        notificaPrimeirosCubosAdicionados();
+    }
+
+    private void getFirstWaresFromBag() {
+        for (int i = 0; i < 6; i++) {
+            Ware ware = bag.takeWare();
+            wares.add(ware);
+        }
+
+        notificaPrimeirosWaresAdicionados();
     }
 
     @Override
@@ -404,5 +424,38 @@ public class GameImplementation implements GameControl {
     @Override
     public String getRoundPlayer() {
         return round.getPlayer().getName();
+    }
+
+    /**
+     * O método abaixo envia ao front a lista de cores que os primeiros cubos deverão ter.
+     * Ao receber as cores, para cada botão de cubo que você pintar, chame o método "setCubeLocation", enviando a localização do cubo e sua cor.
+     */
+    private void notificaPrimeirosCubosAdicionados() {
+        List<String> colors = new ArrayList<>();
+
+        cubes.forEach((c) -> {
+            colors.add(c.getColor());
+        });
+        
+        observers.forEach((o) -> {
+            o.notificaPrimeirosCubosAdicionados(colors);
+        });
+    }
+
+
+    /**
+     * O método abaixo envia ao front a lista de cores que os primeiros wares deverão ter.
+     * Ao receber as cores, para cada botão de ware que você pintar, chame o método "setWareLocation", enviando a localização da ware e sua cor.
+     */
+    private void notificaPrimeirosWaresAdicionados() {
+        List<String> colors = new ArrayList<>();
+
+        wares.forEach((w) -> {
+            colors.add(w.getColor());
+        });
+        
+        observers.forEach((o) -> {
+            o.notificaPrimeirosWaresAdicionados(colors);
+        });
     }
 }

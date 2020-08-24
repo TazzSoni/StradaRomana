@@ -1,6 +1,9 @@
 package Control;
 
+import Model.Cube;
+import Model.Ware;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Observer {
 
@@ -21,5 +24,9 @@ public interface Observer {
     public void notificaCubePego(String cubeMessage);
 
     public void notificaWarePego(String wareMessage);
+
+    public void notificaPrimeirosCubosAdicionados(List<String> colors);
+
+    public void notificaPrimeirosWaresAdicionados(List<String> colors);
 
 }
