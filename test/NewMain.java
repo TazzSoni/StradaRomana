@@ -1662,11 +1662,16 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaPrimeirosCubosAdicionados(List<String> colors) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
     public void notificaPrimeirosWaresAdicionados(List<String> colors) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Colocando esse sout pra não dar erro ao executar");
+    }
+
+    @Override
+    public void notificaNovoCuboAtualizado(String color) {
+        System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 }

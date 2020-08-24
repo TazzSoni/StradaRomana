@@ -29,4 +29,6 @@ public interface Observer {
 
     public void notificaPrimeirosWaresAdicionados(List<String> colors);
 
+    public void notificaNovoCuboAtualizado(String color);
+
 }

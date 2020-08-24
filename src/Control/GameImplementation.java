@@ -346,20 +346,33 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void takeCube(String cubeLocation) {
-        Cube cube = new Cube(cubeLocation);
-
         if (isPreviousLocation && cubeLocation.contains("cube")) {
-            cubeLocation = cubeLocation.substring(4, 7);
-            Wagon wagon = getWagonByLocation(cubeLocation);
-            if (wagon != null && wagon.getLocation().equals(cubeLocation)) {
+            Wagon wagon = round.getLastWagonMoved();
+            if (wagon != null && wagon.getLocation().equals(cubeLocation.substring(4, 7))) {
+                Cube cube = getCubeByLocation(cubeLocation);
+                cubes.remove(cube);
                 round.getPlayer().addCube(cube);
                 notificaCubePego("Cubo resgatado com sucesso!!");
+                cube = bag.takeCube();
+                cubes.add(cube);
+                notificaNovoCuboAtualizado(cube);
             } else {
-                notificaAcaoFalhou("Posição de vagão inválida para pegar cubo");
+                notificaAcaoFalhou("Tentativa de pegar cubo inválida");
             }
         } else {
             notificaAcaoFalhou("Tentativa de pegar cubo inválida");
         }
+    }
+
+    private Cube getCubeByLocation(String cubeLocation) {
+        for (Cube c : cubes) {
+            if (c.getLocation().equals(cubeLocation)) {
+                return c;
+            }
+        }
+
+        System.out.println("Nenhum cubo encontrado na posição enviada (" + cubeLocation + ").");
+        return null;
     }
 
     @Override
@@ -427,8 +440,10 @@ public class GameImplementation implements GameControl {
     }
 
     /**
-     * O método abaixo envia ao front a lista de cores que os primeiros cubos deverão ter.
-     * Ao receber as cores, para cada botão de cubo que você pintar, chame o método "setCubeLocation", enviando a localização do cubo e sua cor.
+     * O método abaixo envia ao front a lista de cores que os primeiros cubos
+     * deverão ter. Ao receber as cores, para cada botão de cubo que você
+     * pintar, chame o método "setCubeLocation", enviando a localização do cubo
+     * e sua cor.
      */
     private void notificaPrimeirosCubosAdicionados() {
         List<String> colors = new ArrayList<>();
@@ -436,16 +451,17 @@ public class GameImplementation implements GameControl {
         cubes.forEach((c) -> {
             colors.add(c.getColor());
         });
-        
+
         observers.forEach((o) -> {
             o.notificaPrimeirosCubosAdicionados(colors);
         });
     }
 
-
     /**
-     * O método abaixo envia ao front a lista de cores que os primeiros wares deverão ter.
-     * Ao receber as cores, para cada botão de ware que você pintar, chame o método "setWareLocation", enviando a localização da ware e sua cor.
+     * O método abaixo envia ao front a lista de cores que os primeiros wares
+     * deverão ter. Ao receber as cores, para cada botão de ware que você
+     * pintar, chame o método "setWareLocation", enviando a localização da ware
+     * e sua cor.
      */
     private void notificaPrimeirosWaresAdicionados() {
         List<String> colors = new ArrayList<>();
@@ -453,9 +469,20 @@ public class GameImplementation implements GameControl {
         wares.forEach((w) -> {
             colors.add(w.getColor());
         });
-        
+
         observers.forEach((o) -> {
             o.notificaPrimeirosWaresAdicionados(colors);
+        });
+    }
+
+    /**
+     * Após um cubo ser pego, o botão onde esse cubo estava deve ser atualizado.
+     * Este método de notificação é o responsável por enviar a cor do novo cubo que será colocado no botão substituindo o outro.
+     * @param cube  Novo cubo retirado da bag contendo a cor atualizada do botão.
+     */
+    private void notificaNovoCuboAtualizado(Cube cube) {
+        observers.forEach((o) -> {
+            o.notificaNovoCuboAtualizado(cube.getColor());
         });
     }
 }

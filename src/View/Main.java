@@ -976,4 +976,9 @@ public class Main extends javax.swing.JFrame implements Observer {
     public void notificaPrimeirosWaresAdicionados(List<String> colors) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void notificaNovoCuboAtualizado(String color) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
