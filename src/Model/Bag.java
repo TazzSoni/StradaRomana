@@ -67,4 +67,16 @@ public class Bag {
         Collections.shuffle(wagonTiles);
         wagonTiles.remove(0);
     }
+    
+    public Cube takeCube(){
+        Cube cube = cubes.get(0);
+        cubes.remove(cube);
+        return cube;
+    }
+    
+    public Ware takeWare(){
+        Ware ware = wares.get(0);
+        wares.remove(ware);
+        return ware;
+    }
 }

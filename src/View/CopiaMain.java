@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -1567,5 +1568,15 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaWarePego(String wareMessage) {
         JOptionPane.showMessageDialog(null, wareMessage);
+    }
+
+    @Override
+    public void notificaPrimeirosCubosAdicionados(List<String> colors) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificaPrimeirosWaresAdicionados(List<String> colors) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
