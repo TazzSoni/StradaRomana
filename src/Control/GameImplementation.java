@@ -5,6 +5,11 @@
  */
 package Control;
 
+import AbstractFactory.ActionFactory;
+import AbstractFactory.ActionType;
+import AbstractFactory.MovimentarWagonFactory;
+import AbstractFactory.PassarVezFactory;
+import AbstractFactory.PegarWagonTileFactory;
 import Model.Bag;
 import Model.Cube;
 import Model.Player;
@@ -185,6 +190,26 @@ public class GameImplementation implements GameControl {
             });
         }
     }
+    private ActionType montarAcao(String tipo){
+        ActionFactory af = null;
+        switch (tipo){
+            case "Movimentar wagon":
+                af = new MovimentarWagonFactory();
+                break;
+            case "Pegar wagon tile":
+                af = new PegarWagonTileFactory();
+                break;
+            case "Passar a vez":
+                af = new PassarVezFactory();
+                break;
+            default:
+                notificaAcaoFalhou("Selecione o tipo de ação");
+                break;
+        }
+        ActionType acao = new ActionType();
+        acao.setAcao(af.definirAcao());
+        return acao;
+    }
 
     private void getFirstCubesFromBag() {
         for (int i = 0; i < 14; i++) {
@@ -211,7 +236,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void moveWagon(String location) {
-        if (round.getActionType() != null && round.getActionType().equals(TiposAcoes.MOVIMENTAR_WAGON.getDescricao())) {
+        if (round.getActionType() != null && round.getActionType().getAcao().equals("Movimentar wagon")) {
             if (isPreviousLocation) {
                 previousLocation = location;
                 isPreviousLocation = false;
@@ -276,20 +301,22 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
-        if (round.getActionType().equals("")) {
-            if (actionType.equals(TiposAcoes.PASSAR_VEZ.getDescricao())) {
+        if ((round.getActionType() == null) && !(actionType.equals("Selecione"))) {
+            if (actionType.equals("Passar a vez")) {
                 round.getPlayer().addCoins(1);
             }
-            round.setActionType(actionType);
+            round.setActionType(montarAcao(actionType));
             notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
-        } else {
-            notificaTipoDeAcaoDefinido("Ação já definida para este turno, " + round.getActionType() + " é sua ação para este turno");
+        } else if (actionType.equals("Selecione")){
+            notificaAcaoFalhou("Selecione uma opção");
+        }else{
+            notificaTipoDeAcaoDefinido("Ação já definida para este turno, " + round.getActionType().getAcao() + " é sua ação para este turno");
         }
     }
 
     @Override
     public void endRoundCommand() {
-        if (!(round.getActionType().equals(""))) {
+        if (!(round.getActionType() == null)) {
             Player nextPlayer = round.endRound(player1, player2);
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
