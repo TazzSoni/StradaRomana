@@ -149,6 +149,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
+        cubes = new ArrayList<>();
         componentsByName = new HashMap<>();
         componentsByName.put("1", jB1);
         componentsByName.put("2", jB2);
@@ -203,6 +204,21 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         wagonsD.add(jB8);
         wagonsD.add(jB9);
         wagonsD.add(jB10);
+        
+        cubes.add(jBCube113);
+        cubes.add(jBCube121);
+        cubes.add(jBCube132);
+        cubes.add(jBCube151);
+        cubes.add(jBCube152);
+        cubes.add(jBCube221);
+        cubes.add(jBCube232);
+        cubes.add(jBCube251);
+        cubes.add(jBCube313);
+        cubes.add(jBCube321);
+        cubes.add(jBCube322);
+        cubes.add(jBCube331);
+        cubes.add(jBCube351);
+        cubes.add(jBCube352);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1189,6 +1205,12 @@ public class NewMain extends javax.swing.JFrame implements Observer {
             jButton.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
         }
     }
+    
+    private void setCubeColors(ArrayList<String> cores, ArrayList<JButton> jButton){
+        for(int i =0; i < cubes.size(); i++){
+           // jButton.get(i).setBackground(Color.);
+        }
+    }
 
     public void wagonCheck(JButton jb) {
         ci.add(new MoveWagonCommand(gameCtrl, jb.getName()));
@@ -1597,6 +1619,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JComboBox<String> jComboMovimento;
     private ArrayList<JButton> wagonsE;
     private ArrayList<JButton> wagonsD;
+    private ArrayList<JButton> cubes;
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
