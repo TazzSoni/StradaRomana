@@ -5,6 +5,7 @@
  */
 package Control;
 
+import AbstractFactory.ActionType;
 import Model.Player;
 import Model.Wagon;
 
@@ -17,7 +18,7 @@ public class RoundsControl {
     private static RoundsControl instance;
     private int qtMoves = 0;
     private int maxQtMoves;
-    private String actionType = "";
+    private ActionType actionType = null;
     private Player player;
     private Wagon lastWagonMoved;
 
@@ -40,11 +41,11 @@ public class RoundsControl {
         this.player = player;
     }
 
-    public String getActionType() {
+    public ActionType getActionType() {
         return actionType;
     }
 
-    public void setActionType(String actionType) {
+    public void setActionType(ActionType actionType) {
         this.actionType = actionType;
     }
 
@@ -56,7 +57,7 @@ public class RoundsControl {
     public Player endRound(Player player1, Player player2) {
         qtMoves = 0;
         maxQtMoves = 0;
-        actionType = "";
+        actionType = null;
         lastWagonMoved = null;
         player = player == player1 ? player2 : player1;
         
