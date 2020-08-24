@@ -1683,8 +1683,6 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaMovimentacaoConcluida(String wagonName, String wagonLocation, String stateText) {
-        System.out.println(stateText);
-
         (componentsByName.get(wagonLocation)).setIcon((componentsByName.get(wagonName)).getIcon());
         (componentsByName.get(wagonName)).setIcon(null);
         JOptionPane.showMessageDialog(null, stateText);
@@ -1724,20 +1722,15 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
         setCubeColors(colors, cubes);
-        System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
     public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
         setWareColors(colors, wares);
-        System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
     public void notificaNovoCuboAtualizado(Color color, String cubeLocation) {
-        System.out.println("cubeLocation :"+ cubeLocation);
-        System.out.println("color :"+ color);
-        System.out.println(componentsByName.get(cubeLocation));
         (componentsByName.get(cubeLocation)).setBackground(color);
     }
 

@@ -289,7 +289,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        if (round.getActionType().equals("")) {
+        if (!(round.getActionType().equals(""))) {
             Player nextPlayer = round.endRound(player1, player2);
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
@@ -371,8 +371,7 @@ public class GameImplementation implements GameControl {
                 return c;
             }
         }
-
-        System.out.println("Nenhum cubo encontrado na posição enviada (" + cubeLocation + ").");
+        //System.out.println("Nenhum cubo encontrado na posição enviada (" + cubeLocation + ").");
         return null;
     }
 
@@ -403,8 +402,7 @@ public class GameImplementation implements GameControl {
                 return w;
             }
         }
-
-        System.out.println("Nenhuma ware encontrada na posição enviada (" + wareLocation + ").");
+        //System.out.println("Nenhuma ware encontrada na posição enviada (" + wareLocation + ").");
         return null;
     }
 
