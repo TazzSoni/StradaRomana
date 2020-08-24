@@ -288,7 +288,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        if (round.getActionType() != "") {
+        if (round.getActionType().equals("")) {
             Player nextPlayer = round.endRound(player1, player2);
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
@@ -405,6 +405,40 @@ public class GameImplementation implements GameControl {
 
         System.out.println("Nenhuma ware encontrada na posição enviada (" + wareLocation + ").");
         return null;
+    }
+
+    /**
+     * Ao enviar a localização do cubo neste método, envie a localização da mesma forma que for enviar quando chama o método takeCube.
+     * Ou seja, se você enviar a palavra "cube" lá, envie aqui também.
+     * Além disso, existe uma lista de cores pré-definidas para cubos e wares. Envie as cores da forma como existem nessa lista, que fica na classe Bag.
+     * Note que se o esquema de cores for diferente no front e no back, vc pode atualizar o nome das cores na classe Bag para que usemos a mesma nomenclatura.
+     * @param cubeLocation Localização do cubo
+     * @param cubeColor Cor do cubo
+     */
+    public void setCubeLocation(String cubeLocation, String cubeColor) {
+        for (Cube c : cubes) {
+            if (c.getColor().equalsIgnoreCase(cubeColor) && c.getLocation() == null) {
+                c.setLocation(cubeLocation);
+                break;
+            }
+        }
+    }
+    
+    /**
+     * Ao enviar a localização do ware neste método, envie a localização da mesma forma que for enviar quando chama o método takeWare.
+     * Ou seja, se você enviar a palavra "ware" lá, envie aqui também.
+     * Além disso, existe uma lista de cores pré-definidas para cubos e wares. Envie as cores da forma como existem nessa lista, que fica na classe Bag.
+     * Note que se o esquema de cores for diferente no front e no back, vc pode atualizar o nome das cores na classe Bag para que usemos a mesma nomenclatura.
+     * @param wareLocation Localização da ware
+     * @param wareColor Cor da ware
+     */
+    public void setWareLocation(String wareLocation, String wareColor) {
+        for (Ware w : wares) {
+            if (w.getColor().equalsIgnoreCase(wareColor) && w.getLocation() == null) {
+                w.setLocation(wareLocation);
+                break;
+            }
+        }
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
