@@ -146,6 +146,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
         cubes = new ArrayList<>();
+        wares = new ArrayList<>();
         componentsByName = new HashMap<>();
         componentsByName.put("1", jB1);
         componentsByName.put("2", jB2);
@@ -189,6 +190,12 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("342", jB342);
         componentsByName.put("351", jB351);
         componentsByName.put("352", jB352);
+        componentsByName.put("ware11", jBWare11);
+        componentsByName.put("ware12", jBWare12);
+        componentsByName.put("ware21", jBWare21);
+        componentsByName.put("ware22", jBWare22);
+        componentsByName.put("ware31", jBWare31);
+        componentsByName.put("ware32", jBWare32);
 
         wagonsE.add(jB1);
         wagonsE.add(jB2);
@@ -215,6 +222,13 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         cubes.add(jBCube331);
         cubes.add(jBCube351);
         cubes.add(jBCube352);
+
+        wares.add(jBWare11);
+        wares.add(jBWare12);
+        wares.add(jBWare21);
+        wares.add(jBWare22);
+        wares.add(jBWare31);
+        wares.add(jBWare32);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1202,8 +1216,16 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     private void setCubeColors(List<Color> cores, ArrayList<JButton> jButton) {
-        for (int i = 0; i < cubes.size(); i++) {
+        for (int i = 0; i < jButton.size(); i++) {
             jButton.get(i).setBackground(cores.get(i));
+            gameCtrl.setCubeLocation(jButton.get(i).getName(), jButton.get(i).getBackground());
+        }
+    }
+
+    private void setWareColors(List<Color> cores, ArrayList<JButton> jButton) {
+        for (int i = 0; i < jButton.size(); i++) {
+            jButton.get(i).setBackground(cores.get(i));
+            gameCtrl.setWareLocation(jButton.get(i).getName(), jButton.get(i).getBackground());
         }
     }
 
@@ -1617,6 +1639,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     private ArrayList<JButton> wagonsE;
     private ArrayList<JButton> wagonsD;
     private ArrayList<JButton> cubes;
+    private ArrayList<JButton> wares;
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
@@ -1683,22 +1706,22 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
         setCubeColors(colors, cubes);
-
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
     public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
+        setWareColors(colors, wares);
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
-    public void notificaNovoCuboAtualizado(Color color) {
-        System.out.println("Colocando esse sout pra não dar erro ao executar");
+    public void notificaNovoCuboAtualizado(Color color, String wareLocation) {
+        (componentsByName.get(wareLocation)).setBackground(color);
     }
 
     @Override
-    public void notificaNovoWareAtualizado(Color color) {
-        System.out.println("Colocando esse sout pra não dar erro ao executar");
+    public void notificaNovoWareAtualizado(Color color, String wareLocation) {
+        (componentsByName.get(wareLocation)).setBackground(color);
     }
 }

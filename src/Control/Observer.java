@@ -30,8 +30,8 @@ public interface Observer {
 
     public void notificaPrimeirosWaresAdicionados(List<Color> colors);
 
-    public void notificaNovoCuboAtualizado(Color color);
+    public void notificaNovoCuboAtualizado(Color color, String cubeLocation);
 
-    public void notificaNovoWareAtualizado(Color color);
+    public void notificaNovoWareAtualizado(Color color, String wareLocation);
 
 }

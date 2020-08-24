@@ -969,22 +969,22 @@ public class Main extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaNovoCuboAtualizado(Color color) {
+    public void notificaNovoCuboAtualizado(Color color, String cubeLocation) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void notificaNovoWareAtualizado(Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+       @Override
     public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificaNovoWareAtualizado(Color color, String wareLocation) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
