@@ -10,6 +10,7 @@ import Model.Cube;
 import Model.Player;
 import Model.Wagon;
 import Model.Ware;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -355,7 +356,7 @@ public class GameImplementation implements GameControl {
                 notificaCubePego("Cubo resgatado com sucesso!!");
                 cube = bag.takeCube();
                 cubes.add(cube);
-                notificaNovoCuboAtualizado(cube);
+                notificaNovoCuboAtualizado(cube, cubeLocation);
             } else {
                 notificaAcaoFalhou("Tentativa de pegar cubo inválida");
             }
@@ -387,7 +388,7 @@ public class GameImplementation implements GameControl {
                 notificaWarePego("Azulejo resgatado com sucesso!!");
                 ware = bag.takeWare();
                 wares.add(ware);
-                notificaNovoWareAtualizado(ware);
+                notificaNovoWareAtualizado(ware, wareLocation);
             } else {
                 notificaAcaoFalhou("Posição de vagão inválida para pegar azulejo");
             }
@@ -408,33 +409,43 @@ public class GameImplementation implements GameControl {
     }
 
     /**
-     * Ao enviar a localização do cubo neste método, envie a localização da mesma forma que for enviar quando chama o método takeCube.
-     * Ou seja, se você enviar a palavra "cube" lá, envie aqui também.
-     * Além disso, existe uma lista de cores pré-definidas para cubos e wares. Envie as cores da forma como existem nessa lista, que fica na classe Bag.
-     * Note que se o esquema de cores for diferente no front e no back, vc pode atualizar o nome das cores na classe Bag para que usemos a mesma nomenclatura.
+     * Ao enviar a localização do cubo neste método, envie a localização da
+     * mesma forma que for enviar quando chama o método takeCube. Ou seja, se
+     * você enviar a palavra "cube" lá, envie aqui também. Além disso, existe
+     * uma lista de cores pré-definidas para cubos e wares. Envie as cores da
+     * forma como existem nessa lista, que fica na classe Bag. Note que se o
+     * esquema de cores for diferente no front e no back, vc pode atualizar o
+     * nome das cores na classe Bag para que usemos a mesma nomenclatura.
+     *
      * @param cubeLocation Localização do cubo
      * @param cubeColor Cor do cubo
      */
-    public void setCubeLocation(String cubeLocation, String cubeColor) {
+    @Override
+    public void setCubeLocation(String cubeLocation, Color cubeColor) {
         for (Cube c : cubes) {
-            if (c.getColor().equalsIgnoreCase(cubeColor) && c.getLocation() == null) {
+            if ((c.getColor() == cubeColor) && c.getLocation() == null) {
                 c.setLocation(cubeLocation);
                 break;
             }
         }
     }
-    
+
     /**
-     * Ao enviar a localização do ware neste método, envie a localização da mesma forma que for enviar quando chama o método takeWare.
-     * Ou seja, se você enviar a palavra "ware" lá, envie aqui também.
-     * Além disso, existe uma lista de cores pré-definidas para cubos e wares. Envie as cores da forma como existem nessa lista, que fica na classe Bag.
-     * Note que se o esquema de cores for diferente no front e no back, vc pode atualizar o nome das cores na classe Bag para que usemos a mesma nomenclatura.
+     * Ao enviar a localização do ware neste método, envie a localização da
+     * mesma forma que for enviar quando chama o método takeWare. Ou seja, se
+     * você enviar a palavra "ware" lá, envie aqui também. Além disso, existe
+     * uma lista de cores pré-definidas para cubos e wares. Envie as cores da
+     * forma como existem nessa lista, que fica na classe Bag. Note que se o
+     * esquema de cores for diferente no front e no back, vc pode atualizar o
+     * nome das cores na classe Bag para que usemos a mesma nomenclatura.
+     *
      * @param wareLocation Localização da ware
      * @param wareColor Cor da ware
      */
-    public void setWareLocation(String wareLocation, String wareColor) {
+    @Override
+    public void setWareLocation(String wareLocation, Color wareColor) {
         for (Ware w : wares) {
-            if (w.getColor().equalsIgnoreCase(wareColor) && w.getLocation() == null) {
+            if ((w.getColor() == wareColor) && w.getLocation() == null) {
                 w.setLocation(wareLocation);
                 break;
             }
@@ -496,7 +507,7 @@ public class GameImplementation implements GameControl {
      * e sua cor.
      */
     private void notificaPrimeirosCubosAdicionados() {
-        List<String> colors = new ArrayList<>();
+        List<Color> colors = new ArrayList<>();
 
         cubes.forEach((c) -> {
             colors.add(c.getColor());
@@ -514,7 +525,7 @@ public class GameImplementation implements GameControl {
      * e sua cor.
      */
     private void notificaPrimeirosWaresAdicionados() {
-        List<String> colors = new ArrayList<>();
+        List<Color> colors = new ArrayList<>();
 
         wares.forEach((w) -> {
             colors.add(w.getColor());
@@ -532,9 +543,9 @@ public class GameImplementation implements GameControl {
      *
      * @param cube Novo cubo retirado da bag contendo a cor atualizada do botão.
      */
-    private void notificaNovoCuboAtualizado(Cube cube) {
+    private void notificaNovoCuboAtualizado(Cube cube, String cubeLocation) {
         observers.forEach((o) -> {
-            o.notificaNovoCuboAtualizado(cube.getColor());
+            o.notificaNovoCuboAtualizado(cube.getColor(), cubeLocation);
         });
     }
 
@@ -545,9 +556,9 @@ public class GameImplementation implements GameControl {
      *
      * @param ware Novo ware retirado da bag contendo a cor atualizada do botão.
      */
-    private void notificaNovoWareAtualizado(Ware ware) {
+    private void notificaNovoWareAtualizado(Ware ware, String wareLocation) {
         observers.forEach((o) -> {
-            o.notificaNovoWareAtualizado(ware.getColor());
+            o.notificaNovoWareAtualizado(ware.getColor(), wareLocation);
         });
     }
 }

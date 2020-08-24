@@ -5,17 +5,19 @@
  */
 package Model;
 
+import java.awt.Color;
+
 /**
  *
  * @author Rodrigo
  */
 public class Ware {
 
-    private String color;
+    private Color color;
     
     private String location;
 
-    public Ware(String color) {
+    public Ware(Color color) {
         this.color = color;
     }
 
@@ -27,7 +29,7 @@ public class Ware {
         this.location = location;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 }

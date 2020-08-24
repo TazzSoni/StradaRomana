@@ -6,6 +6,7 @@
 package View;
 
 import Control.Observer;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -968,22 +969,22 @@ public class Main extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaPrimeirosCubosAdicionados(List<String> colors) {
+    public void notificaNovoCuboAtualizado(Color color, String cubeLocation) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+       @Override
+    public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void notificaPrimeirosWaresAdicionados(List<String> colors) {
+    public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void notificaNovoCuboAtualizado(String color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void notificaNovoWareAtualizado(String color) {
+    public void notificaNovoWareAtualizado(Color color, String wareLocation) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
