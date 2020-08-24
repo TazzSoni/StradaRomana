@@ -1684,22 +1684,22 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaPrimeirosCubosAdicionados(List<String> colors) {
+    public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
-    public void notificaPrimeirosWaresAdicionados(List<String> colors) {
+    public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
-    public void notificaNovoCuboAtualizado(String color) {
+    public void notificaNovoCuboAtualizado(Color color) {
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
-    public void notificaNovoWareAtualizado(String color) {
+    public void notificaNovoWareAtualizado(Color color) {
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 }

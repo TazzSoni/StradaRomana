@@ -10,6 +10,7 @@ import Model.Cube;
 import Model.Player;
 import Model.Wagon;
 import Model.Ware;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -415,9 +416,9 @@ public class GameImplementation implements GameControl {
      * @param cubeLocation Localização do cubo
      * @param cubeColor Cor do cubo
      */
-    public void setCubeLocation(String cubeLocation, String cubeColor) {
+    public void setCubeLocation(String cubeLocation, Color cubeColor) {
         for (Cube c : cubes) {
-            if (c.getColor().equalsIgnoreCase(cubeColor) && c.getLocation() == null) {
+            if ((c.getColor() == cubeColor) && c.getLocation() == null) {
                 c.setLocation(cubeLocation);
                 break;
             }
@@ -432,9 +433,9 @@ public class GameImplementation implements GameControl {
      * @param wareLocation Localização da ware
      * @param wareColor Cor da ware
      */
-    public void setWareLocation(String wareLocation, String wareColor) {
+    public void setWareLocation(String wareLocation, Color wareColor) {
         for (Ware w : wares) {
-            if (w.getColor().equalsIgnoreCase(wareColor) && w.getLocation() == null) {
+            if ((w.getColor() == wareColor) && w.getLocation() == null) {
                 w.setLocation(wareLocation);
                 break;
             }
@@ -496,7 +497,7 @@ public class GameImplementation implements GameControl {
      * e sua cor.
      */
     private void notificaPrimeirosCubosAdicionados() {
-        List<String> colors = new ArrayList<>();
+        List<Color> colors = new ArrayList<>();
 
         cubes.forEach((c) -> {
             colors.add(c.getColor());
@@ -514,7 +515,7 @@ public class GameImplementation implements GameControl {
      * e sua cor.
      */
     private void notificaPrimeirosWaresAdicionados() {
-        List<String> colors = new ArrayList<>();
+        List<Color> colors = new ArrayList<>();
 
         wares.forEach((w) -> {
             colors.add(w.getColor());

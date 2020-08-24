@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +20,8 @@ public class Bag {
     private List<Ware> wares = new ArrayList<>();
     private List<WagonTile> wagonTiles = new ArrayList<>();
     private List<Cube> cubes = new ArrayList<>();
-    private String[] colors = new String[]{"red", "green", "blue", "yellow", "brown", "white"};
+    private Color brown = new Color(102,51,0);
+    private Color[] colors = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, brown, Color.WHITE};
 
     private Bag() {
         createWares();
