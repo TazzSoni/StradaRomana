@@ -150,6 +150,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
         cubes = new ArrayList<>();
+        wares = new ArrayList<>();
         componentsByName = new HashMap<>();
         componentsByName.put("1", jB1);
         componentsByName.put("2", jB2);
@@ -204,7 +205,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         wagonsD.add(jB8);
         wagonsD.add(jB9);
         wagonsD.add(jB10);
-        
+
         cubes.add(jBCube113);
         cubes.add(jBCube121);
         cubes.add(jBCube132);
@@ -219,6 +220,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         cubes.add(jBCube331);
         cubes.add(jBCube351);
         cubes.add(jBCube352);
+        
+        wares.add(jBWare11);
+        wares.add(jBWare12);
+        wares.add(jBWare21);
+        wares.add(jBWare22);
+        wares.add(jBWare31);
+        wares.add(jBWare32);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1200,15 +1208,15 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }// </editor-fold>    
 
     private void setIcon(ArrayList<Integer> numeros, ArrayList<JButton> jButton) {
-
         for (int i = 0; i < 5; i++) {
             jButton.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
         }
     }
-    
-    private void setCubeColors(ArrayList<String> cores, ArrayList<JButton> jButton){
-        for(int i =0; i < cubes.size(); i++){
-           // jButton.get(i).setBackground(Color.);
+
+    private void setCubeWareColors(List<Color> cores, ArrayList<JButton> jButton) {
+        for (int i = 0; i < jButton.size(); i++) {
+            jButton.get(i).setBackground(cores.get(i));
+            System.out.println("aaa");
         }
     }
 
@@ -1221,14 +1229,16 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         ci.add(new TakeCubeCommand(gameCtrl, jb.getName()));
         ci.execute();
     }
+
     public void takeWare(JButton jb) {
         ci.add(new TakeWareCommand(gameCtrl, jb.getName()));
         ci.execute();
     }
+
     public void refreshCoinsScore(int label1, int label2) {
-        jLabelP1.setText(""+label1);
-        jLabelP2.setText(""+label2);
-        
+        jLabelP1.setText("" + label1);
+        jLabelP2.setText("" + label2);
+
     }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1620,6 +1630,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private ArrayList<JButton> wagonsE;
     private ArrayList<JButton> wagonsD;
     private ArrayList<JButton> cubes;
+    private ArrayList<JButton> wares;
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
@@ -1661,7 +1672,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
         JOptionPane.showMessageDialog(null, actionDefinedMessage);
-        
+
     }
 
     @Override
@@ -1685,11 +1696,13 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
+        setCubeWareColors(colors, cubes);
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
     public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
+        setCubeWareColors(colors, wares);
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
