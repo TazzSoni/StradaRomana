@@ -6,6 +6,7 @@
 package Control;
 
 import Model.Player;
+import java.awt.Color;
 
 /**
  *
@@ -34,5 +35,9 @@ public interface GameControl {
     public void setActionTypeCommand(String actionType);
 
     public void endRoundCommand();
+    
+    void setCubeLocation(String cubeLocation, Color cubeColor);
+    
+    void setWareLocation(String cubeLocation, Color cubeColor);
 
 }

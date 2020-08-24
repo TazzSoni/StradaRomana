@@ -7,6 +7,7 @@ import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
 import Command.SetActionTypeCommand;
 import Command.TakeCubeCommand;
+import Command.TakeWareCommand;
 import Control.GameControl;
 import Control.GameImplementation;
 import Control.Observer;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,8 +68,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         jB4 = new javax.swing.JButton();
         jB5 = new javax.swing.JButton();
         jB111 = new javax.swing.JButton();
-        jB112 = new javax.swing.JButton();
         jB113 = new javax.swing.JButton();
+        jB112 = new javax.swing.JButton();
         jB121 = new javax.swing.JButton();
         jB122 = new javax.swing.JButton();
         jB131 = new javax.swing.JButton();
@@ -86,8 +88,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         jB251 = new javax.swing.JButton();
         jB252 = new javax.swing.JButton();
         jB311 = new javax.swing.JButton();
-        jB312 = new javax.swing.JButton();
         jB313 = new javax.swing.JButton();
+        jB312 = new javax.swing.JButton();
         jB321 = new javax.swing.JButton();
         jB322 = new javax.swing.JButton();
         jB331 = new javax.swing.JButton();
@@ -122,12 +124,12 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton56 = new javax.swing.JButton();
-        jButton57 = new javax.swing.JButton();
-        jButton58 = new javax.swing.JButton();
-        jButton59 = new javax.swing.JButton();
-        jButton60 = new javax.swing.JButton();
-        jButton61 = new javax.swing.JButton();
+        jBWare11 = new javax.swing.JButton();
+        jBWare12 = new javax.swing.JButton();
+        jBWare21 = new javax.swing.JButton();
+        jBWare22 = new javax.swing.JButton();
+        jBWare31 = new javax.swing.JButton();
+        jBWare32 = new javax.swing.JButton();
         jBFinalizaTurno = new javax.swing.JButton();
         jLJdV = new javax.swing.JLabel();
         jLJogadorVez = new javax.swing.JLabel();
@@ -136,13 +138,15 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         jBConfirmaAcao = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboMovimento = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelP1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabelP2 = new javax.swing.JLabel();
 
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
+        cubes = new ArrayList<>();
+        wares = new ArrayList<>();
         componentsByName = new HashMap<>();
         componentsByName.put("1", jB1);
         componentsByName.put("2", jB2);
@@ -155,8 +159,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("9", jB9);
         componentsByName.put("10", jB10);
         componentsByName.put("111", jB111);
-        componentsByName.put("112", jB112);
-        componentsByName.put("113", jB113);
+        componentsByName.put("112", jB113);
+        componentsByName.put("113", jB112);
         componentsByName.put("121", jB121);
         componentsByName.put("122", jB122);
         componentsByName.put("131", jB131);
@@ -186,6 +190,12 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("342", jB342);
         componentsByName.put("351", jB351);
         componentsByName.put("352", jB352);
+        componentsByName.put("ware11", jBWare11);
+        componentsByName.put("ware12", jBWare12);
+        componentsByName.put("ware21", jBWare21);
+        componentsByName.put("ware22", jBWare22);
+        componentsByName.put("ware31", jBWare31);
+        componentsByName.put("ware32", jBWare32);
 
         wagonsE.add(jB1);
         wagonsE.add(jB2);
@@ -197,6 +207,28 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         wagonsD.add(jB8);
         wagonsD.add(jB9);
         wagonsD.add(jB10);
+
+        cubes.add(jBCube113);
+        cubes.add(jBCube121);
+        cubes.add(jBCube132);
+        cubes.add(jBCube151);
+        cubes.add(jBCube152);
+        cubes.add(jBCube221);
+        cubes.add(jBCube232);
+        cubes.add(jBCube251);
+        cubes.add(jBCube313);
+        cubes.add(jBCube321);
+        cubes.add(jBCube322);
+        cubes.add(jBCube331);
+        cubes.add(jBCube351);
+        cubes.add(jBCube352);
+
+        wares.add(jBWare11);
+        wares.add(jBWare12);
+        wares.add(jBWare21);
+        wares.add(jBWare22);
+        wares.add(jBWare31);
+        wares.add(jBWare32);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -276,21 +308,23 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jB112.setName("112");
-        jB112.setText("112");
-        jB112.setBackground(new java.awt.Color(0, 0, 0));
-        jB112.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB112ActionPerformed(evt);
-            }
-        });
-
+        //113
         jB113.setName("113");
         jB113.setText("113");
         jB113.setBackground(new java.awt.Color(0, 0, 0));
         jB113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB113ActionPerformed(evt);
+            }
+        });
+
+        //112
+        jB112.setName("112");
+        jB112.setText("112");
+        jB112.setBackground(new java.awt.Color(0, 0, 0));
+        jB112.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB112ActionPerformed(evt);
             }
         });
         jB121.setName("121");
@@ -446,18 +480,20 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                 jB311ActionPerformed(evt);
             }
         });
-        jB312.setName("312");
-        jB312.setText("312");
-        jB312.setBackground(new java.awt.Color(0, 0, 0));
-        jB312.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB312ActionPerformed(evt);
-            }
-        });
+        //313
         jB313.setName("313");
         jB313.setText("313");
         jB313.setBackground(new java.awt.Color(0, 0, 0));
         jB313.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB312ActionPerformed(evt);
+            }
+        });
+        //312
+        jB312.setName("312");
+        jB312.setText("312");
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
+        jB312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB313ActionPerformed(evt);
             }
@@ -526,88 +562,130 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                 jB352ActionPerformed(evt);
             }
         });
-        jBCube113.setName("113");
+        jBCube113.setName("cube113");
         jBCube113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube113ActionPerformed(evt);
             }
         });
-        jBCube121.setName("121");
+        jBCube121.setName("cube121");
         jBCube121.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube121ActionPerformed(evt);
             }
         });
-        jBCube132.setName("132");
+        jBCube132.setName("cube132");
         jBCube132.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube132ActionPerformed(evt);
             }
         });
-        jBCube151.setName("151");
+        jBCube151.setName("cube151");
         jBCube151.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube151ActionPerformed(evt);
             }
         });
-        jBCube152.setName("152");
+        jBCube152.setName("cube152");
         jBCube152.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube152ActionPerformed(evt);
             }
         });
-        jBCube221.setName("221");
+        jBCube221.setName("cube221");
         jBCube221.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube221ActionPerformed(evt);
             }
         });
-        jBCube232.setName("232");
+        jBCube232.setName("cube232");
         jBCube232.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube232ActionPerformed(evt);
             }
         });
-        jBCube251.setName("251");
+        jBCube251.setName("cube251");
         jBCube251.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube251ActionPerformed(evt);
             }
         });
-        jBCube313.setName("313");
+        jBCube313.setName("cube313");
         jBCube313.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube313ActionPerformed(evt);
             }
         });
-        jBCube321.setName("321");
+        jBCube321.setName("cube321");
         jBCube321.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube321ActionPerformed(evt);
             }
         });
-        jBCube322.setName("322");
+        jBCube322.setName("cube322");
         jBCube322.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube322ActionPerformed(evt);
             }
         });
-        jBCube331.setName("331");
+        jBCube331.setName("cube331");
         jBCube331.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube331ActionPerformed(evt);
             }
         });
-        jBCube351.setName("351");
+        jBCube351.setName("cube351");
         jBCube351.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube351ActionPerformed(evt);
             }
         });
-        jBCube352.setName("352");
+        jBCube352.setName("cube352");
         jBCube352.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube352ActionPerformed(evt);
+            }
+        });
+        jBWare11.setName("ware11");
+        jBWare11.setText("ware11");
+        jBWare11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare1ActionPerformed(evt);
+            }
+        });
+        jBWare12.setName("ware12");
+        jBWare12.setText("ware12");
+        jBWare12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare2ActionPerformed(evt);
+            }
+        });
+        jBWare21.setName("ware21");
+        jBWare21.setText("ware21");
+        jBWare21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare3ActionPerformed(evt);
+            }
+        });
+        jBWare22.setName("ware22");
+        jBWare22.setText("ware22");
+        jBWare22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare4ActionPerformed(evt);
+            }
+        });
+        jBWare31.setName("ware31");
+        jBWare31.setText("ware31");
+        jBWare31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare5ActionPerformed(evt);
+            }
+        });
+        jBWare32.setName("ware32");
+        jBWare32.setText("ware32");
+        jBWare32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBWare6ActionPerformed(evt);
             }
         });
         jBConfirmaAcao.addActionListener(new java.awt.event.ActionListener() {
@@ -657,9 +735,9 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
 
         jB311.setBackground(new java.awt.Color(0, 0, 0));
 
-        jB312.setBackground(new java.awt.Color(0, 0, 0));
-
         jB313.setBackground(new java.awt.Color(0, 0, 0));
+
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
 
         jB321.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -704,13 +782,13 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
 
         jComboMovimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Selecione", "Normal", "Especial"}));
 
-        jLabel7.setText("0");
+        jLabelP1.setText("0");
 
         jLabel8.setText("Moedas:");
 
         jLabel9.setText("Moedas:");
 
-        jLabel10.setText("0");
+        jLabelP2.setText("0");
 
         jBFinalizaTurno.setBackground(Color.GREEN);
 
@@ -730,12 +808,12 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jB122, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(jB111, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -789,7 +867,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                                                                                                         .addComponent(jB142, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                                                                                                                                         .addComponent(jB141, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                                                                                                                                        .addComponent(jButton56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                                                                                        .addComponent(jBWare11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                                                         .addComponent(jB152, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -797,7 +875,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                                                 .addComponent(jLabel8)
                                                                                                                                                 .addGap(18, 18, 18)
-                                                                                                                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                                                .addComponent(jLabelP1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                                                                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                                                                                                 .addGap(6, 6, 6)))
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -821,7 +899,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                                 .addGap(20, 20, 20)
                                                                                                                                 .addComponent(jBCube232, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                        .addComponent(jButton58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                                                                                        .addComponent(jBWare21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                 .addGap(123, 123, 123)
                                                                                                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -833,10 +911,10 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addGap(25, 25, 25)))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                 .addComponent(jB241, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(jBWare12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(jButton59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(jBWare22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addComponent(jB252, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                                                         .addComponent(jB251, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -845,14 +923,14 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jLabelP2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGap(20, 20, 20)
@@ -874,8 +952,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                         .addComponent(jB342, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                         .addComponent(jB341, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addComponent(jButton60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                        .addComponent(jButton61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                                                                        .addComponent(jBWare31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                        .addComponent(jBWare32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGap(22, 22, 22)
                                                                                                 .addComponent(jBCube322, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -934,10 +1012,10 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5)
-                                        .addComponent(jLabel7)
+                                        .addComponent(jLabelP1)
                                         .addComponent(jLabel8)
                                         .addComponent(jLabel9)
-                                        .addComponent(jLabel10))
+                                        .addComponent(jLabelP2))
                                 .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -951,10 +1029,10 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                 .addComponent(jBCube132, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jButton56, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jBWare11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addComponent(jB1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(jButton58, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                .addComponent(jBWare21, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -966,9 +1044,9 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addComponent(jB111, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1031,16 +1109,16 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGap(25, 25, 25)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jButton59, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                                        .addComponent(jBWare22, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jBWare12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addGap(55, 55, 55)
                                                         .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jBCube313, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1069,7 +1147,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                                 .addComponent(jB352, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addComponent(jButton60, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jBWare31, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addGap(28, 28, 28)
                                                                                 .addComponent(jB341, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1080,7 +1158,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
                                                                         .addComponent(jBCube352, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGap(219, 219, 219)
-                                                                .addComponent(jButton61, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(jBWare32, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                                 .addComponent(jB6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1132,9 +1210,22 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }// </editor-fold>    
 
     private void setIcon(ArrayList<Integer> numeros, ArrayList<JButton> jButton) {
-
         for (int i = 0; i < 5; i++) {
             jButton.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + numeros.get(i) + ".png")));
+        }
+    }
+
+    private void setCubeColors(List<Color> cores, ArrayList<JButton> jButton) {
+        for (int i = 0; i < jButton.size(); i++) {
+            jButton.get(i).setBackground(cores.get(i));
+            gameCtrl.setCubeLocation(jButton.get(i).getName(), jButton.get(i).getBackground());
+        }
+    }
+
+    private void setWareColors(List<Color> cores, ArrayList<JButton> jButton) {
+        for (int i = 0; i < jButton.size(); i++) {
+            jButton.get(i).setBackground(cores.get(i));
+            gameCtrl.setWareLocation(jButton.get(i).getName(), jButton.get(i).getBackground());
         }
     }
 
@@ -1146,6 +1237,17 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     public void takeCube(JButton jb) {
         ci.add(new TakeCubeCommand(gameCtrl, jb.getName()));
         ci.execute();
+    }
+
+    public void takeWare(JButton jb) {
+        ci.add(new TakeWareCommand(gameCtrl, jb.getName()));
+        ci.execute();
+    }
+
+    public void refreshCoinsScore(int label1, int label2) {
+        jLabelP1.setText("" + label1);
+        jLabelP2.setText("" + label2);
+
     }
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1193,11 +1295,11 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB112ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB112);
+        wagonCheck(jB113);
     }
 
     private void jB113ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB113);
+        wagonCheck(jB112);
     }
 
     private void jB121ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1273,11 +1375,11 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB312ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB312);
+        wagonCheck(jB313);
     }
 
     private void jB313ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB313);
+        wagonCheck(jB312);
     }
 
     private void jB321ActionPerformed(ActionEvent evt) {
@@ -1379,6 +1481,30 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
 
     }
 
+    private void jBWare1ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare11);
+    }
+
+    private void jBWare2ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare12);
+    }
+
+    private void jBWare3ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare21);
+    }
+
+    private void jBWare4ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare22);
+    }
+
+    private void jBWare5ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare31);
+    }
+
+    private void jBWare6ActionPerformed(ActionEvent evt) {
+        takeWare(jBWare32);
+    }
+
     private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
         ci.add(new SetActionTypeCommand(gameCtrl, jComboAcao.getSelectedItem().toString()));
         ci.execute();
@@ -1432,8 +1558,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jB1;
     private javax.swing.JButton jB10;
     private javax.swing.JButton jB111;
-    private javax.swing.JButton jB112;
     private javax.swing.JButton jB113;
+    private javax.swing.JButton jB112;
     private javax.swing.JButton jB121;
     private javax.swing.JButton jB122;
     private javax.swing.JButton jB131;
@@ -1454,8 +1580,8 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jB252;
     private javax.swing.JButton jB3;
     private javax.swing.JButton jB311;
-    private javax.swing.JButton jB312;
     private javax.swing.JButton jB313;
+    private javax.swing.JButton jB312;
     private javax.swing.JButton jB321;
     private javax.swing.JButton jB322;
     private javax.swing.JButton jB331;
@@ -1484,12 +1610,12 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jBCube331;
     private javax.swing.JButton jBCube351;
     private javax.swing.JButton jBCube352;
-    private javax.swing.JButton jButton56;
-    private javax.swing.JButton jButton57;
-    private javax.swing.JButton jButton58;
-    private javax.swing.JButton jButton59;
-    private javax.swing.JButton jButton60;
-    private javax.swing.JButton jButton61;
+    private javax.swing.JButton jBWare11;
+    private javax.swing.JButton jBWare12;
+    private javax.swing.JButton jBWare21;
+    private javax.swing.JButton jBWare22;
+    private javax.swing.JButton jBWare31;
+    private javax.swing.JButton jBWare32;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1502,16 +1628,18 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLJogadorVez;
     private javax.swing.JButton jBFinalizaTurno;
     private javax.swing.JLabel jLSsA;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelP1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabelP2;
     private javax.swing.JComboBox<String> jComboAcao;
     private javax.swing.JButton jBConfirmaAcao;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JComboBox<String> jComboMovimento;
     private ArrayList<JButton> wagonsE;
     private ArrayList<JButton> wagonsD;
+    private ArrayList<JButton> cubes;
+    private ArrayList<JButton> wares;
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
@@ -1532,6 +1660,7 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
         jLabel2.setText(gameCtrl.getPlayer1().getName());
         jLabel3.setText(gameCtrl.getPlayer2().getName());
         jLJogadorVez.setText(gameCtrl.getRoundPlayer());
+        refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
     }
 
     @Override
@@ -1552,12 +1681,16 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
         JOptionPane.showMessageDialog(null, actionDefinedMessage);
+
     }
 
     @Override
     public void notificaRoundFinalizado(String endRoundMesssage) {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
+        refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
         jLJogadorVez.setText(gameCtrl.getRoundPlayer());
+        jComboAcao.setSelectedIndex(0);
+        jComboMovimento.setSelectedIndex(0);
     }
 
     @Override
@@ -1571,22 +1704,24 @@ public class CopiaMain extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void notificaPrimeirosCubosAdicionados(List<String> colors) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void notificaPrimeirosCubosAdicionados(List<Color> colors) {
+        setCubeColors(colors, cubes);
+        System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
-    public void notificaPrimeirosWaresAdicionados(List<String> colors) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void notificaPrimeirosWaresAdicionados(List<Color> colors) {
+        setWareColors(colors, wares);
+        System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
 
     @Override
-    public void notificaNovoCuboAtualizado(String color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void notificaNovoCuboAtualizado(Color color, String wareLocation) {
+        (componentsByName.get(wareLocation)).setBackground(color);
     }
 
     @Override
-    public void notificaNovoWareAtualizado(String color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void notificaNovoWareAtualizado(Color color, String wareLocation) {
+        (componentsByName.get(wareLocation)).setBackground(color);
     }
 }

@@ -1,12 +1,14 @@
 package Model;
 
+import java.awt.Color;
+
 public class Cube {
 
-    private String color;
+    private Color color;
     
     private String location;
     
-    public Cube(String color) {
+    public Cube(Color color) {
         this.color = color;
     }
 
@@ -18,7 +20,7 @@ public class Cube {
         this.location = location;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
     
