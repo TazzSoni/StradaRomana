@@ -31,4 +31,6 @@ public interface Observer {
 
     public void notificaNovoCuboAtualizado(String color);
 
+    public void notificaNovoWareAtualizado(String color);
+
 }

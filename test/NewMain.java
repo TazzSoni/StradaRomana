@@ -1674,4 +1674,9 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     public void notificaNovoCuboAtualizado(String color) {
         System.out.println("Colocando esse sout pra não dar erro ao executar");
     }
+
+    @Override
+    public void notificaNovoWareAtualizado(String color) {
+        System.out.println("Colocando esse sout pra não dar erro ao executar");
+    }
 }

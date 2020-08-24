@@ -377,18 +377,34 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void takeWare(String wareLocation) {
-        Ware ware = new Ware(wareLocation);
         if (round.getLastWagonMoved() != null && wareLocation.contains("ware")) {
-            if ((round.getLastWagonMoved().getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
-                    && (round.getLastWagonMoved().getLocation().substring(2).equals(wareLocation.substring(5)))) {
+            Wagon wagon = round.getLastWagonMoved();
+            if ((wagon.getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
+                    && (wagon.getLocation().substring(2).equals(wareLocation.substring(5)))) {
+                Ware ware = getWareByLocation(wareLocation);
+                wares.remove(ware);
                 round.getPlayer().addWare(ware);
                 notificaWarePego("Azulejo resgatado com sucesso!!");
+                ware = bag.takeWare();
+                wares.add(ware);
+                notificaNovoWareAtualizado(ware);
             } else {
                 notificaAcaoFalhou("Posição de vagão inválida para pegar azulejo");
             }
         } else {
             notificaAcaoFalhou("Tentativa de pegar azulejo inválida");
         }
+    }
+
+    private Ware getWareByLocation(String wareLocation) {
+        for (Ware w : wares) {
+            if (w.getLocation().equals(wareLocation)) {
+                return w;
+            }
+        }
+
+        System.out.println("Nenhuma ware encontrada na posição enviada (" + wareLocation + ").");
+        return null;
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
@@ -477,12 +493,27 @@ public class GameImplementation implements GameControl {
 
     /**
      * Após um cubo ser pego, o botão onde esse cubo estava deve ser atualizado.
-     * Este método de notificação é o responsável por enviar a cor do novo cubo que será colocado no botão substituindo o outro.
-     * @param cube  Novo cubo retirado da bag contendo a cor atualizada do botão.
+     * Este método de notificação é o responsável por enviar a cor do novo cubo
+     * que será colocado no botão substituindo o outro.
+     *
+     * @param cube Novo cubo retirado da bag contendo a cor atualizada do botão.
      */
     private void notificaNovoCuboAtualizado(Cube cube) {
         observers.forEach((o) -> {
             o.notificaNovoCuboAtualizado(cube.getColor());
+        });
+    }
+
+    /**
+     * Após um ware ser pego, o botão onde esse ware estava deve ser atualizado.
+     * Este método de notificação é o responsável por enviar a cor do novo ware
+     * que será colocado no botão substituindo o outro.
+     *
+     * @param ware Novo ware retirado da bag contendo a cor atualizada do botão.
+     */
+    private void notificaNovoWareAtualizado(Ware ware) {
+        observers.forEach((o) -> {
+            o.notificaNovoWareAtualizado(ware.getColor());
         });
     }
 }
