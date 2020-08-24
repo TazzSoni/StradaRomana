@@ -26,6 +26,8 @@ public class GameImplementation implements GameControl {
     private Random random = new Random();
     private List<Observer> observers = new ArrayList<>();
     private List<Wagon> wagons = new ArrayList<>();
+    private List<Cube> cubes = new ArrayList<>();
+    private List<Ware> wares = new ArrayList<>();
     private RoundsControl round = RoundsControl.getInstance();
     private Bag bag = Bag.getInstance();
 

@@ -12,9 +12,19 @@ package Model;
 public class Ware {
 
     private String color;
+    
+    private String location;
 
     public Ware(String color) {
         this.color = color;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getColor() {
