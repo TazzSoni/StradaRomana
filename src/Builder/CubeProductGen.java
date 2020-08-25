@@ -29,6 +29,7 @@ public class CubeProductGen extends ProductGen {
     @Override
     public void construct(Color color) {
         cube.setColor(color);
+        cube.setGotPair(false);
     }
     
 }

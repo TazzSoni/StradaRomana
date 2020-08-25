@@ -16,6 +16,16 @@ public abstract class Product {
     protected Color color;
     
     protected String location;
+    
+    protected boolean gotPair;
+
+    public boolean gotPair() {
+        return gotPair;
+    }
+
+    public void setGotPair(boolean gotPair) {
+        this.gotPair = gotPair;
+    }
 
     public Color getColor() {
         return color;

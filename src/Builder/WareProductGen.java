@@ -29,6 +29,7 @@ public class WareProductGen extends ProductGen {
     @Override
     public void construct(Color color) {
         ware.setColor(color);
+        ware.setGotPair(false);
     }
     
 }

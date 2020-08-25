@@ -380,6 +380,7 @@ public class GameImplementation implements GameControl {
                 Cube cube = getCubeByLocation(cubeLocation);
                 cubes.remove(cube);
                 round.getPlayer().addCube(cube);
+                round.checkNewContract(cube.getColor());
                 notificaCubePego("Cubo resgatado com sucesso!!");
                 cube = bag.takeCube();
                 cubes.add(cube);
@@ -411,6 +412,7 @@ public class GameImplementation implements GameControl {
                 Ware ware = getWareByLocation(wareLocation);
                 wares.remove(ware);
                 round.getPlayer().addWare(ware);
+                round.checkNewContract(ware.getColor());
                 notificaWarePego("Azulejo resgatado com sucesso!!");
                 ware = bag.takeWare();
                 wares.add(ware);

@@ -64,11 +64,39 @@ public class RoundsControl {
         actionType = null;
         lastWagonMoved = null;
         player = player == player1 ? player2 : player1;
-        
+
         return player;
     }
-    
-    public Wagon getLastWagonMoved(){
+
+    public Wagon getLastWagonMoved() {
         return lastWagonMoved;
+    }
+
+    public void checkNewContract(Color color) {
+        Cube cube = null;
+        for (Cube c : player.getCubes()) {
+            if (c.getColor() == color && !c.gotPair()) {
+                cube = c;
+                break;
+            }
+        }
+
+        Ware ware = null;
+        for (Ware w : player.getWares()) {
+            if (w.getColor() == color && !w.gotPair()) {
+                ware = w;
+                break;
+            }
+        }
+
+        if (cube != null && ware != null) {
+            cube.setGotPair(true);
+            ware.setGotPair(true);
+            Contract contract = new Contract();
+            contract.setCube(cube);
+            contract.setWare(ware);
+            player.addContract(contract);
+            System.out.println("criou contrato");
+        }
     }
 }
