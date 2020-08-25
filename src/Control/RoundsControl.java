@@ -7,8 +7,12 @@ package Control;
 
 import AbstractFactory.ActionType;
 import AbstractFactory.MovimentarWagon;
+import Model.Contract;
+import Model.Cube;
 import Model.Player;
 import Model.Wagon;
+import Model.Ware;
+import java.awt.Color;
 
 /**
  *
@@ -48,14 +52,18 @@ public class RoundsControl {
 
     public void setActionType(ActionType actionType) {
         this.actionType = actionType;
-        if(actionType.getAcao().equals("Movimentar wagon")){
+        if (actionType.getAcao().equals("Movimentar wagon")) {
             maxQtMoves = 3;
         }
     }
 
-    public void addMove(Wagon wagon, String wishedLocation) {
-        qtMoves++;
-        lastWagonMoved = wagon;
+    public void addMove(Wagon wagon, String wishedLocation) throws Exception {
+        if (qtMoves < maxQtMoves) {
+            qtMoves++;
+            lastWagonMoved = wagon;
+        } else {
+            throw new Exception();
+        }
     }
 
     public Player endRound(Player player1, Player player2) {
