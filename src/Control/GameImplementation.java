@@ -306,6 +306,7 @@ public class GameImplementation implements GameControl {
                 round.getPlayer().addCoins(1);
             }
             round.setActionType(montarAcao(actionType));
+            round.updatePoints();
             notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
         } else if (actionType.equals("Selecione")){
             notificaAcaoFalhou("Selecione uma opção");
@@ -381,6 +382,7 @@ public class GameImplementation implements GameControl {
                 cubes.remove(cube);
                 round.getPlayer().addCube(cube);
                 round.checkNewContract(cube.getColor());
+                round.updatePoints();
                 notificaCubePego("Cubo resgatado com sucesso!!");
                 cube = bag.takeCube();
                 cubes.add(cube);
@@ -414,6 +416,14 @@ public class GameImplementation implements GameControl {
                 wares.remove(ware);
                 round.getPlayer().addWare(ware);
                 round.checkNewContract(ware.getColor());
+                
+                for(Cube c : cubes){
+                    if(c.getColor() == ware.getColor()){
+                        round.getPlayer().addCoins(1);
+                    }
+                }
+                
+                round.updatePoints();
                 notificaWarePego("Azulejo resgatado com sucesso!!");
                 ware = bag.takeWare();
                 wares.add(ware);

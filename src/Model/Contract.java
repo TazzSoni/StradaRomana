@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.awt.Color;
+
 /**
  *
  * @author guilh
@@ -14,6 +16,16 @@ public class Contract {
     private Ware ware;
     
     private Cube cube;
+    
+    private Color color;
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     public Ware getWare() {
         return ware;
