@@ -257,13 +257,13 @@ public class GameImplementation implements GameControl {
                 }
 
                 if ((location.contains("cube") || location.contains("ware"))) {
-                    notificaAcaoFalhou("Movimentação impossível, tente novamente!.");
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente!");
                     resetMoveData();
                     return;
                 }
 
                 if (!isValidMoviment(wagon, previousLocation, wishedLocation)) {
-                    notificaAcaoFalhou("Movimentação impossível, tente novamente!!.");
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente!!");
                     resetMoveData();
                     return;
                 }
@@ -327,7 +327,8 @@ public class GameImplementation implements GameControl {
 
     private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
         boolean resposta = false;
-        if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
+        if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation) 
+                && (Integer.parseInt(previusLocation) < 6)) {
             criaMapaDeMovimentacaoEpD();
             for (String m : movimentacoes) {
                 String partida = m.substring(0, 3);
