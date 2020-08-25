@@ -5,19 +5,15 @@
  */
 package Model;
 
+import Builder.Product;
+import java.awt.Color;
+
 /**
  *
  * @author Rodrigo
  */
-public class Ware {
+public class Ware extends Product{
 
-    private String color;
-
-    public Ware(String color) {
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
+    public Ware() {}
+    
 }

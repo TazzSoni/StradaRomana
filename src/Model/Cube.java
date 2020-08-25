@@ -1,15 +1,9 @@
 package Model;
 
-public class Cube {
+import Builder.Product;
 
-    private String color;
-
-    public Cube(String color) {
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
+public class Cube extends Product {
     
+    public Cube() { }
+        
 }

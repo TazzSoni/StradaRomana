@@ -1,6 +1,10 @@
 package Control;
 
+import Model.Cube;
+import Model.Ware;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Observer {
 
@@ -20,6 +24,14 @@ public interface Observer {
 
     public void notificaCubePego(String cubeMessage);
 
-    public void notificaFalhaPegarCubo(String cubeMessage);
+    public void notificaWarePego(String wareMessage);
+
+    public void notificaPrimeirosCubosAdicionados(List<Color> colors);
+
+    public void notificaPrimeirosWaresAdicionados(List<Color> colors);
+
+    public void notificaNovoCuboAtualizado(Color color, String cubeLocation);
+
+    public void notificaNovoWareAtualizado(Color color, String wareLocation);
 
 }
