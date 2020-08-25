@@ -26,6 +26,7 @@ public class RoundsControl {
     private ActionType actionType = null;
     private Player player;
     private Wagon lastWagonMoved;
+    private boolean tookProduct;
 
     private RoundsControl() {
     }
@@ -71,6 +72,7 @@ public class RoundsControl {
         maxQtMoves = 0;
         actionType = null;
         lastWagonMoved = null;
+        tookProduct = false;
         player = player == player1 ? player2 : player1;
 
         return player;
@@ -107,4 +109,14 @@ public class RoundsControl {
             System.out.println("criou contrato");
         }
     }
+
+    public boolean tookProduct() {
+        return tookProduct;
+    }
+
+    public void setTookProduct(boolean tookProduct) {
+        this.tookProduct = tookProduct;
+    }
+    
+    
 }

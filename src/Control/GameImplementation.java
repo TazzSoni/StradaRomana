@@ -374,7 +374,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void takeCube(String cubeLocation) {
-        if (isPreviousLocation && cubeLocation.contains("cube")) {
+        if (isPreviousLocation && cubeLocation.contains("cube") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
             if (wagon != null && wagon.getLocation().equals(cubeLocation.substring(4, 7))) {
                 Cube cube = getCubeByLocation(cubeLocation);
@@ -385,6 +385,7 @@ public class GameImplementation implements GameControl {
                 cube = bag.takeCube();
                 cubes.add(cube);
                 notificaNovoCuboAtualizado(cube, cubeLocation);
+                round.setTookProduct(true);
             } else {
                 notificaAcaoFalhou("Tentativa de pegar cubo inválida");
             }
@@ -405,7 +406,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void takeWare(String wareLocation) {
-        if (round.getLastWagonMoved() != null && wareLocation.contains("ware")) {
+        if (round.getLastWagonMoved() != null && wareLocation.contains("ware") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
             if ((wagon.getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
                     && (wagon.getLocation().substring(2).equals(wareLocation.substring(5)))) {
@@ -417,6 +418,7 @@ public class GameImplementation implements GameControl {
                 ware = bag.takeWare();
                 wares.add(ware);
                 notificaNovoWareAtualizado(ware, wareLocation);
+                round.setTookProduct(true);
             } else {
                 notificaAcaoFalhou("Posição de vagão inválida para pegar azulejo");
             }
