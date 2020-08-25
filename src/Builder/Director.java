@@ -11,11 +11,11 @@ import java.awt.Color;
  *
  * @author guilh
  */
-public class ProductGenerator {
+public class Director {
     
     private ProductGen productGen;
     
-    public ProductGenerator(ProductGen productGen){
+    public Director(ProductGen productGen){
         this.productGen = productGen;
     }
     

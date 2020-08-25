@@ -7,7 +7,7 @@ package Model;
 
 import Builder.CubeProductGen;
 import Builder.ProductGen;
-import Builder.ProductGenerator;
+import Builder.Director;
 import Builder.WareProductGen;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -45,8 +45,8 @@ public class Bag {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 ProductGen product = new WareProductGen();
-                ProductGenerator montadora = new ProductGenerator(product);
-                montadora.construct(colors[i]);
+                Director director = new Director(product);
+                director.construct(colors[i]);
                 ware = (Ware) product.getResult();
                 wares.add(ware);
             }
@@ -60,8 +60,8 @@ public class Bag {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
                 ProductGen product = new CubeProductGen();
-                ProductGenerator montadora = new ProductGenerator(product);
-                montadora.construct(colors[i]);
+                Director director = new Director(product);
+                director.construct(colors[i]);
                 cube = (Cube) product.getResult();
                 cubes.add(cube);
             }
