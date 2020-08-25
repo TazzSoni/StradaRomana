@@ -190,9 +190,10 @@ public class GameImplementation implements GameControl {
             });
         }
     }
-    private ActionType montarAcao(String tipo){
+
+    private ActionType montarAcao(String tipo) {
         ActionFactory af = null;
-        switch (tipo){
+        switch (tipo) {
             case "Movimentar wagon":
                 af = new MovimentarWagonFactory();
                 break;
@@ -308,9 +309,9 @@ public class GameImplementation implements GameControl {
             round.setActionType(montarAcao(actionType));
             round.updatePoints();
             notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
-        } else if (actionType.equals("Selecione")){
+        } else if (actionType.equals("Selecione")) {
             notificaAcaoFalhou("Selecione uma opção");
-        }else{
+        } else {
             notificaTipoDeAcaoDefinido("Ação já definida para este turno, " + round.getActionType().getAcao() + " é sua ação para este turno");
         }
     }
@@ -327,49 +328,55 @@ public class GameImplementation implements GameControl {
 
     private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
         boolean resposta = false;
-        if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation) 
-                && (Integer.parseInt(previusLocation) < 6)) {
-            criaMapaDeMovimentacaoEpD();
-            for (String m : movimentacoes) {
-                String partida = m.substring(0, 3);
-                String destino1 = m.substring(4, 7);
-                String destino2 = m.substring(8, 11);
-                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
-                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
-                        resposta = true;
-                    } else {
-                        resposta = false;
+        if (Integer.parseInt(previusLocation) <= 10) {
+           if (Integer.parseInt(previusLocation) < 6) {
+                        if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
+                            resposta = true;
+                        } else {
+                            resposta = false;
+                        }
+                    }else{
+               if ((Integer.parseInt(previusLocation) > 5) && (Integer.parseInt(previusLocation)<=10)) {
+                        if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
+                            resposta = true;
+                        } else {
+                            resposta = false;
+                        }
                     }
-                } else if (Integer.parseInt(previusLocation) < 10) {
-                    if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
-                        resposta = true;
-                    } else {
-                        resposta = false;
-                    }
-                }
-            };
-            movimentacoes.clear();
+           }
+
         } else {
-            criaMapaDeMovimentacaoDpE();
-            for (String m : movimentacoes) {
-                String partida = m.substring(0, 3);
-                String destino1 = m.substring(4, 7);
-                String destino2 = m.substring(8, 11);
-                if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
-                    if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
-                        resposta = true;
-                    } else {
-                        resposta = false;
-                    }
-                } else if (Integer.parseInt(previusLocation) < 10) {
-                    if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
-                        resposta = true;
-                    } else {
-                        resposta = false;
-                    }
-                }
-            };
-            movimentacoes.clear();
+            if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
+                criaMapaDeMovimentacaoEpD();
+                for (String m : movimentacoes) {
+                    String partida = m.substring(0, 3);
+                    String destino1 = m.substring(4, 7);
+                    String destino2 = m.substring(8, 11);
+                    if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                        if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                            resposta = true;
+                        } else {
+                            resposta = false;
+                        }
+                    } 
+                };
+                movimentacoes.clear();
+            } else {
+                criaMapaDeMovimentacaoDpE();
+                for (String m : movimentacoes) {
+                    String partida = m.substring(0, 3);
+                    String destino1 = m.substring(4, 7);
+                    String destino2 = m.substring(8, 11);
+                    if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
+                        if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
+                            resposta = true;
+                        } else {
+                            resposta = false;
+                        }
+                    } 
+                };
+                movimentacoes.clear();
+            }
         }
         return resposta;
     }
@@ -413,19 +420,19 @@ public class GameImplementation implements GameControl {
         if (round.getLastWagonMoved() != null && wareLocation.contains("ware") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
             if ((wagon.getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
-                    && ((wagon.getLocation().substring(2).equals(wareLocation.substring(5))) 
+                    && ((wagon.getLocation().substring(2).equals(wareLocation.substring(5)))
                     || (wagon.getLocation().substring(2).equals("3")))) {
                 Ware ware = getWareByLocation(wareLocation);
                 wares.remove(ware);
                 round.getPlayer().addWare(ware);
                 round.checkNewContract(ware.getColor());
-                
-                for(Cube c : cubes){
-                    if(c.getColor() == ware.getColor()){
+
+                for (Cube c : cubes) {
+                    if (c.getColor() == ware.getColor()) {
                         round.getPlayer().addCoins(1);
                     }
                 }
-                
+
                 round.updatePoints();
                 notificaWarePego("Azulejo resgatado com sucesso!!");
                 ware = bag.takeWare();
