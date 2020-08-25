@@ -163,8 +163,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         componentsByName.put("9", jB9);
         componentsByName.put("10", jB10);
         componentsByName.put("111", jB111);
-        componentsByName.put("112", jB113);
-        componentsByName.put("113", jB112);
+        componentsByName.put("113", jB113);
+        componentsByName.put("112", jB112);
         componentsByName.put("121", jB121);
         componentsByName.put("122", jB122);
         componentsByName.put("131", jB131);
@@ -1313,11 +1313,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB112ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB113);
+        wagonCheck(jB112);
     }
 
     private void jB113ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB112);
+        wagonCheck(jB113);
     }
 
     private void jB121ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1393,11 +1393,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     private void jB312ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB313);
+        wagonCheck(jB312);
     }
 
     private void jB313ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB312);
+        wagonCheck(jB313);
     }
 
     private void jB321ActionPerformed(ActionEvent evt) {
@@ -1705,6 +1705,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
         refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
         jLJogadorVez.setText(gameCtrl.getRoundPlayer());
+        jTextField1.setText(""+gameCtrl.getPlayer1().getTotalScore());
+        jTextField2.setText(""+gameCtrl.getPlayer2().getTotalScore());
         jComboAcao.setSelectedIndex(0);
         jComboMovimento.setSelectedIndex(0);
     }
