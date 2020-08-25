@@ -122,11 +122,11 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jBCube351 = new javax.swing.JButton();
         jBCube352 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabeP1Name = new javax.swing.JLabel();
+        jLabeP2Name = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jLabelPlacarP2 = new javax.swing.JLabel();
+        jLabelPlacarP1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jBWare11 = new javax.swing.JButton();
         jBWare12 = new javax.swing.JButton();
@@ -142,10 +142,10 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jBConfirmaAcao = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboMovimento = new javax.swing.JComboBox<>();
-        jLabelP1 = new javax.swing.JLabel();
+        jLabelCoinsP1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabelP2 = new javax.swing.JLabel();
+        jLabelCoinsP2 = new javax.swing.JLabel();
 
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
@@ -782,6 +782,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         jLabel1.setText("Strada Romana");
 
         jLabel4.setText("Placar");
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24));
 
         jLabel5.setText("X");
 
@@ -800,13 +801,21 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
         jComboMovimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Selecione", "Normal", "Especial"}));
 
-        jLabelP1.setText("0");
+        jLabelCoinsP1.setText("0");
 
         jLabel8.setText("Moedas:");
-
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 24));
         jLabel9.setText("Moedas:");
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 24));
+        jLabeP1Name.setFont(new java.awt.Font("Times New Roman", 1, 24));
+        jLabeP2Name.setFont(new java.awt.Font("Times New Roman", 1, 24));
 
-        jLabelP2.setText("0");
+        jLabelCoinsP2.setText("0");
+        jLabelPlacarP1.setText("0");
+        jLabelPlacarP2.setText("0");
+
+        jLabelPlacarP1.setFont(new java.awt.Font("Times New Roman", 0, 48));
+        jLabelPlacarP2.setFont(new java.awt.Font("Times New Roman", 0, 48));
 
         jBFinalizaTurno.setBackground(Color.GREEN);
 
@@ -849,14 +858,14 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                 .addGap(324, 324, 324)
                                                 .addComponent(jLabel4)
                                                 .addGap(136, 136, 136)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabeP2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                                                 .addGap(227, 227, 227)
-                                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jLabelPlacarP1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(84, 84, 84)
-                                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jLabelPlacarP2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                                                 .addComponent(jLabel9))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -893,8 +902,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                                                 .addComponent(jLabel8)
                                                                                                                                                 .addGap(18, 18, 18)
-                                                                                                                                                .addComponent(jLabelP1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                                                                                                                .addComponent(jLabelCoinsP1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                                        .addComponent(jLabeP1Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                                                                                                 .addGap(6, 6, 6)))
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -941,7 +950,7 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jLabelP2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jLabelCoinsP2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1022,18 +1031,18 @@ public class NewMain extends javax.swing.JFrame implements Observer {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
+                                        .addComponent(jLabeP1Name)
+                                        .addComponent(jLabeP2Name)
                                         .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelPlacarP2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelPlacarP1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5)
-                                        .addComponent(jLabelP1)
+                                        .addComponent(jLabelCoinsP1)
                                         .addComponent(jLabel8)
                                         .addComponent(jLabel9)
-                                        .addComponent(jLabelP2))
+                                        .addComponent(jLabelCoinsP2))
                                 .addGap(49, 49, 49)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1263,8 +1272,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     }
 
     public void refreshCoinsScore(int label1, int label2) {
-        jLabelP1.setText("" + label1);
-        jLabelP2.setText("" + label2);
+        jLabelCoinsP1.setText("" + label1);
+        jLabelCoinsP2.setText("" + label2);
 
     }
 
@@ -1635,21 +1644,21 @@ public class NewMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jBWare31;
     private javax.swing.JButton jBWare32;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabeP1Name;
+    private javax.swing.JLabel jLabeP2Name;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabelPlacarP2;
+    private javax.swing.JLabel jLabelPlacarP1;
     private javax.swing.JLabel jLJdV;
     private javax.swing.JLabel jLJogadorVez;
     private javax.swing.JButton jBFinalizaTurno;
     private javax.swing.JLabel jLSsA;
-    private javax.swing.JLabel jLabelP1;
+    private javax.swing.JLabel jLabelCoinsP1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelP2;
+    private javax.swing.JLabel jLabelCoinsP2;
     private javax.swing.JComboBox<String> jComboAcao;
     private javax.swing.JButton jBConfirmaAcao;
     private javax.swing.JLabel jLabel6;
@@ -1675,8 +1684,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaPlayersCriados() {
-        jLabel2.setText(gameCtrl.getPlayer1().getName());
-        jLabel3.setText(gameCtrl.getPlayer2().getName());
+        jLabeP1Name.setText(gameCtrl.getPlayer1().getName());
+        jLabeP2Name.setText(gameCtrl.getPlayer2().getName());
         jLJogadorVez.setText(gameCtrl.getRoundPlayer());
         refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
     }
@@ -1705,8 +1714,8 @@ public class NewMain extends javax.swing.JFrame implements Observer {
         JOptionPane.showMessageDialog(null, endRoundMesssage);
         refreshCoinsScore(gameCtrl.getPlayer1().getCoins(), gameCtrl.getPlayer2().getCoins());
         jLJogadorVez.setText(gameCtrl.getRoundPlayer());
-        jTextField1.setText(""+gameCtrl.getPlayer1().getTotalScore());
-        jTextField2.setText(""+gameCtrl.getPlayer2().getTotalScore());
+        jLabelPlacarP2.setText("" + gameCtrl.getPlayer1().getTotalScore());
+        jLabelPlacarP1.setText("" + gameCtrl.getPlayer2().getTotalScore());
         jComboAcao.setSelectedIndex(0);
         jComboMovimento.setSelectedIndex(0);
     }
