@@ -385,6 +385,7 @@ public class GameImplementation implements GameControl {
                 round.updatePoints();
                 notificaCubePego("Cubo resgatado com sucesso!!");
                 cube = bag.takeCube();
+                cube.setLocation(cubeLocation);
                 cubes.add(cube);
                 notificaNovoCuboAtualizado(cube, cubeLocation);
                 round.setTookProduct(true);
@@ -426,6 +427,7 @@ public class GameImplementation implements GameControl {
                 round.updatePoints();
                 notificaWarePego("Azulejo resgatado com sucesso!!");
                 ware = bag.takeWare();
+                ware.setLocation(wareLocation);
                 wares.add(ware);
                 notificaNovoWareAtualizado(ware, wareLocation);
                 round.setTookProduct(true);
