@@ -5,6 +5,10 @@
  */
 package Model;
 
+import Builder.CubeProductGen;
+import Builder.ProductGen;
+import Builder.ProductGenerator;
+import Builder.WareProductGen;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +24,7 @@ public class Bag {
     private List<Ware> wares = new ArrayList<>();
     private List<WagonTile> wagonTiles = new ArrayList<>();
     private List<Cube> cubes = new ArrayList<>();
-    private Color brown = new Color(102,51,0);
+    private Color brown = new Color(102, 51, 0);
     private Color[] colors = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, brown, Color.WHITE};
 
     private Bag() {
@@ -40,7 +44,10 @@ public class Bag {
         Ware ware;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                ware = new Ware(colors[i]);
+                ProductGen product = new WareProductGen();
+                ProductGenerator montadora = new ProductGenerator(product);
+                montadora.construct(colors[i]);
+                ware = (Ware) product.getResult();
                 wares.add(ware);
             }
         }
@@ -52,7 +59,10 @@ public class Bag {
         Cube cube;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                cube = new Cube(colors[i]);
+                ProductGen product = new CubeProductGen();
+                ProductGenerator montadora = new ProductGenerator(product);
+                montadora.construct(colors[i]);
+                cube = (Cube) product.getResult();
                 cubes.add(cube);
             }
         }
@@ -69,14 +79,14 @@ public class Bag {
         Collections.shuffle(wagonTiles);
         wagonTiles.remove(0);
     }
-    
-    public Cube takeCube(){
+
+    public Cube takeCube() {
         Cube cube = cubes.get(0);
         cubes.remove(cube);
         return cube;
     }
-    
-    public Ware takeWare(){
+
+    public Ware takeWare() {
         Ware ware = wares.get(0);
         wares.remove(ware);
         return ware;

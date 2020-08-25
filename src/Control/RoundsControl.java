@@ -6,6 +6,7 @@
 package Control;
 
 import AbstractFactory.ActionType;
+import AbstractFactory.MovimentarWagon;
 import Model.Player;
 import Model.Wagon;
 
@@ -47,6 +48,9 @@ public class RoundsControl {
 
     public void setActionType(ActionType actionType) {
         this.actionType = actionType;
+        if(actionType.getAcao().equals("Movimentar wagon")){
+            maxQtMoves = 3;
+        }
     }
 
     public void addMove(Wagon wagon, String wishedLocation) {
