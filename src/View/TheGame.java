@@ -165,8 +165,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         componentsByName.put("9", jB9);
         componentsByName.put("10", jB10);
         componentsByName.put("111", jB111);
-        componentsByName.put("113", jB112);
-        componentsByName.put("112", jB113);
+        componentsByName.put("112", jB112);
+        componentsByName.put("113", jB113);
         componentsByName.put("121", jB121);
         componentsByName.put("122", jB122);
         componentsByName.put("131", jB131);
@@ -329,11 +329,11 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         });
 
         jB112.setName("112");
-        jB112.setText("112");
+        jB112.setText("1122");
         jB112.setBackground(new java.awt.Color(0, 0, 0));
         jB112.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB113ActionPerformed(evt);
+                jB112ActionPerformed(evt);
             }
         });
 
@@ -342,7 +342,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jB113.setBackground(new java.awt.Color(0, 0, 0));
         jB113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB112ActionPerformed(evt);
+                jB113ActionPerformed(evt);
             }
         });
         jB121.setName("121");
@@ -504,7 +504,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jB313.setBackground(new java.awt.Color(0, 0, 0));
         jB313.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB312ActionPerformed(evt);
+                jB313ActionPerformed(evt);
             }
         });
         //312
@@ -513,7 +513,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jB312.setBackground(new java.awt.Color(0, 0, 0));
         jB312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB313ActionPerformed(evt);
+                jB312ActionPerformed(evt);
             }
         });
         jB321.setName("321");
@@ -1337,11 +1337,11 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     private void jB112ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB113);
+        wagonCheck(jB112);
     }
 
     private void jB113ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB112);
+        wagonCheck(jB113);
     }
 
     private void jB121ActionPerformed(java.awt.event.ActionEvent evt) {

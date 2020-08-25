@@ -257,13 +257,13 @@ public class GameImplementation implements GameControl {
                 }
 
                 if ((location.contains("cube") || location.contains("ware"))) {
-                    notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente!.");
                     resetMoveData();
                     return;
                 }
 
                 if (!isValidMoviment(wagon, previousLocation, wishedLocation)) {
-                    notificaAcaoFalhou("Movimentação impossível, tente novamente.");
+                    notificaAcaoFalhou("Movimentação impossível, tente novamente!!.");
                     resetMoveData();
                     return;
                 }
@@ -411,8 +411,6 @@ public class GameImplementation implements GameControl {
     public void takeWare(String wareLocation) {
         if (round.getLastWagonMoved() != null && wareLocation.contains("ware") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
-            System.out.println("if(("+wagon.getLocation().substring(0, 1)+".equals("+wareLocation.substring(4, 5)+"))"
-                    + " && ("+wagon.getLocation().substring(2)+".equals("+wareLocation.substring(5)+"))");
             if ((wagon.getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
                     && ((wagon.getLocation().substring(2).equals(wareLocation.substring(5))) 
                     || (wagon.getLocation().substring(2).equals("3")))) {
