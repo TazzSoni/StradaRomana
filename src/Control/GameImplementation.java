@@ -411,8 +411,11 @@ public class GameImplementation implements GameControl {
     public void takeWare(String wareLocation) {
         if (round.getLastWagonMoved() != null && wareLocation.contains("ware") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
+            System.out.println("if(("+wagon.getLocation().substring(0, 1)+".equals("+wareLocation.substring(4, 5)+"))"
+                    + " && ("+wagon.getLocation().substring(2)+".equals("+wareLocation.substring(5)+"))");
             if ((wagon.getLocation().substring(0, 1).equals(wareLocation.substring(4, 5)))
-                    && (wagon.getLocation().substring(2).equals(wareLocation.substring(5)))) {
+                    && ((wagon.getLocation().substring(2).equals(wareLocation.substring(5))) 
+                    || (wagon.getLocation().substring(2).equals("3")))) {
                 Ware ware = getWareByLocation(wareLocation);
                 wares.remove(ware);
                 round.getPlayer().addWare(ware);
