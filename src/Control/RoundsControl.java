@@ -124,7 +124,7 @@ public class RoundsControl {
     public void updateScore(){
         HashMap<Color, Integer> countContracts = new HashMap<>();
         for (Contract c : player.getContracts()) {
-            Integer value = countContracts.get(c.getColor()) == null ? 0 : countContracts.get(c.getColor()) + 1;
+            Integer value = countContracts.get(c.getColor()) == null ? 1 : countContracts.get(c.getColor()) + 1;
             countContracts.put(c.getColor(), value);
         }
         
