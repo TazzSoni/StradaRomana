@@ -94,8 +94,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jB251 = new javax.swing.JButton();
         jB252 = new javax.swing.JButton();
         jB311 = new javax.swing.JButton();
-        jB313 = new javax.swing.JButton();
         jB312 = new javax.swing.JButton();
+        jB313 = new javax.swing.JButton();
         jB321 = new javax.swing.JButton();
         jB322 = new javax.swing.JButton();
         jB331 = new javax.swing.JButton();
@@ -186,8 +186,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         componentsByName.put("251", jB251);
         componentsByName.put("252", jB252);
         componentsByName.put("311", jB311);
-        componentsByName.put("312", jB312);
         componentsByName.put("313", jB313);
+        componentsByName.put("312", jB312);
         componentsByName.put("321", jB321);
         componentsByName.put("322", jB322);
         componentsByName.put("331", jB331);
@@ -499,21 +499,21 @@ public class TheGame extends javax.swing.JFrame implements Observer {
             }
         });
         //313
-        jB313.setName("313");
-   //     jB313.setText("313");
-        jB313.setBackground(new java.awt.Color(0, 0, 0));
-        jB313.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB313ActionPerformed(evt);
-            }
-        });
-        //312
         jB312.setName("312");
-   //     jB312.setText("312");
+      // jB312.setText("312");
         jB312.setBackground(new java.awt.Color(0, 0, 0));
         jB312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB312ActionPerformed(evt);
+            }
+        });
+        //312
+        jB313.setName("313");
+        //jB313.setText("313");
+        jB313.setBackground(new java.awt.Color(0, 0, 0));
+        jB313.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB313ActionPerformed(evt);
             }
         });
         jB321.setName("321");
@@ -753,9 +753,9 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
         jB311.setBackground(new java.awt.Color(0, 0, 0));
 
-        jB313.setBackground(new java.awt.Color(0, 0, 0));
-
         jB312.setBackground(new java.awt.Color(0, 0, 0));
+
+        jB313.setBackground(new java.awt.Color(0, 0, 0));
 
         jB321.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -955,8 +955,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(20, 20, 20)
@@ -1149,9 +1149,9 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                                 .addGap(94, 94, 94)
                                 .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBCube313, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -1614,8 +1614,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jB252;
     private javax.swing.JButton jB3;
     private javax.swing.JButton jB311;
-    private javax.swing.JButton jB313;
     private javax.swing.JButton jB312;
+    private javax.swing.JButton jB313;
     private javax.swing.JButton jB321;
     private javax.swing.JButton jB322;
     private javax.swing.JButton jB331;
