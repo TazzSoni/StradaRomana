@@ -3,18 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Model.WagonTile;
+
+import java.util.Collections;
 
 /**
  *
- * @author guilh
+ * @author Rodrigo
  */
-public class WagonTile {
-    
+public class WagonT implements Item {
+
     String name;
-    
-    public WagonTile(String name){
+
+    public WagonT(String name) {
         this.name = name;
     }
-    
+
+    @Override
+    public void shuffle() {
+        
+    }
+
 }

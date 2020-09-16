@@ -1677,8 +1677,17 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
-    // End of variables declaration                   
 
+    @Override
+    public void notificaWaresTilesCriados(ArrayList<Integer> numeros) {
+        
+    }
+    
+    @Override
+    public void notificaWaresTilesPego(ArrayList<Integer> numeros) {
+        
+    }
+    
     @Override
     public void notifyRandomizedWagonsE(ArrayList<Integer> numeros) {
         setIcon(numeros, wagonsE);

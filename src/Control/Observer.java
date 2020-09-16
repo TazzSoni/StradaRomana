@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface Observer {
 
+    void notificaWaresTilesCriados(ArrayList<Integer> numeros);
+    
+    void notificaWaresTilesPego(ArrayList<Integer> numeros);
+
     void notifyRandomizedWagonsE(ArrayList<Integer> numeros);
 
     void notifyRandomizedWagonsD(ArrayList<Integer> numeros);

@@ -14,6 +14,8 @@ import Model.Bag;
 import Model.Cube;
 import Model.Player;
 import Model.Wagon;
+import Model.WagonTile.WagonT;
+import Model.WagonTile.WagonTile;
 import Model.Ware;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -36,6 +38,9 @@ public class GameImplementation implements GameControl {
     private List<Ware> wares = new ArrayList<>();
     private RoundsControl round = RoundsControl.getInstance();
     private Bag bag = Bag.getInstance();
+    private WagonTile wagonTile = new WagonTile();
+    private WagonTile tilesP1 = new WagonTile();
+    private WagonTile tilesP2 = new WagonTile();
 
     String previousLocation;
     String wishedLocation;
@@ -160,8 +165,24 @@ public class GameImplementation implements GameControl {
         }
     }
 
-    private void createWagonTiles(String[] wagonNames) {
-        bag.createWagonTiles(wagonNames);
+    public void createWagonTiles(String[] wagonNames) {
+        /*Foram criados duas listas de wagontiles (referente a cada player) 
+        que são adicionadas a lista principal que gerenciará o monte de wagontiles
+        no tabuleiro, assim como a quantidade que cada player detem, para ser 
+        chamada no rounds controle para contabilização do score*/
+
+        WagonTile tilesBoard = new WagonTile();
+
+        wagonTile.addItem(tilesP1);
+        wagonTile.addItem(tilesP2);
+        wagonTile.addItem(tilesBoard);
+
+        for (int i = 0; i < 10; i++) {
+            WagonT wagon = new WagonT(wagonNames[i]);
+            tilesBoard.addItem(wagon);
+        }
+
+        tilesBoard.shuffle();
     }
 
     @Override
@@ -329,21 +350,21 @@ public class GameImplementation implements GameControl {
     private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
         boolean resposta = false;
         if (Integer.parseInt(previusLocation) <= 10) {
-           if (Integer.parseInt(previusLocation) < 6) {
-                        if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
-                            resposta = true;
-                        } else {
-                            resposta = false;
-                        }
-                    }else{
-               if ((Integer.parseInt(previusLocation) > 5) && (Integer.parseInt(previusLocation)<=10)) {
-                        if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
-                            resposta = true;
-                        } else {
-                            resposta = false;
-                        }
+            if (Integer.parseInt(previusLocation) < 6) {
+                if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
+                    resposta = true;
+                } else {
+                    resposta = false;
+                }
+            } else {
+                if ((Integer.parseInt(previusLocation) > 5) && (Integer.parseInt(previusLocation) <= 10)) {
+                    if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
+                        resposta = true;
+                    } else {
+                        resposta = false;
                     }
-           }
+                }
+            }
 
         } else {
             if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
@@ -358,7 +379,7 @@ public class GameImplementation implements GameControl {
                         } else {
                             resposta = false;
                         }
-                    } 
+                    }
                 };
                 movimentacoes.clear();
             } else {
@@ -373,7 +394,7 @@ public class GameImplementation implements GameControl {
                         } else {
                             resposta = false;
                         }
-                    } 
+                    }
                 };
                 movimentacoes.clear();
             }
@@ -499,6 +520,16 @@ public class GameImplementation implements GameControl {
                 w.setLocation(wareLocation);
                 break;
             }
+        }
+    }
+
+    @Override
+    public void setPlayerWagonTile(String player, String tile) {
+        WagonT w = new WagonT(tile);
+        if (player.equals("p1")) {
+            tilesP1.addItem(w);
+        } else {
+            tilesP2.addItem(w);
         }
     }
 
