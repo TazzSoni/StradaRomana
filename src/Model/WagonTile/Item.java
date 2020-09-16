@@ -10,5 +10,9 @@ package Model.WagonTile;
  * @author Rodrigo
  */
 public interface Item {
-    void shuffle();
+    Item getWagonTiles(int index);
+
+    void removeItem(int index);
+
+    int size();
 }

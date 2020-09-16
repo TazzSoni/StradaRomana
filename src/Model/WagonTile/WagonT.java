@@ -20,8 +20,22 @@ public class WagonT implements Item {
     }
 
     @Override
-    public void shuffle() {
+    public String toString() {
+        return name;
+    }
+    
+    @Override
+    public Item getWagonTiles(int index) {
+        return this;
+    }
+
+    @Override
+    public void removeItem(int index) {
         
     }
 
+    @Override
+    public int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

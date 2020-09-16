@@ -42,4 +42,6 @@ public interface GameControl {
     
     void setPlayerWagonTile(String player, String tile);
 
+    void takeWagonTile();
+
 }

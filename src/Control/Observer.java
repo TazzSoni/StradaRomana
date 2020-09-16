@@ -10,7 +10,7 @@ public interface Observer {
 
     void notificaWaresTilesCriados(ArrayList<Integer> numeros);
     
-    void notificaWaresTilesPego(ArrayList<Integer> numeros);
+    void notificaWaresTilesPego(String wagonTileName, String wagonTileMessage, int posicao, int player);
 
     void notifyRandomizedWagonsE(ArrayList<Integer> numeros);
 

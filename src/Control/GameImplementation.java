@@ -128,7 +128,7 @@ public class GameImplementation implements GameControl {
         player2 = new Player(player2Name);
         randomPlayerToBegin();
 
-        String[] wagonNames = new String[]{"Ballio", "Demetrius", "Herennius", "Maccus", "Hamilcar", "Canopites", "Curculio", "Persa", "Plotus", "Pseudolus"};
+        String[] wagonNames = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
         createWagons(wagonNames);
         createWagonTiles(wagonNames);
         getFirstCubesFromBag();
@@ -165,6 +165,34 @@ public class GameImplementation implements GameControl {
         }
     }
 
+    @Override
+    public void takeWagonTile() {
+        if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
+            String wT;
+            if (round.getPlayer() == player1) {
+                System.out.println("");
+                tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
+                wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
+                observers.forEach((o) -> {
+                    o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
+                });
+            } else {
+                System.out.println("");
+                tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
+                wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
+                observers.forEach((o) -> {
+                    o.notificaWaresTilesPego(wT,"Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
+                });
+            }
+            wagonTile.getWagonTiles(2).removeItem(0);
+
+
+        } else{
+            notificaAcaoFalhou("Olha a mão boba ladrãozinho!!");
+        }
+
+    }
+
     public void createWagonTiles(String[] wagonNames) {
         /*Foram criados duas listas de wagontiles (referente a cada player) 
         que são adicionadas a lista principal que gerenciará o monte de wagontiles
@@ -183,6 +211,7 @@ public class GameImplementation implements GameControl {
         }
 
         tilesBoard.shuffle();
+        System.out.println();
     }
 
     @Override
@@ -525,12 +554,7 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setPlayerWagonTile(String player, String tile) {
-        WagonT w = new WagonT(tile);
-        if (player.equals("p1")) {
-            tilesP1.addItem(w);
-        } else {
-            tilesP2.addItem(w);
-        }
+
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
