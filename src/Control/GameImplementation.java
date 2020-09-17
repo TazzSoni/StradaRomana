@@ -181,13 +181,12 @@ public class GameImplementation implements GameControl {
                 tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
                 wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
                 observers.forEach((o) -> {
-                    o.notificaWaresTilesPego(wT,"Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
+                    o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
                 });
             }
             wagonTile.getWagonTiles(2).removeItem(0);
 
-
-        } else{
+        } else {
             notificaAcaoFalhou("Olha a mão boba ladrãozinho!!");
         }
 
@@ -352,13 +351,33 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
+        int a = tilesP1.getArray().size();
+        int b = tilesP2.getArray().size();
         if ((round.getActionType() == null) && !(actionType.equals("Selecione"))) {
             if (actionType.equals("Passar a vez")) {
                 round.getPlayer().addCoins(1);
+                round.setActionType(montarAcao(actionType));
+                round.updatePoints();
+                notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+            } else if ((actionType.equals("Pegar wagon tile"))) {
+                if ((round.getPlayer() == player1) && (a >= 3)) {
+                    notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
+
+                } else if (((round.getPlayer() == player2) && (b >= 3))) {
+
+                    notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
+                } else {
+                    round.setActionType(montarAcao(actionType));
+                    round.updatePoints();
+                    notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+                }
+
+            } else {
+                round.setActionType(montarAcao(actionType));
+                round.updatePoints();
+                notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
-            round.setActionType(montarAcao(actionType));
-            round.updatePoints();
-            notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
+
         } else if (actionType.equals("Selecione")) {
             notificaAcaoFalhou("Selecione uma opção");
         } else {
