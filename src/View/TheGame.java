@@ -1744,7 +1744,6 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaWaresTilesPego(String wagonTileName, String wagonTileMessage, int posicao, int player) {
         JOptionPane.showMessageDialog(null, wagonTileMessage);
-        System.out.println("wtname = "+ wagonTileName + " " + wagonTileMessage + " posição = " + posicao + " " + "Player = " + player);
         setWagonTileIcon(posicao, wagonTileName, player);
     }
 

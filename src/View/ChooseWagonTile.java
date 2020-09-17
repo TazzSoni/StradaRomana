@@ -25,6 +25,8 @@ public class ChooseWagonTile extends javax.swing.JFrame {
     public ChooseWagonTile(Item wagonTiles, GameControl gameCtrl, Invoker ci) {
         initComponents();
         this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+        this.setResizable(false);
 
         this.wagonTiles = wagonTiles;
         this.ci = ci;
@@ -38,7 +40,6 @@ public class ChooseWagonTile extends javax.swing.JFrame {
             botoes.get(i).setName(wagonTiles.getWagonTiles(i).toString());
             botoes.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(
                     "/Imagens/" + wagonTiles.getWagonTiles(i).toString() + ".png")));
-            System.out.println("icone btão"+botoes.get(i).getName()+" = "+botoes.get(i).getIcon());
         }
     }
 
@@ -190,7 +191,6 @@ public class ChooseWagonTile extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void selecionaWagonTile(JButton jb, String wagonTileName) {
-        System.out.println("name bt em choose = "+jb.getName()+" wagonTileName = "+wagonTileName);
         ci.add(new TakeWagonTileCommand(gameCtrl, wagonTileName));
         ci.execute();
         this.dispose();

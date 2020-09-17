@@ -175,7 +175,6 @@ public class GameImplementation implements GameControl {
     public void takeWagonTile(String wagonTileName) {
         if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
                 Item wt = wagonTile.getWagonTiles(2);
-                System.out.println(wt.getWagonTiles(0));
             if (round.getPlayer() == player1) {
                 for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
                     if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
@@ -489,7 +488,6 @@ public class GameImplementation implements GameControl {
                 return c;
             }
         }
-        //System.out.println("Nenhum cubo encontrado na posição enviada (" + cubeLocation + ").");
         return null;
     }
 
@@ -532,7 +530,6 @@ public class GameImplementation implements GameControl {
                 return w;
             }
         }
-        //System.out.println("Nenhuma ware encontrada na posição enviada (" + wareLocation + ").");
         return null;
     }
 
