@@ -6,6 +6,7 @@
 package Control;
 
 import Model.Player;
+import Model.WagonTile.WagonTile;
 import java.awt.Color;
 
 /**
@@ -27,21 +28,23 @@ public interface GameControl {
     void moveWagon(String location);
 
     void takeCube(String cubeLocation);
-    
+
     void takeWare(String wareLocation);
-    
+
     String getRoundPlayer();
 
     public void setActionTypeCommand(String actionType);
 
     public void endRoundCommand();
-    
+
     void setCubeLocation(String cubeLocation, Color cubeColor);
-    
+
     void setWareLocation(String cubeLocation, Color cubeColor);
-    
+
     void setPlayerWagonTile(String player, String tile);
 
-    void takeWagonTile();
+    void takeWagonTile(String wagonTileName);
+
+    public WagonTile getWagonTile();
 
 }

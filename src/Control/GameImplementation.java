@@ -14,6 +14,7 @@ import Model.Bag;
 import Model.Cube;
 import Model.Player;
 import Model.Wagon;
+import Model.WagonTile.Item;
 import Model.WagonTile.WagonT;
 import Model.WagonTile.WagonTile;
 import Model.Ware;
@@ -152,6 +153,11 @@ public class GameImplementation implements GameControl {
         }
     }
 
+    @Override
+    public WagonTile getWagonTile() {
+        return this.wagonTile;
+    }
+
     private void createWagons(String[] wagonNames) {
         for (int i = 0; i < 10; i++) {
             Wagon wagon;
@@ -166,25 +172,30 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void takeWagonTile() {
+    public void takeWagonTile(String wagonTileName) {
         if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
-            String wT;
+                Item wt = wagonTile.getWagonTiles(2);
             if (round.getPlayer() == player1) {
-                System.out.println("");
-                tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
-                wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
-                observers.forEach((o) -> {
-                    o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
-                });
+                for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
+                    if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
+                        tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(i));
+                        wagonTile.getWagonTiles(2).removeItem(i);
+                    }
+                }
+                        observers.forEach((o) -> {
+                            o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
+                        });
             } else {
-                System.out.println("");
-                tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
-                wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
+                for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
+                    if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
+                        tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
+                        wagonTile.getWagonTiles(2).removeItem(i);
+                    }
+                }
                 observers.forEach((o) -> {
-                    o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
+                    o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
                 });
             }
-            wagonTile.getWagonTiles(2).removeItem(0);
 
         } else {
             notificaAcaoFalhou("Olha a mão boba ladrãozinho!!");
@@ -210,7 +221,6 @@ public class GameImplementation implements GameControl {
         }
 
         tilesBoard.shuffle();
-        System.out.println();
     }
 
     @Override
@@ -351,8 +361,6 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
-        int a = tilesP1.getArray().size();
-        int b = tilesP2.getArray().size();
         if ((round.getActionType() == null) && !(actionType.equals("Selecione"))) {
             if (actionType.equals("Passar a vez")) {
                 round.getPlayer().addCoins(1);
@@ -360,10 +368,10 @@ public class GameImplementation implements GameControl {
                 round.updatePoints();
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             } else if ((actionType.equals("Pegar wagon tile"))) {
-                if ((round.getPlayer() == player1) && (a >= 3)) {
+                if ((round.getPlayer() == player1) && (tilesP1.getArray().size() >= 3)) {
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
 
-                } else if (((round.getPlayer() == player2) && (b >= 3))) {
+                } else if (((round.getPlayer() == player2) && (tilesP2.getArray().size() >= 3))) {
 
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
                 } else {
@@ -480,7 +488,6 @@ public class GameImplementation implements GameControl {
                 return c;
             }
         }
-        //System.out.println("Nenhum cubo encontrado na posição enviada (" + cubeLocation + ").");
         return null;
     }
 
@@ -523,7 +530,6 @@ public class GameImplementation implements GameControl {
                 return w;
             }
         }
-        //System.out.println("Nenhuma ware encontrada na posição enviada (" + wareLocation + ").");
         return null;
     }
 
