@@ -39,5 +39,9 @@ public interface GameControl {
     void setCubeLocation(String cubeLocation, Color cubeColor);
     
     void setWareLocation(String cubeLocation, Color cubeColor);
+    
+    void setPlayerWagonTile(String player, String tile);
+
+    void takeWagonTile();
 
 }

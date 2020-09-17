@@ -22,7 +22,6 @@ public class Bag {
 
     private static Bag instance;
     private List<Ware> wares = new ArrayList<>();
-    private List<WagonTile> wagonTiles = new ArrayList<>();
     private List<Cube> cubes = new ArrayList<>();
     private Color brown = new Color(102, 51, 0);
     private Color[] colors = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, brown, Color.WHITE};
@@ -68,16 +67,6 @@ public class Bag {
         }
 
         Collections.shuffle(cubes);
-    }
-
-    public void createWagonTiles(String[] wagonNames) {
-        for (int i = 0; i < 10; i++) {
-            WagonTile wagonTile = new WagonTile(wagonNames[i]);
-            wagonTiles.add(wagonTile);
-        }
-
-        Collections.shuffle(wagonTiles);
-        wagonTiles.remove(0);
     }
 
     public Cube takeCube() {

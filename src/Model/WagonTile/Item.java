@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Model.WagonTile;
 
 /**
  *
- * @author guilh
+ * @author Rodrigo
  */
-public class WagonTile {
-    
-    String name;
-    
-    public WagonTile(String name){
-        this.name = name;
-    }
-    
+public interface Item {
+    Item getWagonTiles(int index);
+
+    void removeItem(int index);
+
+    int size();
 }
