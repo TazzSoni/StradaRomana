@@ -14,6 +14,7 @@ import Model.Bag;
 import Model.Cube;
 import Model.Player;
 import Model.Wagon;
+import Model.WagonTile.Item;
 import Model.WagonTile.WagonT;
 import Model.WagonTile.WagonTile;
 import Model.Ware;
@@ -152,6 +153,11 @@ public class GameImplementation implements GameControl {
         }
     }
 
+    @Override
+    public WagonTile getWagonTile() {
+        return this.wagonTile;
+    }
+
     private void createWagons(String[] wagonNames) {
         for (int i = 0; i < 10; i++) {
             Wagon wagon;
@@ -166,23 +172,31 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
-    public void takeWagonTile() {
+    public void takeWagonTile(String wagonTileName) {
         if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
-            String wT;
+                Item wt = wagonTile.getWagonTiles(2);
+                System.out.println(wt.getWagonTiles(0));
             if (round.getPlayer() == player1) {
-                tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
-                wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
-                observers.forEach((o) -> {
-                    o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
-                });
+                for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
+                    if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
+                        tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(i));
+                        wagonTile.getWagonTiles(2).removeItem(i);
+                    }
+                }
+                        observers.forEach((o) -> {
+                            o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
+                        });
             } else {
-                tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
-                wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
+                for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
+                    if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
+                        tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
+                        wagonTile.getWagonTiles(2).removeItem(i);
+                    }
+                }
                 observers.forEach((o) -> {
-                    o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
+                    o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
                 });
             }
-            wagonTile.getWagonTiles(2).removeItem(0);
 
         } else {
             notificaAcaoFalhou("Olha a mão boba ladrãozinho!!");

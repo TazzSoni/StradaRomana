@@ -13,14 +13,16 @@ import Control.GameControl;
  */
 public class TakeWagonTileCommand extends Command {
 
-
-    public TakeWagonTileCommand(GameControl gameControl) {
+private String wagonTileName;
+    
+    public TakeWagonTileCommand(GameControl gameControl, String wagonTileName) {
         super(gameControl);
+        this.wagonTileName = wagonTileName;
     }
 
     @Override
     void execute() {
-        gameControl.takeWagonTile();
+        gameControl.takeWagonTile(wagonTileName);
     }
     
 }
