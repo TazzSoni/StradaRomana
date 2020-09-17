@@ -170,14 +170,12 @@ public class GameImplementation implements GameControl {
         if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
             String wT;
             if (round.getPlayer() == player1) {
-                System.out.println("");
                 tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
                 wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
                 observers.forEach((o) -> {
                     o.notificaWaresTilesPego(wT, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
                 });
             } else {
-                System.out.println("");
                 tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
                 wT = wagonTile.getWagonTiles(2).getWagonTiles(0).toString();
                 observers.forEach((o) -> {
@@ -210,7 +208,6 @@ public class GameImplementation implements GameControl {
         }
 
         tilesBoard.shuffle();
-        System.out.println();
     }
 
     @Override
@@ -351,8 +348,6 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void setActionTypeCommand(String actionType) {
-        int a = tilesP1.getArray().size();
-        int b = tilesP2.getArray().size();
         if ((round.getActionType() == null) && !(actionType.equals("Selecione"))) {
             if (actionType.equals("Passar a vez")) {
                 round.getPlayer().addCoins(1);
@@ -360,10 +355,10 @@ public class GameImplementation implements GameControl {
                 round.updatePoints();
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             } else if ((actionType.equals("Pegar wagon tile"))) {
-                if ((round.getPlayer() == player1) && (a >= 3)) {
+                if ((round.getPlayer() == player1) && (tilesP1.getArray().size() >= 3)) {
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
 
-                } else if (((round.getPlayer() == player2) && (b >= 3))) {
+                } else if (((round.getPlayer() == player2) && (tilesP2.getArray().size() >= 3))) {
 
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
                 } else {

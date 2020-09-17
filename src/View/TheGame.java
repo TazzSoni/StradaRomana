@@ -39,6 +39,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         this.gameCtrl.addObserver(this);
         initComponents();
         this.setLocationRelativeTo(null);
+        
 
     }
 
@@ -159,6 +160,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabelCoinsP2 = new javax.swing.JLabel();
+        telaWagonTile = new ChooseWagonTile();
 
         wagonsE = new ArrayList<>();
         wagonsD = new ArrayList<>();
@@ -847,6 +849,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
         jLabelPlacarP1.setFont(new java.awt.Font("Times New Roman", 0, 48));
         jLabelPlacarP2.setFont(new java.awt.Font("Times New Roman", 0, 48));
+        
+        telaWagonTile.setVisible(false);
 
         jBFinalizaTurno.setBackground(Color.GREEN);
 
@@ -1619,6 +1623,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     private void jBWagonTileActionPerformed(ActionEvent evt) {
+        telaWagonTile.setVisible(true);
         ci.add(new TakeWagonTileCommand(gameCtrl));
         ci.execute();
     }
@@ -1763,6 +1768,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
+    private ChooseWagonTile telaWagonTile;
 
     @Override
     public void notificaWaresTilesCriados(ArrayList<Integer> numeros) {
