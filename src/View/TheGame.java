@@ -1324,7 +1324,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
     private void setWagonTileIcon(int posicao, String wagonTileName, int player) {
         String nome = "wagonTile" + posicao + "P" + player;
-        (componentsByName.get(nome)).setIcon((componentsByName.get(wagonTileName)).getIcon());
+        (componentsByName.get(nome)).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/" + wagonTileName + ".png")));
 
     }
 
@@ -1619,8 +1619,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     private void jBWagonTileActionPerformed(ActionEvent evt) {
-        ci.add(new TakeWagonTileCommand(gameCtrl));
-        ci.execute();
+        telaWagonTile = new ChooseWagonTile(gameCtrl.getWagonTile().getArray().get(2), gameCtrl, ci);
+        telaWagonTile.setVisible(true);
     }
 
     private void jBConfirmaAcaoActionPerformed(ActionEvent evt) {
@@ -1634,35 +1634,6 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
 
-    /*    public static void main(String args[]) {
-       
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TheGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TheGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TheGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TheGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TheGame().setVisible(true);
-            }
-        });
-    }*/
     // Variables declaration - do not modify                     
     private javax.swing.JButton jB1;
     private javax.swing.JButton jB10;
@@ -1763,6 +1734,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     private Map<String, JButton> componentsByName;
     private Invoker ci;
     private GameControl gameCtrl;
+    private ChooseWagonTile telaWagonTile;
 
     @Override
     public void notificaWaresTilesCriados(ArrayList<Integer> numeros) {
@@ -1772,7 +1744,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaWaresTilesPego(String wagonTileName, String wagonTileMessage, int posicao, int player) {
         JOptionPane.showMessageDialog(null, wagonTileMessage);
-        System.out.println(wagonTileMessage + " " + wagonTileName + " " + posicao + " " + "Player = " + player);
+        System.out.println("wtname = "+ wagonTileName + " " + wagonTileMessage + " posição = " + posicao + " " + "Player = " + player);
         setWagonTileIcon(posicao, wagonTileName, player);
     }
 
