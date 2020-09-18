@@ -1,19 +1,20 @@
 package Model;
 
+import Visitor.Visitor;
 import java.util.ArrayList;
 
 public class Player {
 
     private String name;
     private int coins = 0;
-    private int victoryPointsFromCoins = 0;
-    private int totalScore = 0;
     private ArrayList<Cube> cubes = new ArrayList<>();
     private ArrayList<Ware> wares = new ArrayList<>();
     private ArrayList<Contract> contracts = new ArrayList<>();
+    private Score score = new Score();
 
     public Player(String name) {
         this.name = name;
+        score.setPlayer(this);
     }
 
     public ArrayList<Cube> getCubes() {
@@ -47,11 +48,11 @@ public class Player {
     }
 
     public int getVictoryPointsFromCoins() {
-        return victoryPointsFromCoins;
+        return score.getVictoryPointsFromCoins();
     }
 
     public void setVictoryPointsFromCoins(int victoryPointsFromCoins) {
-        this.victoryPointsFromCoins = victoryPointsFromCoins;
+        this.score.setVictoryPointsFromCoins(victoryPointsFromCoins);
     }
 
     public ArrayList<Contract> getContracts() {
@@ -63,11 +64,15 @@ public class Player {
     }
 
     public int getTotalScore() {
-        return totalScore;
+        return score.getTotalScore();
     }
 
     public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
+        this.score.setTotalScore(totalScore);
     }
+    
+    public void accept(Visitor visitor) throws Exception {
+		score.accept(visitor);
+	}
       
 }
