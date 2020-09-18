@@ -64,7 +64,7 @@ public class RoundsControl {
             qtMoves++;
             lastWagonMoved = wagon;
         } else {
-            throw new Exception();
+            throw new Exception("Você já fez a quantidade máxima de movimentos para esta jogada!");
         }
     }
 

@@ -10,29 +10,39 @@ package State;
  * @author guilh
  */
 public class Movement {
-    
+
     protected MovementState movementState;
-    
-    public Movement(){}
-    
-    public void commonMove(){
-        
+
+    public Movement() {
+        movementState = new CommonMove();
     }
-    
-    public void sidewaysMove(){
-        
+
+    public void commonMove() {
+        movementState = movementState.commonMove();
     }
-    
-    public void diagonalMove(){
-        
+
+    public void sidewaysMove() {
+        movementState = movementState.sidewaysMove();
     }
-    
-    public void extraMove(){
-        
+
+    public void diagonalMove() {
+        movementState = movementState.diagonalMove();
     }
-    
-    public void staking(){
-        
+
+    public void extraMove() {
+        movementState = movementState.extraMove();
     }
-    
+
+    public void staking() {
+        movementState = movementState.staking();
+    }
+
+    public void move() {
+        movementState.move();
+    }
+
+    public void reset() {
+        movementState = new CommonMove();
+    }
+
 }

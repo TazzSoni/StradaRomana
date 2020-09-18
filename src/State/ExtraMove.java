@@ -9,6 +9,40 @@ package State;
  *
  * @author guilh
  */
-public class ExtraMove implements MovementState {
+public class ExtraMove extends MovementState {
+
+    public ExtraMove(){
+        maxQtMoves = 4;
+    }
+
+    @Override
+    public MovementState commonMove() {
+        return new CommonMove();
+    }
+
+    @Override
+    public MovementState diagonalMove() {
+        return new DiagonalMove();
+    }
+
+    @Override
+    public MovementState extraMove() {
+        return new ExtraMove();
+    }
+
+    @Override
+    public MovementState sidewaysMove() {
+        return new SidewaysMove();
+    }
+
+    @Override
+    public MovementState staking() {
+        return new Staking();
+    }
     
+    @Override
+    public void move(){
+        
+    }
+
 }

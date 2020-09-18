@@ -47,4 +47,6 @@ public interface GameControl {
 
     public WagonTile getWagonTile();
 
+    public void setSpecialMoveType(String specialMoveType);
+
 }

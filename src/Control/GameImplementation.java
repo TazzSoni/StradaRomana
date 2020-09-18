@@ -18,6 +18,8 @@ import Model.WagonTile.Item;
 import Model.WagonTile.WagonT;
 import Model.WagonTile.WagonTile;
 import Model.Ware;
+import State.CommonMove;
+import State.Movement;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +44,7 @@ public class GameImplementation implements GameControl {
     private WagonTile wagonTile = new WagonTile();
     private WagonTile tilesP1 = new WagonTile();
     private WagonTile tilesP2 = new WagonTile();
+    private Movement movement = new Movement();
 
     String previousLocation;
     String wishedLocation;
@@ -329,9 +332,10 @@ public class GameImplementation implements GameControl {
                 }
 
                 try {
-                    round.addMove(wagon, wishedLocation);
+//                    round.addMove(wagon, wishedLocation);
+movement.move();
                 } catch (Exception ex) {
-                    notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
+                    notificaAcaoFalhou(ex.getMessage());
                     return;
                 }
 
@@ -397,6 +401,7 @@ public class GameImplementation implements GameControl {
     public void endRoundCommand() {
         if (!(round.getActionType() == null)) {
             Player nextPlayer = round.endRound(player1, player2);
+            movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
@@ -690,5 +695,26 @@ public class GameImplementation implements GameControl {
         observers.forEach((o) -> {
             o.notificaNovoWareAtualizado(ware.getColor(), wareLocation);
         });
+    }
+
+    @Override
+    public void setSpecialMoveType(String specialMoveType) {
+        switch(specialMoveType){
+            case "Common Move":
+                movement.commonMove();
+                break;
+            case "Sideways Move":
+                movement.sidewaysMove();
+                break;
+            case "DIagonal Move":
+                movement.diagonalMove();
+                break;
+            case "Extra Move":
+                movement.extraMove();
+                break;
+            case "Stalking":
+                movement.staking();
+                break;
+        }
     }
 }

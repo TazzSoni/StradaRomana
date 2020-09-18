@@ -9,6 +9,14 @@ package State;
  *
  * @author guilh
  */
-public interface MovementState {
+public abstract class MovementState {
+    protected int qtMoves = 0;
+    protected int maxQtMoves = 3;
     
+    public abstract MovementState commonMove();
+    public abstract MovementState diagonalMove();
+    public abstract MovementState extraMove();
+    public abstract MovementState sidewaysMove();
+    public abstract MovementState staking();
+    public abstract void move();
 }

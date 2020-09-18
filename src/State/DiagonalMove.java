@@ -9,6 +9,39 @@ package State;
  *
  * @author guilh
  */
-public class DiagonalMove implements MovementState {
+public class DiagonalMove extends MovementState {
+    
+    public DiagonalMove(){
+    }
+
+    @Override
+    public MovementState commonMove() {
+        return new CommonMove();
+    }
+
+    @Override
+    public MovementState diagonalMove() {
+        return new DiagonalMove();
+    }
+
+    @Override
+    public MovementState extraMove() {
+        return new ExtraMove();
+    }
+
+    @Override
+    public MovementState sidewaysMove() {
+        return new SidewaysMove();
+    }
+
+    @Override
+    public MovementState staking() {
+        return new Staking();
+    }
+    
+    @Override
+    public void move(){
+        
+    }
     
 }
