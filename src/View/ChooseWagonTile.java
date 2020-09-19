@@ -36,10 +36,19 @@ public class ChooseWagonTile extends javax.swing.JFrame {
 
     private void popularBotoes() {
 
+        for (JButton bt : botoes) {
+            bt.setIcon(null);
+        }
+        
         for (int i = 0; i < wagonTiles.size(); i++) {
             botoes.get(i).setName(wagonTiles.getWagonTiles(i).toString());
             botoes.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource(
                     "/Imagens/" + wagonTiles.getWagonTiles(i).toString() + ".png")));
+        }
+        for (JButton bt : botoes) {
+           if(bt.getIcon() == null){
+               bt.setVisible(false);
+           }
         }
     }
 
