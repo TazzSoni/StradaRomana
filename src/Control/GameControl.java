@@ -41,8 +41,6 @@ public interface GameControl {
 
     void setWareLocation(String cubeLocation, Color cubeColor);
 
-    void setPlayerWagonTile(String player, String tile);
-
     void takeWagonTile(String wagonTileName);
 
     public WagonTile getWagonTile();

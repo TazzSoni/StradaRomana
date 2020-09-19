@@ -125,12 +125,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jBComecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBComecarActionPerformed
         if (!(jTfJogador1.getText().isEmpty() || jTfJogador2.getText().isEmpty())) {
-            if (main == null) {
-                main = new TheGame();
-            }
-            main.newPlayer(jTfJogador1.getText(), jTfJogador2.getText());
-            main.setVisible(true);
-            main.setResizable(false);
+            
+            adapter.instanciarTheGame(jTfJogador1.getText(), jTfJogador2.getText());
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Informe todos os jogadores");
@@ -173,6 +169,8 @@ public class Login extends javax.swing.JFrame {
         });
     }
     private TheGame main = new TheGame();
+    private AdapterTheGame adapter = new AdapterTheGame(main);
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBComecar;
     private javax.swing.JLabel jLabel1;

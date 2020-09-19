@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -369,7 +371,11 @@ movement.move();
             if (actionType.equals("Passar a vez")) {
                 round.getPlayer().addCoins(1);
                 round.setActionType(montarAcao(actionType));
-                round.updatePoints();
+                try {
+                    round.updatePoints();
+                } catch (Exception ex) {
+                    Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             } else if ((actionType.equals("Pegar wagon tile"))) {
                 if ((round.getPlayer() == player1) && (tilesP1.getArray().size() >= 3)) {
@@ -380,13 +386,21 @@ movement.move();
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
                 } else {
                     round.setActionType(montarAcao(actionType));
-                    round.updatePoints();
+                    try {
+                        round.updatePoints();
+                    } catch (Exception ex) {
+                        Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
                 }
 
             } else {
                 round.setActionType(montarAcao(actionType));
-                round.updatePoints();
+                try {
+                    round.updatePoints();
+                } catch (Exception ex) {
+                    Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
 
@@ -472,7 +486,11 @@ movement.move();
                 cubes.remove(cube);
                 round.getPlayer().addCube(cube);
                 round.checkNewContract(cube.getColor());
-                round.updatePoints();
+                try {
+                    round.updatePoints();
+                } catch (Exception ex) {
+                    Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 notificaCubePego("Cubo resgatado com sucesso!!");
                 cube = bag.takeCube();
                 cube.setLocation(cubeLocation);
@@ -514,7 +532,11 @@ movement.move();
                     }
                 }
 
-                round.updatePoints();
+                try {
+                    round.updatePoints();
+                } catch (Exception ex) {
+                    Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 notificaWarePego("Azulejo resgatado com sucesso!!");
                 ware = bag.takeWare();
                 ware.setLocation(wareLocation);
@@ -580,11 +602,6 @@ movement.move();
                 break;
             }
         }
-    }
-
-    @Override
-    public void setPlayerWagonTile(String player, String tile) {
-
     }
 
     private void notificaMovimentacaoConcluida(String previousWagonLocation, String wagonLocation) {
