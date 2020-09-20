@@ -42,8 +42,6 @@ public class GameImplementation implements GameControl {
     private RoundsControl round = RoundsControl.getInstance();
     private Bag bag = Bag.getInstance();
     private WagonTile wagonTile = new WagonTile();
-    private WagonTile tilesP1 = new WagonTile();
-    private WagonTile tilesP2 = new WagonTile();
 
     String previousLocation;
     String wishedLocation;
@@ -176,26 +174,36 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeWagonTile(String wagonTileName) {
         if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
-                Item wt = wagonTile.getWagonTiles(2);
+            Item wt = wagonTile.getWagonTiles(2);
             if (round.getPlayer() == player1) {
                 for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
                     if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
-                        tilesP1.addItem(wagonTile.getWagonTiles(2).getWagonTiles(i));
-                        wagonTile.getWagonTiles(2).removeItem(i);
-                    }
-                }
-                        observers.forEach((o) -> {
-                            o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
-                        });
-            } else {
-                for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
-                    if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
-                        tilesP2.addItem(wagonTile.getWagonTiles(2).getWagonTiles(0));
+                        wagonTile.getWagonTiles(0).add(wagonTile.getWagonTiles(2).getWagonTiles(i));
                         wagonTile.getWagonTiles(2).removeItem(i);
                     }
                 }
                 observers.forEach((o) -> {
-                    o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP2.size(), 2);
+                    o.notificaWaresTilesPego(
+                            wagonTileName, 
+                            "Wagon Tile pego com sucesso!!", 
+                            wagonTile.getWagonTiles(0).size(), 
+                            1
+                    );
+                });
+            } else {
+                for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
+                    if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
+                        wagonTile.getWagonTiles(1).add(wagonTile.getWagonTiles(2).getWagonTiles(0));
+                        wagonTile.getWagonTiles(2).removeItem(i);
+                    }
+                }
+                observers.forEach((o) -> {
+                    o.notificaWaresTilesPego(
+                            wagonTileName,
+                            "Wagon Tile pego com sucesso!!",
+                            wagonTile.getWagonTiles(1).size(), 
+                            2
+                    );
                 });
             }
 
@@ -212,6 +220,8 @@ public class GameImplementation implements GameControl {
         chamada no rounds controle para contabilização do score*/
 
         WagonTile tilesBoard = new WagonTile();
+        WagonTile tilesP1 = new WagonTile();
+        WagonTile tilesP2 = new WagonTile();
 
         wagonTile.addItem(tilesP1);
         wagonTile.addItem(tilesP2);
@@ -374,13 +384,14 @@ public class GameImplementation implements GameControl {
                 }
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             } else if ((actionType.equals("Pegar wagon tile"))) {
-                if ((round.getPlayer() == player1) && (tilesP1.getArray().size() >= 3)) {
+                if ((round.getPlayer() == player1) && (wagonTile.getWagonTiles(0).size() >= 3)) {
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
 
-                } else if (((round.getPlayer() == player2) && (tilesP2.getArray().size() >= 3))) {
+                } else if (((round.getPlayer() == player2) && (wagonTile.getWagonTiles(1).size() >= 3))) {
 
                     notificaAcaoFalhou("Numeros máximo de Ware Tiles atingido");
                 } else {
+
                     round.setActionType(montarAcao(actionType));
                     try {
                         round.updatePoints();
