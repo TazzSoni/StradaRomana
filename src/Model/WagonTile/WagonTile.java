@@ -22,6 +22,11 @@ public class WagonTile implements Item {
     public void addItem(Item wagon) {
         wagonTiles.add(wagon);
     }
+    
+    @Override
+    public void add(Item wagon) {
+        wagonTiles.add(wagon);
+    }
 
     @Override
     public int size() {
