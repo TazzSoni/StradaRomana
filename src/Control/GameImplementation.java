@@ -418,6 +418,7 @@ public class GameImplementation implements GameControl {
                 } catch (Exception ex) {
                     Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                //Esse Aqui
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
 
@@ -728,23 +729,23 @@ public class GameImplementation implements GameControl {
             o.notificaNovoWareAtualizado(ware.getColor(), wareLocation);
         });
     }
-
+    
     @Override
     public void setSpecialMoveType(String specialMoveType) {
         switch (specialMoveType) {
-            case "Common Move":
+            case "Normal":
                 movement.commonMove();
                 break;
-            case "Sideways Move":
+            case "Lateral":
                 movement.sidewaysMove();
                 break;
-            case "Diagonal Move":
+            case "Diagonal":
                 movement.diagonalMove();
                 break;
-            case "Extra Move":
+            case "Extra":
                 movement.extraMove();
                 break;
-            case "Staking":
+            case "Atravessar":
                 movement.staking();
                 break;
             default:
