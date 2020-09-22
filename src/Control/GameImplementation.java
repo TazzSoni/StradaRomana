@@ -85,6 +85,8 @@ public class GameImplementation implements GameControl {
         movimentacoes.add("332-342,***");
         movimentacoes.add("341-351,***");
         movimentacoes.add("342-351,352");
+        //adição para teste
+        movimentacoes.add("351-008,009");
     }
 
     private void criaMapaDeMovimentacaoDpE() {

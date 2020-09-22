@@ -277,65 +277,65 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        jB1.setName("1");
+        jB1.setName("001");
         jB1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB1ActionPerformed(evt);
             }
         });
-        jB2.setName("2");
+        jB2.setName("002");
         jB2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB2ActionPerformed(evt);
             }
         });
 
-        jB3.setName("3");
+        jB3.setName("003");
         jB3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB3ActionPerformed(evt);
             }
         });
 
-        jB4.setName("4");
+        jB4.setName("004");
         jB4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB4ActionPerformed(evt);
             }
         });
 
-        jB5.setName("5");
+        jB5.setName("005");
         jB5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB5ActionPerformed(evt);
             }
         });
 
-        jB6.setName("6");
+        jB6.setName("006");
         jB6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB6ActionPerformed(evt);
             }
         });
-        jB7.setName("7");
+        jB7.setName("007");
         jB7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB7ActionPerformed(evt);
             }
         });
-        jB8.setName("8");
+        jB8.setName("008");
         jB8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB8ActionPerformed(evt);
             }
         });
-        jB9.setName("9");
+        jB9.setName("009");
         jB9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB9ActionPerformed(evt);
             }
         });
-        jB10.setName("10");
+        jB10.setName("010");
         jB10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB10ActionPerformed(evt);
