@@ -358,6 +358,7 @@ public class GameImplementation implements GameControl {
                 }
 
                 wagon.setLocation(wishedLocation);
+                round.setLastWagonMoved(wagon);
                 notificaMovimentacaoConcluida(previousLocation, wagon.getLocation());
                 resetMoveData();
             }

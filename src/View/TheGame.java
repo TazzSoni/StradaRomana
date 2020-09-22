@@ -38,6 +38,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 

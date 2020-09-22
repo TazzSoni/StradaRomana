@@ -75,6 +75,10 @@ public class RoundsControl {
     public Wagon getLastWagonMoved() {
         return lastWagonMoved;
     }
+    
+    public void setLastWagonMoved(Wagon lastWagonMoved) {
+        this.lastWagonMoved = lastWagonMoved;
+    }
 
     public void checkNewContract(Color color) {
         Cube cube = null;
