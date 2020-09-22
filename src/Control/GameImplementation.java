@@ -413,13 +413,13 @@ public class GameImplementation implements GameControl {
 
             } else {
                 round.setActionType(montarAcao(actionType));
+                notificaTipoMovimentacaoDefinido();
                 try {
                     round.updatePoints();
                 } catch (Exception ex) {
                     Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //Esse Aqui
-                notificaTipoMovimentacaoDefinido();
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
 
