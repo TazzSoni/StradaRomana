@@ -738,15 +738,17 @@ public class GameImplementation implements GameControl {
             case "Sideways Move":
                 movement.sidewaysMove();
                 break;
-            case "DIagonal Move":
+            case "Diagonal Move":
                 movement.diagonalMove();
                 break;
             case "Extra Move":
                 movement.extraMove();
                 break;
-            case "Stalking":
+            case "Staking":
                 movement.staking();
                 break;
+            default:
+                notificaAcaoFalhou("Um tipo de movimentação deve ser definido!");
         }
     }
 }
