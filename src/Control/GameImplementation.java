@@ -55,6 +55,7 @@ public class GameImplementation implements GameControl {
     private ArrayList<String> movimentacoes = new ArrayList<>();
 
     private void criaMapaDeMovimentacaoEpD() {
+        movimentacoes.clear();
         movimentacoes.add("111-121,***");
         movimentacoes.add("113-121,122");
         movimentacoes.add("112-122,***");
@@ -87,6 +88,7 @@ public class GameImplementation implements GameControl {
     }
 
     private void criaMapaDeMovimentacaoDpE() {
+        movimentacoes.clear();
         movimentacoes.add("351-341,342");
         movimentacoes.add("352-342,***");
         movimentacoes.add("341-331,***");
@@ -179,7 +181,7 @@ public class GameImplementation implements GameControl {
     @Override
     public void takeWagonTile(String wagonTileName) {
         if ((round.getActionType() != null && round.getActionType().getAcao().equals("Pegar wagon tile"))) {
-                Item wt = wagonTile.getWagonTiles(2);
+            Item wt = wagonTile.getWagonTiles(2);
             if (round.getPlayer() == player1) {
                 for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
                     if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
@@ -187,9 +189,9 @@ public class GameImplementation implements GameControl {
                         wagonTile.getWagonTiles(2).removeItem(i);
                     }
                 }
-                        observers.forEach((o) -> {
-                            o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
-                        });
+                observers.forEach((o) -> {
+                    o.notificaWaresTilesPego(wagonTileName, "Wagon Tile pego com sucesso!!", tilesP1.size(), 1);
+                });
             } else {
                 for (int i = 0; i < wagonTile.getWagonTiles(2).size(); i++) {
                     if (wagonTileName.equals(wagonTile.getWagonTiles(2).getWagonTiles(i).toString())) {
@@ -321,7 +323,7 @@ public class GameImplementation implements GameControl {
                     return;
                 }
 
-                if ((location.contains("cube") || location.contains("ware"))) {
+                if ((location.contains("cube") || location.contains("ware") || (getWagonByLocation(location) != null))) {
                     notificaAcaoFalhou("Movimentação impossível, tente novamente!");
                     resetMoveData();
                     return;
@@ -334,8 +336,12 @@ public class GameImplementation implements GameControl {
                 }
 
                 try {
-//                    round.addMove(wagon, wishedLocation);
-movement.move();
+                    if (wagon.getMovesTo().equals("D")) {
+                        criaMapaDeMovimentacaoEpD();
+                    } else {
+                        criaMapaDeMovimentacaoEpD();
+                    }
+                    wagon = movement.move(wagon, wishedLocation, movimentacoes);
                 } catch (Exception ex) {
                     notificaAcaoFalhou(ex.getMessage());
                     return;
@@ -456,7 +462,6 @@ movement.move();
                         }
                     }
                 };
-                movimentacoes.clear();
             } else {
                 criaMapaDeMovimentacaoDpE();
                 for (String m : movimentacoes) {
@@ -471,7 +476,6 @@ movement.move();
                         }
                     }
                 };
-                movimentacoes.clear();
             }
         }
         return resposta;
@@ -716,7 +720,7 @@ movement.move();
 
     @Override
     public void setSpecialMoveType(String specialMoveType) {
-        switch(specialMoveType){
+        switch (specialMoveType) {
             case "Common Move":
                 movement.commonMove();
                 break;

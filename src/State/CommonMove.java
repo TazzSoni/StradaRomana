@@ -5,6 +5,10 @@
  */
 package State;
 
+import Model.Wagon;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author guilh
@@ -38,10 +42,15 @@ public class CommonMove extends MovementState {
     public MovementState staking() {
         return new Staking();
     }
-    
-    @Override
-    public void move(){
-        
-    }
 
+    @Override
+    public Wagon move(Wagon wagon, String wishedLocation, String wagonPositionMapping) throws IOException {
+        if (validationCommonMove.validate(wagon, wishedLocation, wagonPositionMapping)) {
+            qtMoves++;
+            wagon.setLocation(wishedLocation);
+            return wagon;
+        } else {
+            throw new IOException("Movimentação impossível, tente novamente!!");
+        }
+    }
 }

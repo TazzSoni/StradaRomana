@@ -5,6 +5,10 @@
  */
 package State;
 
+import Model.Wagon;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author guilh
@@ -40,8 +44,13 @@ public class SidewaysMove extends MovementState{
     }
     
     @Override
-    public void move(){
-        
-    }
-    
+    public Wagon move(Wagon wagon, String wishedLocation, String wagonPositionMapping) throws IOException {
+        if (validationSidewayMove.validate(wagon, wishedLocation, wagonPositionMapping)) {
+            qtMoves++;
+            wagon.setLocation(wishedLocation);
+            return wagon;
+        } else {
+            throw new IOException("Movimentação impossível, tente novamente!!");
+        }
+    }    
 }

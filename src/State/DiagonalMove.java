@@ -5,6 +5,10 @@
  */
 package State;
 
+import Model.Wagon;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author guilh
@@ -40,8 +44,13 @@ public class DiagonalMove extends MovementState {
     }
     
     @Override
-    public void move(){
-        
+    public Wagon move(Wagon wagon, String wishedLocation, String moveMapping) throws IOException {
+        if (validationDiagonalMove.validate(wagon, wishedLocation, moveMapping)) {
+            qtMoves++;
+            wagon.setLocation(wishedLocation);
+            return wagon;
+        } else {
+            throw new IOException("Movimentação impossível, tente novamente!!");
+        }
     }
-    
 }

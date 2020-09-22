@@ -5,18 +5,53 @@
  */
 package State;
 
+import Model.Wagon;
+import State.Validacoes.ValidateMoveDistance;
+import State.Validacoes.ValidateSidewayMove;
+import State.Validacoes.Validation;
+import State.Validacoes.ValidateCommonMove;
+import State.Validacoes.ValidateDiagonalMove;
+import State.Validacoes.ValidateExtraMove;
+import State.Validacoes.ValidateStaking;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author guilh
  */
 public abstract class MovementState {
+
     protected int qtMoves = 0;
     protected int maxQtMoves = 3;
-    
+    protected Validation validationCommonMove = new ValidateCommonMove(new ValidateMoveDistance());
+    protected Validation validationSidewayMove = new ValidateSidewayMove(new ValidateCommonMove(new ValidateMoveDistance()));
+    protected Validation validationDiagonalMove = new ValidateDiagonalMove(new ValidateMoveDistance());
+    protected Validation validationExtraMove = new ValidateExtraMove(new ValidateMoveDistance());
+    protected Validation validationStaking = new ValidateStaking(new ValidateMoveDistance());
+
     public abstract MovementState commonMove();
+
     public abstract MovementState diagonalMove();
+
     public abstract MovementState extraMove();
+
     public abstract MovementState sidewaysMove();
+
     public abstract MovementState staking();
-    public abstract void move();
+
+    public abstract Wagon move(Wagon wagon, String wishedLocation, String movementMapping) throws IOException;
+
+    public void setQtMoves(int qtMoves) {
+        this.qtMoves = qtMoves;
+    }
+
+    public void validateMoveDistance(Wagon wagon, String wishedLocation, String moveMapping) throws IOException {
+        String possiblyGoing1 = moveMapping.substring(4, 7);
+        String possiblyGoing2 = moveMapping.substring(8, 11);
+
+        if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2) && (wishedLocation.charAt(1) != wagon.getLocation().charAt(1))) {
+            throw new IOException("Movimentação impossível, tente novamente!");
+        }
+    }
 }

@@ -5,6 +5,10 @@
  */
 package State;
 
+import Model.Wagon;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author guilh
@@ -37,8 +41,18 @@ public class Movement {
         movementState = movementState.staking();
     }
 
-    public void move() {
-        movementState.move();
+    public Wagon move(Wagon wagon, String wishedLocation, List<String> movementMapping) throws IOException {
+        String wagonLocationMapping = null;
+        for (String s : movementMapping) {
+            if (s.substring(0,3).equals(wagon.getLocation())) {
+            wagonLocationMapping = s.substring(0, 3);
+                break;
+            }
+        }
+        
+        if(wagonLocationMapping == null)
+            throw new IOException("Movimentação impossível, tente novamente!");
+        return movementState.move(wagon, wishedLocation, wagonLocationMapping);
     }
 
     public void reset() {
