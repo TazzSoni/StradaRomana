@@ -50,8 +50,6 @@ public class GameImplementation implements GameControl {
     String wishedLocation;
     private boolean isPreviousLocation = true;
 
-    private boolean vencedor;
-
     private ArrayList<String> movimentacoes = new ArrayList<>();
 
     private void criaMapaDeMovimentacaoEpD() {
@@ -446,7 +444,7 @@ public class GameImplementation implements GameControl {
 
         if ((player1.getTotalScore() + player2.getTotalScore() == 20) || wagonsAtFinalPlace == 4) {
             observers.forEach((o) -> {
-                o.endGame();
+                o.endGame(round.getPlayer().getName(), round.getPlayer().getTotalScore());
             });
         } else if (round.getActionType() != null) {
             Player nextPlayer = round.endRound(player1, player2);

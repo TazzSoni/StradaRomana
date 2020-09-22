@@ -40,6 +40,6 @@ public interface Observer {
 
     public void notificarTipoMovimentacaoDefinido();
 
-    public void endGame();
+    public void endGame(String nome, int placar);
 
 }

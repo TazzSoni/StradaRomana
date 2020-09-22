@@ -361,7 +361,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         });
 
         jB113.setName("113");
-        //jB112.setText("112");
+        //jB113.setText("113");
         jB113.setBackground(new java.awt.Color(0, 0, 0));
         jB113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1839,8 +1839,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     @Override
-    public void endGame() {
-        JOptionPane.showMessageDialog(null, "O vencedor é???");
+    public void endGame(String nome, int placar) {
+        JOptionPane.showMessageDialog(null, "O vencedor é "+nome+", com "+ placar+" pontos!!");
         this.dispose();
     }
 }
