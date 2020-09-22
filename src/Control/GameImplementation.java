@@ -44,6 +44,7 @@ public class GameImplementation implements GameControl {
     private RoundsControl round = RoundsControl.getInstance();
     private Bag bag = Bag.getInstance();
     private WagonTile wagonTile = new WagonTile();
+    private Movement movement = new Movement();
 
     String previousLocation;
     String wishedLocation;
