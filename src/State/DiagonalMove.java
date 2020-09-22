@@ -14,8 +14,8 @@ import java.util.List;
  * @author guilh
  */
 public class DiagonalMove extends MovementState {
-    
-    public DiagonalMove(){
+
+    public DiagonalMove() {
     }
 
     @Override
@@ -42,15 +42,19 @@ public class DiagonalMove extends MovementState {
     public MovementState staking() {
         return new Staking();
     }
-    
+
     @Override
     public Wagon move(Wagon wagon, String wishedLocation, String moveMapping) throws IOException {
-        if (validationDiagonalMove.validate(wagon, wishedLocation, moveMapping)) {
-            qtMoves++;
-            wagon.setLocation(wishedLocation);
-            return wagon;
+        if (qtMoves < maxQtMoves) {
+            if (validationDiagonalMove.validate(wagon, wishedLocation, moveMapping)) {
+                qtMoves++;
+                wagon.setLocation(wishedLocation);
+                return wagon;
+            } else {
+                throw new IOException("Movimentação impossível, tente novamente!!");
+            }
         } else {
-            throw new IOException("Movimentação impossível, tente novamente!!");
+            throw new IOException("Você já fez sua quantidade máxima de movimentos neste round.");
         }
     }
 }

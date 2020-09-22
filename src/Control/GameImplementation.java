@@ -429,13 +429,23 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        //else if para verificar se o jogo acabou
-        if (vencedor) {
+        int wagonsAtFinalPlace = 0;
+
+        for (Wagon w : wagons) {
+            if (Integer.parseInt(w.getLocation()) >= 1 && Integer.parseInt(w.getLocation()) <= 5 && w.getMovesTo().equals("E")) {
+                wagonsAtFinalPlace++;
+            } else if (Integer.parseInt(w.getLocation()) >= 6 && Integer.parseInt(w.getLocation()) <= 10 && w.getMovesTo().equals("D")) {
+                wagonsAtFinalPlace++;
+            }
+        }
+
+        if ((player1.getTotalScore() + player2.getTotalScore() == 20) || wagonsAtFinalPlace == 4) {
             observers.forEach((o) -> {
                 o.endGame();
             });
-        } else if (!(round.getActionType() == null)) {
+        } else if (round.getActionType() != null) {
             Player nextPlayer = round.endRound(player1, player2);
+            resetMoveData();
             movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
@@ -444,6 +454,7 @@ public class GameImplementation implements GameControl {
     }
 
     @Override
+
     public void takeCube(String cubeLocation) {
         if (isPreviousLocation && cubeLocation.contains("cube") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
@@ -693,16 +704,36 @@ public class GameImplementation implements GameControl {
                 movement.commonMove();
                 break;
             case "Lateral":
-                movement.sidewaysMove();
+                if (round.getPlayer().getCoins() >= 1) {
+                    movement.sidewaysMove();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 1);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             case "Diagonal":
-                movement.diagonalMove();
+                if (round.getPlayer().getCoins() >= 2) {
+                    movement.diagonalMove();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 2);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             case "Extra":
-                movement.extraMove();
+                if (round.getPlayer().getCoins() >= 3) {
+                    movement.extraMove();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 3);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             case "Atravessar":
-                movement.staking();
+                if (round.getPlayer().getCoins() >= 4) {
+                    movement.staking();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 3);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             default:
                 notificaAcaoFalhou("Um tipo de movimentação deve ser definido!");

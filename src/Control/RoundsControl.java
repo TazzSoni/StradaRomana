@@ -61,15 +61,6 @@ public class RoundsControl {
         }
     }
 
-    public void addMove(Wagon wagon, String wishedLocation) throws Exception {
-        if (qtMoves < maxQtMoves) {
-            qtMoves++;
-            lastWagonMoved = wagon;
-        } else {
-            throw new Exception("Você já fez a quantidade máxima de movimentos para esta jogada!");
-        }
-    }
-
     public Player endRound(Player player1, Player player2) {
         qtMoves = 0;
         maxQtMoves = 0;
