@@ -44,14 +44,15 @@ public class Movement {
     public Wagon move(Wagon wagon, String wishedLocation, List<String> movementMapping) throws IOException {
         String wagonLocationMapping = null;
         for (String s : movementMapping) {
-            if (s.substring(0,3).equals(wagon.getLocation())) {
-            wagonLocationMapping = s.substring(0, 3);
+            if (s.substring(0, 3).equals(wagon.getLocation())) {
+                wagonLocationMapping = s;
                 break;
             }
         }
-        
-        if(wagonLocationMapping == null)
+
+        if (wagonLocationMapping == null && (Integer.parseInt(wagon.getLocation())>10)) {
             throw new IOException("Movimentação impossível, tente novamente!");
+        }
         return movementState.move(wagon, wishedLocation, wagonLocationMapping);
     }
 

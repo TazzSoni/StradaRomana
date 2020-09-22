@@ -339,20 +339,15 @@ public class GameImplementation implements GameControl {
                     return;
                 }
 
-                if (!isValidMoviment(wagon, previousLocation, wishedLocation)) {
-                    notificaAcaoFalhou("Movimentação impossível, tente novamente!!");
-                    resetMoveData();
-                    return;
-                }
-
                 try {
                     if (wagon.getMovesTo().equals("D")) {
                         criaMapaDeMovimentacaoEpD();
                     } else {
-                        criaMapaDeMovimentacaoEpD();
+                        criaMapaDeMovimentacaoDpE();
                     }
                     wagon = movement.move(wagon, wishedLocation, movimentacoes);
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                     notificaAcaoFalhou(ex.getMessage());
                     return;
                 }
@@ -439,59 +434,6 @@ public class GameImplementation implements GameControl {
         } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
         }
-    }
-
-    private boolean isValidMoviment(Wagon wagon, String previusLocation, String wishedLocation) {
-        boolean resposta = false;
-        if (Integer.parseInt(previusLocation) <= 10) {
-            if (Integer.parseInt(previusLocation) < 6) {
-                if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
-                    resposta = true;
-                } else {
-                    resposta = false;
-                }
-            } else {
-                if ((Integer.parseInt(previusLocation) > 5) && (Integer.parseInt(previusLocation) <= 10)) {
-                    if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
-                        resposta = true;
-                    } else {
-                        resposta = false;
-                    }
-                }
-            }
-
-        } else {
-            if (Integer.parseInt(previusLocation) < Integer.parseInt(wishedLocation)) {
-                criaMapaDeMovimentacaoEpD();
-                for (String m : movimentacoes) {
-                    String partida = m.substring(0, 3);
-                    String destino1 = m.substring(4, 7);
-                    String destino2 = m.substring(8, 11);
-                    if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
-                        if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
-                            resposta = true;
-                        } else {
-                            resposta = false;
-                        }
-                    }
-                };
-            } else {
-                criaMapaDeMovimentacaoDpE();
-                for (String m : movimentacoes) {
-                    String partida = m.substring(0, 3);
-                    String destino1 = m.substring(4, 7);
-                    String destino2 = m.substring(8, 11);
-                    if (partida.equals(previusLocation) && (Integer.parseInt(previusLocation) > 10)) {
-                        if ((wishedLocation.equals(destino1) || (wishedLocation.equals(destino2)))) {
-                            resposta = true;
-                        } else {
-                            resposta = false;
-                        }
-                    }
-                };
-            }
-        }
-        return resposta;
     }
 
     @Override

@@ -24,18 +24,34 @@ public class ValidateMoveDistance extends Validation {
 
     @Override
     public boolean validate(Wagon wagon, String wishedLocation, String moveMapping) {
-        String possiblyGoing1 = moveMapping.substring(4, 7);
-        String possiblyGoing2 = moveMapping.substring(8, 11);
+        if (Integer.parseInt(wagon.getLocation()) <= 10) {
+            if (Integer.parseInt(wagon.getLocation()) < 6) {
+                if (wishedLocation.equals("111") || wishedLocation.equals("112") || wishedLocation.equals("113")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (wishedLocation.equals("351") || wishedLocation.equals("352")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
 
-        if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2) && (wishedLocation.charAt(1) != wagon.getLocation().charAt(1))) {
-            return false;
-        }
-
-        if (otherValidation == null) {
-            return true;
         } else {
-            return otherValidation.validate(wagon, wishedLocation, moveMapping);
+            String possiblyGoing1 = moveMapping.substring(4, 7);
+            String possiblyGoing2 = moveMapping.substring(8, 11);
+
+            if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2) && !(wishedLocation.substring(0,2).equals(possiblyGoing1.substring(0,2)))) {
+                return false;
+            }
+
+            if (otherValidation == null) {
+                return true;
+            } else {
+                return otherValidation.validate(wagon, wishedLocation, moveMapping);
+            }
         }
     }
-
 }

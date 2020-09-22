@@ -12,18 +12,20 @@ import Model.Wagon;
  * @author guilh
  */
 public class ValidateCommonMove extends Validation {
-    
-    public ValidateCommonMove (Validation otherValidation){
+
+    public ValidateCommonMove(Validation otherValidation) {
         super(otherValidation);
     }
-    
+
     @Override
     public boolean validate(Wagon wagon, String wishedLocation, String moveMapping) {
-        String possiblyGoing1 = moveMapping.substring(4, 7);
-        String possiblyGoing2 = moveMapping.substring(8, 11);
+        if (Integer.parseInt(wagon.getLocation()) > 10) {
+            String possiblyGoing1 = moveMapping.substring(4, 7);
+            String possiblyGoing2 = moveMapping.substring(8, 11);
 
-        if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2)) {
-            return false;
+            if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2)) {
+                return false;
+            }
         }
 
         if (otherValidation == null) {
@@ -32,5 +34,5 @@ public class ValidateCommonMove extends Validation {
             return otherValidation.validate(wagon, wishedLocation, moveMapping);
         }
     }
-    
+
 }
