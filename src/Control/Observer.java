@@ -37,5 +37,7 @@ public interface Observer {
     public void notificaNovoCuboAtualizado(Color color, String cubeLocation);
 
     public void notificaNovoWareAtualizado(Color color, String wareLocation);
+    
+    public void notificarTipoMovimentacaoDefinido();
 
 }

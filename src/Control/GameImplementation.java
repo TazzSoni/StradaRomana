@@ -419,6 +419,7 @@ public class GameImplementation implements GameControl {
                     Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //Esse Aqui
+                notificaTipoMovimentacaoDefinido();
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
 
@@ -644,6 +645,12 @@ public class GameImplementation implements GameControl {
             o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
         });
     }
+    
+      private void notificaTipoMovimentacaoDefinido() {
+           observers.forEach((o) -> {
+            o.notificarTipoMovimentacaoDefinido();
+        });
+    }
 
     private void notificaRoundFinalizado(String endRoundMesssage) {
         observers.forEach((o) -> {
@@ -752,4 +759,6 @@ public class GameImplementation implements GameControl {
                 notificaAcaoFalhou("Um tipo de movimentação deve ser definido!");
         }
     }
+
+  
 }
