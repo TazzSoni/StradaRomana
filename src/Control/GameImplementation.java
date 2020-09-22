@@ -429,22 +429,32 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        if (round.getActionType() != null) {
+        int wagonsAtFinalPlace = 0;
+
+        for (Wagon w : wagons) {
+            if (Integer.parseInt(w.getLocation()) >= 1 && Integer.parseInt(w.getLocation()) <= 5 && w.getMovesTo().equals("E")) {
+                wagonsAtFinalPlace++;
+            } else if (Integer.parseInt(w.getLocation()) >= 6 && Integer.parseInt(w.getLocation()) <= 10 && w.getMovesTo().equals("D")) {
+                wagonsAtFinalPlace++;
+            }
+        }
+
+        if ((player1.getTotalScore() + player2.getTotalScore() == 20) || wagonsAtFinalPlace == 4) {
+            observers.forEach((o) -> {
+                o.endGame();
+            });
+        } else if (round.getActionType() != null) {
             Player nextPlayer = round.endRound(player1, player2);
             resetMoveData();
             movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
-        } //else if para verificar se o jogo acabou
-        else if (vencedor) {
-            observers.forEach((o) -> {
-                o.endGame();
-            });
         } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
         }
     }
 
     @Override
+
     public void takeCube(String cubeLocation) {
         if (isPreviousLocation && cubeLocation.contains("cube") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
