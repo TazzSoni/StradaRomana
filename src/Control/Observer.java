@@ -9,7 +9,7 @@ import java.util.List;
 public interface Observer {
 
     void notificaWaresTilesCriados(ArrayList<Integer> numeros);
-    
+
     void notificaWaresTilesPego(String wagonTileName, String wagonTileMessage, int posicao, int player);
 
     void notifyRandomizedWagonsE(ArrayList<Integer> numeros);
@@ -37,7 +37,9 @@ public interface Observer {
     public void notificaNovoCuboAtualizado(Color color, String cubeLocation);
 
     public void notificaNovoWareAtualizado(Color color, String wareLocation);
-    
+
     public void notificarTipoMovimentacaoDefinido();
+
+    public void endGame();
 
 }

@@ -28,6 +28,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author guilh
@@ -49,6 +50,8 @@ public class GameImplementation implements GameControl {
     String previousLocation;
     String wishedLocation;
     private boolean isPreviousLocation = true;
+    
+    private boolean vencedor;
 
     private ArrayList<String> movimentacoes = new ArrayList<>();
 
@@ -431,7 +434,13 @@ public class GameImplementation implements GameControl {
             Player nextPlayer = round.endRound(player1, player2);
             movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
-        } else {
+        }
+        //else if para verificar se o jogo acabou
+        else if(vencedor){
+            observers.forEach((o) -> {
+            o.endGame();
+        });
+        }else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
         }
     }

@@ -1838,4 +1838,10 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                 JOptionPane.PLAIN_MESSAGE, null, opcoes, null);
         gameCtrl.setSpecialMoveType(opcao);
     }
+
+    @Override
+    public void endGame() {
+        JOptionPane.showMessageDialog(null, "O vencedor é???");
+        this.dispose();
+    }
 }
