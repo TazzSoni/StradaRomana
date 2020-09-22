@@ -1784,6 +1784,10 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
+        String[] opcoes = {"Normal", "Diagonal", "Extra", "Lateral", "Atravessar"};  
+        Integer ii = (Integer) JOptionPane.showInputDialog(null,  
+                "Selecione o Tipo de Movimentação:", "ShowInputDialog",  
+                JOptionPane.PLAIN_MESSAGE, null, opcoes, null);
         JOptionPane.showMessageDialog(null, actionDefinedMessage);
 
     }
