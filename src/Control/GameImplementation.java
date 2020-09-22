@@ -28,7 +28,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author guilh
@@ -50,7 +49,7 @@ public class GameImplementation implements GameControl {
     String previousLocation;
     String wishedLocation;
     private boolean isPreviousLocation = true;
-    
+
     private boolean vencedor;
 
     private ArrayList<String> movimentacoes = new ArrayList<>();
@@ -192,9 +191,9 @@ public class GameImplementation implements GameControl {
                 }
                 observers.forEach((o) -> {
                     o.notificaWaresTilesPego(
-                            wagonTileName, 
-                            "Wagon Tile pego com sucesso!!", 
-                            wagonTile.getWagonTiles(0).size(), 
+                            wagonTileName,
+                            "Wagon Tile pego com sucesso!!",
+                            wagonTile.getWagonTiles(0).size(),
                             1
                     );
                 });
@@ -209,7 +208,7 @@ public class GameImplementation implements GameControl {
                     o.notificaWaresTilesPego(
                             wagonTileName,
                             "Wagon Tile pego com sucesso!!",
-                            wagonTile.getWagonTiles(1).size(), 
+                            wagonTile.getWagonTiles(1).size(),
                             2
                     );
                 });
@@ -430,17 +429,17 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        if (!(round.getActionType() == null)) {
+        if (round.getActionType() != null) {
             Player nextPlayer = round.endRound(player1, player2);
+            resetMoveData();
             movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
-        }
-        //else if para verificar se o jogo acabou
-        else if(vencedor){
+        } //else if para verificar se o jogo acabou
+        else if (vencedor) {
             observers.forEach((o) -> {
-            o.endGame();
-        });
-        }else {
+                o.endGame();
+            });
+        } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
         }
     }
@@ -596,9 +595,9 @@ public class GameImplementation implements GameControl {
             o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
         });
     }
-    
-      private void notificaTipoMovimentacaoDefinido() {
-           observers.forEach((o) -> {
+
+    private void notificaTipoMovimentacaoDefinido() {
+        observers.forEach((o) -> {
             o.notificarTipoMovimentacaoDefinido();
         });
     }
@@ -687,7 +686,7 @@ public class GameImplementation implements GameControl {
             o.notificaNovoWareAtualizado(ware.getColor(), wareLocation);
         });
     }
-    
+
     @Override
     public void setSpecialMoveType(String specialMoveType) {
         switch (specialMoveType) {
@@ -695,21 +694,40 @@ public class GameImplementation implements GameControl {
                 movement.commonMove();
                 break;
             case "Lateral":
-                movement.sidewaysMove();
+                if (round.getPlayer().getCoins() >= 1) {
+                    movement.sidewaysMove();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 1);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             case "Diagonal":
-                movement.diagonalMove();
+                if (round.getPlayer().getCoins() >= 2) {
+                    movement.diagonalMove();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 2);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             case "Extra":
-                movement.extraMove();
+                if (round.getPlayer().getCoins() >= 3) {
+                    movement.extraMove();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 3);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             case "Atravessar":
-                movement.staking();
+                if (round.getPlayer().getCoins() >= 4) {
+                    movement.staking();
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 3);
+                } else {
+                    notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                }
                 break;
             default:
                 notificaAcaoFalhou("Um tipo de movimentação deve ser definido!");
         }
     }
 
-  
 }

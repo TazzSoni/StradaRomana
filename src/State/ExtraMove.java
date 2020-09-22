@@ -46,13 +46,16 @@ public class ExtraMove extends MovementState {
 
     @Override
     public Wagon move(Wagon wagon, String wishedLocation, String movementMapping) throws IOException {
-        if (validationDiagonalMove.validate(wagon, wishedLocation, movementMapping)) {
-            qtMoves++;
-            wagon.setLocation(wishedLocation);
-            return wagon;
+        if (qtMoves < maxQtMoves) {
+            if (validationDiagonalMove.validate(wagon, wishedLocation, movementMapping)) {
+                qtMoves++;
+                wagon.setLocation(wishedLocation);
+                return wagon;
+            } else {
+                throw new IOException("Movimentação impossível, tente novamente!!");
+            }
         } else {
-            throw new IOException("Movimentação impossível, tente novamente!!");
+            throw new IOException("Você já fez sua quantidade máxima de movimentos neste round.");
         }
     }
-
 }

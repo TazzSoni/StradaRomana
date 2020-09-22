@@ -45,12 +45,16 @@ public class CommonMove extends MovementState {
 
     @Override
     public Wagon move(Wagon wagon, String wishedLocation, String wagonPositionMapping) throws IOException {
-        if (validationCommonMove.validate(wagon, wishedLocation, wagonPositionMapping)) {
-            qtMoves++;
-            wagon.setLocation(wishedLocation);
-            return wagon;
+        if (qtMoves < maxQtMoves) {
+            if (validationCommonMove.validate(wagon, wishedLocation, wagonPositionMapping)) {
+                qtMoves++;
+                wagon.setLocation(wishedLocation);
+                return wagon;
+            } else {
+                throw new IOException("Movimentação impossível, tente novamente!!");
+            }
         } else {
-            throw new IOException("Movimentação impossível, tente novamente!!");
+            throw new IOException("Você já fez sua quantidade máxima de movimentos neste round.");
         }
     }
 }
