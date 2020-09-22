@@ -1828,4 +1828,9 @@ public class Main extends javax.swing.JFrame implements Observer {
         (componentsByName.get(wareLocation)).setBackground(color);
     }
 
+    @Override
+    public void notificarTipoMovimentacaoDefinido() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
