@@ -28,7 +28,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author guilh
@@ -50,7 +49,7 @@ public class GameImplementation implements GameControl {
     String previousLocation;
     String wishedLocation;
     private boolean isPreviousLocation = true;
-    
+
     private boolean vencedor;
 
     private ArrayList<String> movimentacoes = new ArrayList<>();
@@ -192,9 +191,9 @@ public class GameImplementation implements GameControl {
                 }
                 observers.forEach((o) -> {
                     o.notificaWaresTilesPego(
-                            wagonTileName, 
-                            "Wagon Tile pego com sucesso!!", 
-                            wagonTile.getWagonTiles(0).size(), 
+                            wagonTileName,
+                            "Wagon Tile pego com sucesso!!",
+                            wagonTile.getWagonTiles(0).size(),
                             1
                     );
                 });
@@ -209,7 +208,7 @@ public class GameImplementation implements GameControl {
                     o.notificaWaresTilesPego(
                             wagonTileName,
                             "Wagon Tile pego com sucesso!!",
-                            wagonTile.getWagonTiles(1).size(), 
+                            wagonTile.getWagonTiles(1).size(),
                             2
                     );
                 });
@@ -430,17 +429,16 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        if (!(round.getActionType() == null)) {
+        //else if para verificar se o jogo acabou
+        if (vencedor) {
+            observers.forEach((o) -> {
+                o.endGame();
+            });
+        } else if (!(round.getActionType() == null)) {
             Player nextPlayer = round.endRound(player1, player2);
             movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
-        }
-        //else if para verificar se o jogo acabou
-        else if(vencedor){
-            observers.forEach((o) -> {
-            o.endGame();
-        });
-        }else {
+        } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
         }
     }
@@ -596,9 +594,9 @@ public class GameImplementation implements GameControl {
             o.notificaTipoDeAcaoDefinido(actionDefinedMessage);
         });
     }
-    
-      private void notificaTipoMovimentacaoDefinido() {
-           observers.forEach((o) -> {
+
+    private void notificaTipoMovimentacaoDefinido() {
+        observers.forEach((o) -> {
             o.notificarTipoMovimentacaoDefinido();
         });
     }
@@ -687,7 +685,7 @@ public class GameImplementation implements GameControl {
             o.notificaNovoWareAtualizado(ware.getColor(), wareLocation);
         });
     }
-    
+
     @Override
     public void setSpecialMoveType(String specialMoveType) {
         switch (specialMoveType) {
@@ -711,5 +709,4 @@ public class GameImplementation implements GameControl {
         }
     }
 
-  
 }
