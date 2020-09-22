@@ -11,6 +11,7 @@ import Command.EndRoundCommand;
 import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
 import Command.SetActionTypeCommand;
+import Command.SetSpecialMoveTypeCommand;
 import Command.TakeCubeCommand;
 import Command.TakeWareCommand;
 import Control.GameControl;
@@ -1785,9 +1786,12 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     @Override
     public void notificaTipoDeAcaoDefinido(String actionDefinedMessage) {
         String[] opcoes = {"Normal", "Diagonal", "Extra", "Lateral", "Atravessar"};  
-        Integer ii = (Integer) JOptionPane.showInputDialog(null,  
+        String opcao = (String) JOptionPane.showInputDialog(null,  
                 "Selecione o Tipo de Movimentação:", "ShowInputDialog",  
                 JOptionPane.PLAIN_MESSAGE, null, opcoes, null);
+        ci.add(new SetSpecialMoveTypeCommand(gameCtrl, opcao));
+        ci.execute();
+       
         JOptionPane.showMessageDialog(null, actionDefinedMessage);
 
     }
