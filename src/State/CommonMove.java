@@ -45,8 +45,51 @@ public class CommonMove extends MovementState {
 
     @Override
     public Wagon move(Wagon wagon, String wishedLocation, String wagonPositionMapping) throws IOException {
+        boolean verifica = validationCommonMove.validate(wagon, wishedLocation, wagonPositionMapping);
+        if(Integer.parseInt(wishedLocation) <=10){
+             switch (wagon.getLocation()) {
+                case "111":
+                    if (((Integer.parseInt(wishedLocation) >= 6) && (Integer.parseInt(wishedLocation) <= 10))
+                            || (Integer.parseInt(wagon.getName()) < 6)) {
+                        verifica = false;
+                    }else{
+                        verifica = true;
+                    }
+                    break;
+                case "112":
+                    if (((Integer.parseInt(wishedLocation) >= 6) && (Integer.parseInt(wishedLocation) <= 10))
+                            || (Integer.parseInt(wagon.getName()) < 6)) {
+                        verifica = false;
+                    }else{
+                        verifica = true;
+                    }
+                    break;
+                case "113":
+                    if (((Integer.parseInt(wishedLocation) >= 6) && (Integer.parseInt(wishedLocation) <= 10))
+                            || (Integer.parseInt(wagon.getName()) < 6)) {
+                        verifica = false;
+                    }else{
+                        verifica = true;
+                    }
+                    break;
+                case "351":
+                    if ((Integer.parseInt(wishedLocation) < 6)  || (Integer.parseInt(wagon.getName()) > 5)) {
+                        verifica = false;
+                    }else{
+                        verifica = true;
+                    }
+                    break;
+                case "352":
+                    if ((Integer.parseInt(wishedLocation) < 6)  || (Integer.parseInt(wagon.getName()) > 5)) {
+                        verifica = false;
+                    }else{
+                        verifica = true;
+                    }
+                    break;
+            }
+        }
         if (qtMoves < maxQtMoves) {
-            if (validationCommonMove.validate(wagon, wishedLocation, wagonPositionMapping)) {
+            if (verifica) {
                 qtMoves++;
                 wagon.setLocation(wishedLocation);
                 return wagon;
