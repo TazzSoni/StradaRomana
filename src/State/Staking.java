@@ -5,10 +5,53 @@
  */
 package State;
 
+import Model.Wagon;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author guilh
  */
-public class Staking implements MovementState {
-    
+public class Staking extends MovementState {
+
+    public Staking() {
+        maxQtMoves = 4;
+    }
+
+    @Override
+    public MovementState commonMove() {
+        return new CommonMove();
+    }
+
+    @Override
+    public MovementState diagonalMove() {
+        return new DiagonalMove();
+    }
+
+    @Override
+    public MovementState extraMove() {
+        return new ExtraMove();
+    }
+
+    @Override
+    public MovementState sidewaysMove() {
+        return new SidewaysMove();
+    }
+
+    @Override
+    public MovementState staking() {
+        return new Staking();
+    }
+
+    @Override
+    public Wagon move(Wagon wagon, String wishedLocation, String movementMapping) throws IOException {
+        if (validationStaking.validate(wagon, wishedLocation, movementMapping)) {
+            qtMoves++;
+            wagon.setLocation(wishedLocation);
+            return wagon;
+        } else {
+            throw new IOException("Movimentação impossível, tente novamente!!");
+        }
+    }
 }

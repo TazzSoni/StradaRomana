@@ -18,6 +18,8 @@ import Model.WagonTile.Item;
 import Model.WagonTile.WagonT;
 import Model.WagonTile.WagonTile;
 import Model.Ware;
+import State.CommonMove;
+import State.Movement;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +52,7 @@ public class GameImplementation implements GameControl {
     private ArrayList<String> movimentacoes = new ArrayList<>();
 
     private void criaMapaDeMovimentacaoEpD() {
+        movimentacoes.clear();
         movimentacoes.add("111-121,***");
         movimentacoes.add("113-121,122");
         movimentacoes.add("112-122,***");
@@ -82,6 +85,7 @@ public class GameImplementation implements GameControl {
     }
 
     private void criaMapaDeMovimentacaoDpE() {
+        movimentacoes.clear();
         movimentacoes.add("351-341,342");
         movimentacoes.add("352-342,***");
         movimentacoes.add("341-331,***");
@@ -328,7 +332,7 @@ public class GameImplementation implements GameControl {
                     return;
                 }
 
-                if ((location.contains("cube") || location.contains("ware"))) {
+                if ((location.contains("cube") || location.contains("ware") || (getWagonByLocation(location) != null))) {
                     notificaAcaoFalhou("Movimentação impossível, tente novamente!");
                     resetMoveData();
                     return;
@@ -341,9 +345,14 @@ public class GameImplementation implements GameControl {
                 }
 
                 try {
-                    round.addMove(wagon, wishedLocation);
+                    if (wagon.getMovesTo().equals("D")) {
+                        criaMapaDeMovimentacaoEpD();
+                    } else {
+                        criaMapaDeMovimentacaoEpD();
+                    }
+                    wagon = movement.move(wagon, wishedLocation, movimentacoes);
                 } catch (Exception ex) {
-                    notificaAcaoFalhou("Você já fez a quantidade máxima de movimentos para esta jogada!");
+                    notificaAcaoFalhou(ex.getMessage());
                     return;
                 }
 
@@ -422,6 +431,7 @@ public class GameImplementation implements GameControl {
     public void endRoundCommand() {
         if (!(round.getActionType() == null)) {
             Player nextPlayer = round.endRound(player1, player2);
+            movement.reset();
             notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
         } else {
             notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
@@ -462,7 +472,6 @@ public class GameImplementation implements GameControl {
                         }
                     }
                 };
-                movimentacoes.clear();
             } else {
                 criaMapaDeMovimentacaoDpE();
                 for (String m : movimentacoes) {
@@ -477,7 +486,6 @@ public class GameImplementation implements GameControl {
                         }
                     }
                 };
-                movimentacoes.clear();
             }
         }
         return resposta;
@@ -718,5 +726,26 @@ public class GameImplementation implements GameControl {
         observers.forEach((o) -> {
             o.notificaNovoWareAtualizado(ware.getColor(), wareLocation);
         });
+    }
+
+    @Override
+    public void setSpecialMoveType(String specialMoveType) {
+        switch (specialMoveType) {
+            case "Common Move":
+                movement.commonMove();
+                break;
+            case "Sideways Move":
+                movement.sidewaysMove();
+                break;
+            case "DIagonal Move":
+                movement.diagonalMove();
+                break;
+            case "Extra Move":
+                movement.extraMove();
+                break;
+            case "Stalking":
+                movement.staking();
+                break;
+        }
     }
 }
