@@ -20,9 +20,7 @@ public class AdapterTheGame extends TheGame {
     }
 
     public void instanciarTheGame(String player1, String player2) {
-        theGame.newPlayer(player1, player2);
-        theGame.setVisible(true);
-        theGame.setResizable(false);
+        theGame.setParâmetrosIniciais(player1, player2, true);
     }
 
 }

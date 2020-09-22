@@ -15,4 +15,6 @@ public interface Item {
     void removeItem(int index);
 
     int size();
+
+    void add(Item wagonTiles);
 }

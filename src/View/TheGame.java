@@ -12,7 +12,6 @@ import Command.MoveWagonCommand;
 import Command.NewPlayersCommand;
 import Command.SetActionTypeCommand;
 import Command.TakeCubeCommand;
-import Command.TakeWagonTileCommand;
 import Command.TakeWareCommand;
 import Control.GameControl;
 import Control.GameImplementation;
@@ -24,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,7 +37,13 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         this.gameCtrl.addObserver(this);
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
 
+    }
+
+    public void setParâmetrosIniciais(String player1, String player2, boolean view) {
+        newPlayer(player1, player2);
+        setVisible(view);
     }
 
     public Invoker getCi() {
@@ -74,8 +78,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jB4 = new javax.swing.JButton();
         jB5 = new javax.swing.JButton();
         jB111 = new javax.swing.JButton();
-        jB113 = new javax.swing.JButton();
         jB112 = new javax.swing.JButton();
+        jB113 = new javax.swing.JButton();
         jB121 = new javax.swing.JButton();
         jB122 = new javax.swing.JButton();
         jB131 = new javax.swing.JButton();
@@ -94,8 +98,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jB251 = new javax.swing.JButton();
         jB252 = new javax.swing.JButton();
         jB311 = new javax.swing.JButton();
-        jB312 = new javax.swing.JButton();
         jB313 = new javax.swing.JButton();
+        jB312 = new javax.swing.JButton();
         jB321 = new javax.swing.JButton();
         jB322 = new javax.swing.JButton();
         jB331 = new javax.swing.JButton();
@@ -117,7 +121,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         jBCube221 = new javax.swing.JButton();
         jBCube232 = new javax.swing.JButton();
         jBCube251 = new javax.swing.JButton();
-        jBCube313 = new javax.swing.JButton();
+        jBCube312 = new javax.swing.JButton();
         jBCube322 = new javax.swing.JButton();
         jBCube321 = new javax.swing.JButton();
         jBCube331 = new javax.swing.JButton();
@@ -176,8 +180,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         componentsByName.put("9", jB9);
         componentsByName.put("10", jB10);
         componentsByName.put("111", jB111);
-        componentsByName.put("113", jB113);
         componentsByName.put("112", jB112);
+        componentsByName.put("113", jB113);
         componentsByName.put("121", jB121);
         componentsByName.put("122", jB122);
         componentsByName.put("131", jB131);
@@ -197,8 +201,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         componentsByName.put("251", jB251);
         componentsByName.put("252", jB252);
         componentsByName.put("311", jB311);
-        componentsByName.put("313", jB313);
         componentsByName.put("312", jB312);
+        componentsByName.put("313", jB313);
         componentsByName.put("321", jB321);
         componentsByName.put("322", jB322);
         componentsByName.put("331", jB331);
@@ -221,7 +225,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         componentsByName.put("cube221", jBCube221);
         componentsByName.put("cube232", jBCube232);
         componentsByName.put("cube251", jBCube251);
-        componentsByName.put("cube313", jBCube313);
+        componentsByName.put("cube312", jBCube312);
         componentsByName.put("cube321", jBCube321);
         componentsByName.put("cube322", jBCube322);
         componentsByName.put("cube331", jBCube331);
@@ -253,7 +257,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         cubes.add(jBCube221);
         cubes.add(jBCube232);
         cubes.add(jBCube251);
-        cubes.add(jBCube313);
+        cubes.add(jBCube312);
         cubes.add(jBCube321);
         cubes.add(jBCube322);
         cubes.add(jBCube331);
@@ -347,19 +351,19 @@ public class TheGame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jB113.setName("113");
+        jB112.setName("112");
         //jB112.setText("112");
-        jB113.setBackground(new java.awt.Color(0, 0, 0));
-        jB113.addActionListener(new java.awt.event.ActionListener() {
+        jB112.setBackground(new java.awt.Color(0, 0, 0));
+        jB112.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB113ActionPerformed(evt);
             }
         });
 
-        jB112.setName("112");
+        jB113.setName("113");
         //jB112.setText("112");
-        jB112.setBackground(new java.awt.Color(0, 0, 0));
-        jB112.addActionListener(new java.awt.event.ActionListener() {
+        jB113.setBackground(new java.awt.Color(0, 0, 0));
+        jB113.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB112ActionPerformed(evt);
             }
@@ -502,7 +506,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
         });
         jB252.setName("252");
-        //       jB252.setText("252");
+        //     jB252.setText("252");
         jB252.setBackground(new java.awt.Color(0, 0, 0));
         jB252.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -510,7 +514,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
             }
         });
         jB311.setName("311");
-        //     jB311.setText("311");
+        // jB311.setText("311");
         jB311.setBackground(new java.awt.Color(0, 0, 0));
         jB311.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -518,19 +522,19 @@ public class TheGame extends javax.swing.JFrame implements Observer {
             }
         });
         //313
-        jB312.setName("312");
-        // jB312.setText("312");
-        jB312.setBackground(new java.awt.Color(0, 0, 0));
-        jB312.addActionListener(new java.awt.event.ActionListener() {
+        jB313.setName("313");
+        // jB313.setText("313");
+        jB313.setBackground(new java.awt.Color(0, 0, 0));
+        jB313.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB312ActionPerformed(evt);
             }
         });
         //312
-        jB313.setName("313");
-        //jB313.setText("313");
-        jB313.setBackground(new java.awt.Color(0, 0, 0));
-        jB313.addActionListener(new java.awt.event.ActionListener() {
+        jB312.setName("312");
+        //jB312.setText("312");
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
+        jB312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB313ActionPerformed(evt);
             }
@@ -647,8 +651,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                 jBCube251ActionPerformed(evt);
             }
         });
-        jBCube313.setName("cube313");
-        jBCube313.addActionListener(new java.awt.event.ActionListener() {
+        jBCube312.setName("cube312");
+        jBCube312.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCube313ActionPerformed(evt);
             }
@@ -778,9 +782,9 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
         jB311.setBackground(new java.awt.Color(0, 0, 0));
 
-        jB312.setBackground(new java.awt.Color(0, 0, 0));
-
         jB313.setBackground(new java.awt.Color(0, 0, 0));
+
+        jB312.setBackground(new java.awt.Color(0, 0, 0));
 
         jB321.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -891,12 +895,12 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                 .addComponent(jB122, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                         .addComponent(jB111, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1020,12 +1024,12 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                        .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                         .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                         .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                 .addGap(20, 20, 20)
-                                                                                                                .addComponent(jBCube313, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                                                                .addComponent(jBCube312, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                                                 .addGap(22, 22, 22)
@@ -1145,9 +1149,9 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addComponent(jB111, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jB113, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addComponent(jB112, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1212,11 +1216,11 @@ public class TheGame extends javax.swing.JFrame implements Observer {
                                                                 .addGap(94, 94, 94)
                                                                 .addComponent(jB311, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jB313, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jBCube313, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(jB312, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(jBCube312, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1408,11 +1412,11 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     private void jB112ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB112);
+        wagonCheck(jB113);
     }
 
     private void jB113ActionPerformed(java.awt.event.ActionEvent evt) {
-        wagonCheck(jB113);
+        wagonCheck(jB112);
     }
 
     private void jB121ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1488,11 +1492,11 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     private void jB312ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB312);
+        wagonCheck(jB313);
     }
 
     private void jB313ActionPerformed(ActionEvent evt) {
-        wagonCheck(jB313);
+        wagonCheck(jB312);
     }
 
     private void jB321ActionPerformed(ActionEvent evt) {
@@ -1565,7 +1569,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     }
 
     private void jBCube313ActionPerformed(ActionEvent evt) {
-        takeCube(jBCube313);
+        takeCube(jBCube312);
 
     }
 
@@ -1633,13 +1637,12 @@ public class TheGame extends javax.swing.JFrame implements Observer {
         ci.execute();
     }
 
-
     // Variables declaration - do not modify                     
     private javax.swing.JButton jB1;
     private javax.swing.JButton jB10;
     private javax.swing.JButton jB111;
-    private javax.swing.JButton jB113;
     private javax.swing.JButton jB112;
+    private javax.swing.JButton jB113;
     private javax.swing.JButton jB121;
     private javax.swing.JButton jB122;
     private javax.swing.JButton jB131;
@@ -1660,8 +1663,8 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jB252;
     private javax.swing.JButton jB3;
     private javax.swing.JButton jB311;
-    private javax.swing.JButton jB312;
     private javax.swing.JButton jB313;
+    private javax.swing.JButton jB312;
     private javax.swing.JButton jB321;
     private javax.swing.JButton jB322;
     private javax.swing.JButton jB331;
@@ -1684,7 +1687,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jBCube221;
     private javax.swing.JButton jBCube232;
     private javax.swing.JButton jBCube251;
-    private javax.swing.JButton jBCube313;
+    private javax.swing.JButton jBCube312;
     private javax.swing.JButton jBCube322;
     private javax.swing.JButton jBCube321;
     private javax.swing.JButton jBCube331;
