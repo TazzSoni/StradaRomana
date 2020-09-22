@@ -25,7 +25,7 @@ public abstract class MovementState {
     protected int qtMoves = 0;
     protected int maxQtMoves = 3;
     protected Validation validationCommonMove = new ValidateCommonMove(new ValidateMoveDistance());
-    protected Validation validationSidewayMove = new ValidateSidewayMove(new ValidateCommonMove(new ValidateMoveDistance()));
+    protected Validation validationSidewayMove = new ValidateSidewayMove(new ValidateMoveDistance());
     protected Validation validationDiagonalMove = new ValidateDiagonalMove(new ValidateMoveDistance());
     protected Validation validationExtraMove = new ValidateExtraMove(new ValidateMoveDistance());
     protected Validation validationStaking = new ValidateStaking(new ValidateMoveDistance());

@@ -23,8 +23,13 @@ public class ValidateSidewayMove extends Validation {
 
     @Override
     public boolean validate(Wagon wagon, String wishedLocation, String moveMapping) {
-        if (!wagon.getLocation().substring(0,2).equals(wishedLocation.substring(0,2))) {
-            return false;
+        if (wishedLocation.substring(0, 2).equals(wagon.getLocation().substring(0, 2))) {
+            if (wishedLocation.substring(0, 2).equals("11") || wishedLocation.substring(0, 2).equals("31")) {
+                if ((wishedLocation.charAt(2) == '1' && wagon.getLocation().charAt(2) == '2') || (wishedLocation.charAt(2) == '2' && wagon.getLocation().charAt(2) == '1')) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         if (otherValidation == null) {

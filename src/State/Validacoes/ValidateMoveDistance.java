@@ -43,7 +43,7 @@ public class ValidateMoveDistance extends Validation {
             String possiblyGoing1 = moveMapping.substring(4, 7);
             String possiblyGoing2 = moveMapping.substring(8, 11);
 
-            if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2) && !(wishedLocation.substring(0,2).equals(possiblyGoing1.substring(0,2)))) {
+            if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2) && !(wishedLocation.substring(0, 2).equals(possiblyGoing1.substring(0, 2)))) {
                 return false;
             }
 
