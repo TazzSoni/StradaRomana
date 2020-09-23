@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package State.Validacoes;
+package State.Validations;
 
 import Model.Wagon;
-import java.io.IOException;
 
 /**
  *
  * @author guilh
  */
-public class ValidateStaking extends Validation{
-    
-    public ValidateStaking(){
-        
+public class ValidateDiagonalMove extends Validation {
+
+    public ValidateDiagonalMove() {
+
     }
-    
-    public ValidateStaking(Validation otherValidation){
+
+    public ValidateDiagonalMove(Validation otherValidation) {
         super(otherValidation);
     }
 
@@ -30,5 +29,4 @@ public class ValidateStaking extends Validation{
             return otherValidation.validate(wagon, wishedLocation, moveMapping);
         }
     }
-    
 }

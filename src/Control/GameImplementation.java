@@ -432,35 +432,6 @@ public class GameImplementation implements GameControl {
 
     @Override
     public void endRoundCommand() {
-        int wagonsAtFinalPlace = 0;
-
-        for (Wagon w : wagons) {
-            if (Integer.parseInt(w.getLocation()) >= 1 && Integer.parseInt(w.getLocation()) <= 5 && w.getMovesTo().equals("E")) {
-                wagonsAtFinalPlace++;
-            } else if (Integer.parseInt(w.getLocation()) >= 6 && Integer.parseInt(w.getLocation()) <= 10 && w.getMovesTo().equals("D")) {
-                wagonsAtFinalPlace++;
-            }
-        }
-
-        if ((player1.getTotalScore() + player2.getTotalScore() == 20) || wagonsAtFinalPlace == 4) {
-            Player winner = findWinner();
-            observers.forEach((o) -> {
-                o.endGame(winner.getName(), winner.getTotalScore());
-            });
-        } else if (round.getActionType() != null) {
-            Player nextPlayer = round.endRound(player1, player2);
-            resetMoveData();
-            movement.reset();
-            notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
-        } else {
-            notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
-        }
-    }
-
-    private Player findWinner() {
-        int player1WagonTilesScore = 0;
-        int player2WagonTilesScore = 0;
-
         List<Wagon> wagonsAtFinalPlace = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
             Wagon wagon = getWagonByLocation(i + "");
@@ -474,6 +445,25 @@ public class GameImplementation implements GameControl {
                 }
             }
         }
+
+        if ((player1.getTotalScore() + player2.getTotalScore() == 20) || wagonsAtFinalPlace.size() == 4) {
+            Player winner = findWinner(wagonsAtFinalPlace);
+            observers.forEach((o) -> {
+                o.endGame(winner.getName(), winner.getTotalScore());
+            });
+        } else if (round.getActionType() != null) {
+            Player nextPlayer = round.endRound(player1, player2);
+            resetMoveData();
+            movement.reset();
+            notificaRoundFinalizado("Round finalizado! O próximo turno é de " + nextPlayer.getName());
+        } else {
+            notificaAcaoFalhou("Execute sua ação para poder encerrar o turno");
+        }
+    }
+
+    private Player findWinner(List<Wagon> wagonsAtFinalPlace) {
+        int player1WagonTilesScore = 0;
+        int player2WagonTilesScore = 0;
 
         for (int i = 0; i < wagonTile.getWagonTiles(0).size(); i++) {
             String wagonName = wagonTile.getWagonTiles(0).getWagonTiles(i).toString();

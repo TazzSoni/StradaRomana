@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package State.Validacoes;
+package State.Validations;
 
 import Model.Wagon;
 

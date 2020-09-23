@@ -6,13 +6,13 @@
 package State;
 
 import Model.Wagon;
-import State.Validacoes.ValidateMoveDistance;
-import State.Validacoes.ValidateSidewayMove;
-import State.Validacoes.Validation;
-import State.Validacoes.ValidateCommonMove;
-import State.Validacoes.ValidateDiagonalMove;
-import State.Validacoes.ValidateExtraMove;
-import State.Validacoes.ValidateStaking;
+import State.Validations.ValidateMoveDistance;
+import State.Validations.ValidateSidewayMove;
+import State.Validations.Validation;
+import State.Validations.ValidateCommonMove;
+import State.Validations.ValidateDiagonalMove;
+import State.Validations.ValidateExtraMove;
+import State.Validations.ValidateStaking;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public abstract class MovementState {
     protected Validation validationSidewayMove = new ValidateSidewayMove(new ValidateMoveDistance());
     protected Validation validationDiagonalMove = new ValidateDiagonalMove(new ValidateMoveDistance());
     protected Validation validationExtraMove = new ValidateExtraMove(new ValidateMoveDistance());
-    protected Validation validationStaking = new ValidateStaking(new ValidateMoveDistance());
+    protected Validation validationStaking = new ValidateStaking(new ValidateSidewayMove(new ValidateMoveDistance()));
 
     public abstract MovementState commonMove();
 
