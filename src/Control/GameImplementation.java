@@ -444,8 +444,9 @@ public class GameImplementation implements GameControl {
         }
 
         if ((player1.getTotalScore() + player2.getTotalScore() == 20) || wagonsAtFinalPlace == 4) {
+            Player winner = findWinner();
             observers.forEach((o) -> {
-                o.endGame(round.getPlayer().getName(), round.getPlayer().getTotalScore());
+                o.endGame(winner.getName(), winner.getTotalScore());
             });
         } else if (round.getActionType() != null) {
             Player nextPlayer = round.endRound(player1, player2);
@@ -457,8 +458,71 @@ public class GameImplementation implements GameControl {
         }
     }
 
-    @Override
+    private Player findWinner() {
+        int player1WagonTilesScore = 0;
+        int player2WagonTilesScore = 0;
 
+        List<Wagon> wagonsAtFinalPlace = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            Wagon wagon = getWagonByLocation(i + "");
+            if (i < 6) {
+                if (wagon != null && wagon.getMovesTo().equals("E")) {
+                    wagonsAtFinalPlace.add(wagon);
+                }
+            } else {
+                if (wagon != null && wagon.getMovesTo().equals("D")) {
+                    wagonsAtFinalPlace.add(wagon);
+                }
+            }
+        }
+
+        for (int i = 0; i < wagonTile.getWagonTiles(0).size(); i++) {
+            String wagonName = wagonTile.getWagonTiles(0).getWagonTiles(i).toString();
+            boolean wagonFound = false;
+            
+            for(Wagon w : wagonsAtFinalPlace){
+                if(w.getName().equals(wagonName)){
+                    wagonFound = true;
+                    break;
+                }
+            }
+            
+            if(wagonFound){
+                player1WagonTilesScore += 3;
+            } else {
+                player1WagonTilesScore -= 1;
+            }
+        }
+
+        for (int i = 0; i < wagonTile.getWagonTiles(1).size(); i++) {
+            String wagonName = wagonTile.getWagonTiles(1).getWagonTiles(i).toString();
+            boolean wagonFound = false;
+            
+            for(Wagon w : wagonsAtFinalPlace){
+                if(w.getName().equals(wagonName)){
+                    wagonFound = true;
+                    break;
+                }
+            }
+            
+            if(wagonFound){
+                player2WagonTilesScore += 3;
+            } else {
+                player2WagonTilesScore -= 1;
+            }
+        }
+        
+        player1.setTotalScore(player1.getTotalScore() + player1WagonTilesScore);
+        player2.setTotalScore(player2.getTotalScore() + player2WagonTilesScore);
+
+        if (player1.getTotalScore() > player2.getTotalScore()) {
+            return player1;
+        } else {
+            return player2;
+        }
+    }
+
+    @Override
     public void takeCube(String cubeLocation) {
         if (isPreviousLocation && cubeLocation.contains("cube") && !round.tookProduct()) {
             Wagon wagon = round.getLastWagonMoved();
