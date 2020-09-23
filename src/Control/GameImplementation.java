@@ -765,7 +765,7 @@ public class GameImplementation implements GameControl {
                     round.getPlayer().setCoins(round.getPlayer().getCoins() - 1);
                 } else {
                     notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
-                    notificaAcaoFalhou("Movimentação normal dedinida.");
+                    notificaAcaoFalhou("Movimentação normal definida.");
                 }
                 break;
             case "Diagonal":
