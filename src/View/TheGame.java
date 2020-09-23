@@ -832,9 +832,10 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
         jBConfirmaAcao.setText("Confirmar Ação");
         jLabel6.setText("Tipo de movimento");
+        jLabel6.setVisible(false);
 
         jComboMovimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Selecione", "Normal", "Especial"}));
-
+        jComboMovimento.setVisible(false);
         jLabelCoinsP1.setText("0");
         jLabelCoinsP1.setFont(new java.awt.Font("Times New Roman", 0, 16));
         jLabelCoinsP2.setText("0");
@@ -1841,7 +1842,7 @@ public class TheGame extends javax.swing.JFrame implements Observer {
 
     @Override
     public void endGame(String nome, int placar) {
-        JOptionPane.showMessageDialog(null, "O vencedor é "+nome+", com "+ placar+" pontos!!");
+        JOptionPane.showMessageDialog(null, "O vencedor é " + nome + ", com " + placar + " pontos!!");
         this.dispose();
     }
 }
