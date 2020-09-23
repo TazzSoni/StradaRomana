@@ -419,7 +419,6 @@ public class GameImplementation implements GameControl {
                 } catch (Exception ex) {
                     Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
 
         } else if (actionType.equals("Selecione")) {
@@ -467,15 +466,15 @@ public class GameImplementation implements GameControl {
         for (int i = 0; i < wagonTile.getWagonTiles(0).size(); i++) {
             String wagonName = wagonTile.getWagonTiles(0).getWagonTiles(i).toString();
             boolean wagonFound = false;
-            
-            for(Wagon w : wagonsAtFinalPlace){
-                if(w.getName().equals(wagonName)){
+
+            for (Wagon w : wagonsAtFinalPlace) {
+                if (w.getName().equals(wagonName)) {
                     wagonFound = true;
                     break;
                 }
             }
-            
-            if(wagonFound){
+
+            if (wagonFound) {
                 player1WagonTilesScore += 3;
             } else {
                 player1WagonTilesScore -= 1;
@@ -485,21 +484,21 @@ public class GameImplementation implements GameControl {
         for (int i = 0; i < wagonTile.getWagonTiles(1).size(); i++) {
             String wagonName = wagonTile.getWagonTiles(1).getWagonTiles(i).toString();
             boolean wagonFound = false;
-            
-            for(Wagon w : wagonsAtFinalPlace){
-                if(w.getName().equals(wagonName)){
+
+            for (Wagon w : wagonsAtFinalPlace) {
+                if (w.getName().equals(wagonName)) {
                     wagonFound = true;
                     break;
                 }
             }
-            
-            if(wagonFound){
+
+            if (wagonFound) {
                 player2WagonTilesScore += 3;
             } else {
                 player2WagonTilesScore -= 1;
             }
         }
-        
+
         player1.setTotalScore(player1.getTotalScore() + player1WagonTilesScore);
         player2.setTotalScore(player2.getTotalScore() + player2WagonTilesScore);
 
@@ -761,34 +760,42 @@ public class GameImplementation implements GameControl {
                 break;
             case "Lateral":
                 if (round.getPlayer().getCoins() >= 1) {
+                    notificaTipoDeAcaoDefinido(round.getActionType() + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
                     movement.sidewaysMove();
                     round.getPlayer().setCoins(round.getPlayer().getCoins() - 1);
                 } else {
                     notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                    notificaAcaoFalhou("Movimentação normal dedinida.");
                 }
                 break;
             case "Diagonal":
                 if (round.getPlayer().getCoins() >= 2) {
+                    notificaTipoDeAcaoDefinido(round.getActionType() + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
                     movement.diagonalMove();
                     round.getPlayer().setCoins(round.getPlayer().getCoins() - 2);
                 } else {
                     notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                    notificaAcaoFalhou("Movimentação normal dedinida.");
                 }
                 break;
             case "Extra":
                 if (round.getPlayer().getCoins() >= 3) {
+                    notificaTipoDeAcaoDefinido(round.getActionType() + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
                     movement.extraMove();
                     round.getPlayer().setCoins(round.getPlayer().getCoins() - 3);
                 } else {
                     notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                    notificaAcaoFalhou("Movimentação normal dedinida.");
                 }
                 break;
             case "Atravessar":
                 if (round.getPlayer().getCoins() >= 4) {
+                    notificaTipoDeAcaoDefinido(round.getActionType() + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
                     movement.staking();
                     round.getPlayer().setCoins(round.getPlayer().getCoins() - 4);
                 } else {
                     notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
+                    notificaAcaoFalhou("Movimentação normal dedinida.");
                 }
                 break;
             default:
