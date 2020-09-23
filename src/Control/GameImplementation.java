@@ -352,7 +352,6 @@ public class GameImplementation implements GameControl {
                     }
                     wagon = movement.move(wagon, wishedLocation, movimentacoes);
                 } catch (Exception ex) {
-                    ex.printStackTrace();
                     notificaAcaoFalhou(ex.getMessage());
                     return;
                 }
