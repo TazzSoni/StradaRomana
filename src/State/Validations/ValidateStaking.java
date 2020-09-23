@@ -5,6 +5,7 @@
  */
 package State.Validations;
 
+import Control.GameImplementation;
 import Model.Wagon;
 import java.io.IOException;
 
@@ -24,6 +25,10 @@ public class ValidateStaking extends Validation{
 
     @Override
     public boolean validate(Wagon wagon, String wishedLocation, String moveMapping) {
+        if (GameImplementation.getWagonByLocation(wishedLocation) != null){
+            return true;
+        }
+        
         if (otherValidation == null) {
             return true;
         } else {

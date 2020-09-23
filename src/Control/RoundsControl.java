@@ -23,8 +23,6 @@ import java.util.HashMap;
 public class RoundsControl {
 
     private static RoundsControl instance;
-    private int qtMoves = 0;
-    private int maxQtMoves;
     private ActionType actionType = null;
     private Player player;
     private Wagon lastWagonMoved;
@@ -56,14 +54,9 @@ public class RoundsControl {
 
     public void setActionType(ActionType actionType) {
         this.actionType = actionType;
-        if (actionType.getAcao().equals("Movimentar wagon")) {
-            maxQtMoves = 3;
-        }
     }
 
     public Player endRound(Player player1, Player player2) {
-        qtMoves = 0;
-        maxQtMoves = 0;
         actionType = null;
         lastWagonMoved = null;
         tookProduct = false;

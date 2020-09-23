@@ -38,14 +38,14 @@ public class GameImplementation implements GameControl {
     private Player player2;
     private Random random = new Random();
     private List<Observer> observers = new ArrayList<>();
-    private List<Wagon> wagons = new ArrayList<>();
+    private static List<Wagon> wagons = new ArrayList<>();
     private List<Cube> cubes = new ArrayList<>();
     private List<Ware> wares = new ArrayList<>();
     private RoundsControl round = RoundsControl.getInstance();
     private Bag bag = Bag.getInstance();
     private WagonTile wagonTile = new WagonTile();
     private Movement movement = new Movement();
-
+    
     String previousLocation;
     String wishedLocation;
     private boolean isPreviousLocation = true;
@@ -338,7 +338,7 @@ public class GameImplementation implements GameControl {
                     return;
                 }
 
-                if ((location.contains("cube") || location.contains("ware") || (getWagonByLocation(location) != null))) {
+                if ((location.contains("cube") || location.contains("ware"))) {
                     notificaAcaoFalhou("Movimentação impossível, tente novamente!");
                     resetMoveData();
                     return;
@@ -372,7 +372,7 @@ public class GameImplementation implements GameControl {
         isPreviousLocation = true;
     }
 
-    private Wagon getWagonByLocation(String location) {
+    public static Wagon getWagonByLocation(String location) {
         for (Wagon w : wagons) {
             if (w.getLocation().equals(location)) {
                 return w;
@@ -419,7 +419,6 @@ public class GameImplementation implements GameControl {
                 } catch (Exception ex) {
                     Logger.getLogger(GameImplementation.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                //Esse Aqui
                 notificaTipoDeAcaoDefinido(actionType + " definida com sucesso. Você não poderá escolher outra ação até seu próximo round!");
             }
 
@@ -787,7 +786,7 @@ public class GameImplementation implements GameControl {
             case "Atravessar":
                 if (round.getPlayer().getCoins() >= 4) {
                     movement.staking();
-                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 3);
+                    round.getPlayer().setCoins(round.getPlayer().getCoins() - 4);
                 } else {
                     notificaAcaoFalhou("Para escolher este tipo de movimentação, você deve possuir mais moedas.");
                 }

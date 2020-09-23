@@ -5,6 +5,7 @@
  */
 package State.Validations;
 
+import Control.GameImplementation;
 import Model.Wagon;
 
 /**
@@ -12,7 +13,7 @@ import Model.Wagon;
  * @author guilh
  */
 public class ValidateCommonMove extends Validation {
-
+    
     public ValidateCommonMove(Validation otherValidation) {
         super(otherValidation);
     }
@@ -23,7 +24,7 @@ public class ValidateCommonMove extends Validation {
             String possiblyGoing1 = moveMapping.substring(4, 7);
             String possiblyGoing2 = moveMapping.substring(8, 11);
 
-            if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2)) {
+            if (!wishedLocation.equals(possiblyGoing1) && !wishedLocation.equals(possiblyGoing2) || (GameImplementation.getWagonByLocation(wishedLocation) != null)) {
                 return false;
             }
         }
